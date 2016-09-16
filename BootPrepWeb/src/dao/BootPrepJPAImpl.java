@@ -51,7 +51,6 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 	
 	@Override
 	public User login(String username, String password) {
-System.out.println("in login()..." + username + " :" + password);
 		String query = "select u from User u where u.username = ?1";
 		User user = em.createQuery(query, User.class)
 				.setParameter(1, username)
@@ -63,6 +62,17 @@ System.out.println("in login()..." + username + " :" + password);
 			return user;
 		}
 		return null;
+	}
+
+	@Override
+	public User updateUser(User user, int id) {
+		User current = em.find(User.class, id);
+		current.setFirstName(user.getFirstName());
+		current.setLastName(user.getLastName());
+		current.setUsername(user.getUsername());
+		current.setEmail(user.getEmail());
+		current.setCreateDate(user.getCreateDate());
+		return current;
 	}
 	
 	

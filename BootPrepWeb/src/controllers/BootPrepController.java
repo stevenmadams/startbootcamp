@@ -1,5 +1,6 @@
 package controllers;
 
+import java.text.ParseException;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dao.BootPrepDAO;
 import entities.User;
+import helpers.DateTimeHelper;
 
 @Controller
 @SessionAttributes("userId")
@@ -52,10 +54,20 @@ public class BootPrepController {
 	}
 
 	@RequestMapping(path="usersubmitedit.do")
-	public ModelAndView userSubmitEdit(int id, String firstName, String lastName, String username,
-			String email, Date startDate) {
-		User u = dao.getUserById(id);
-		ModelAndView mv = new ModelAndView("useredit.jsp", "user", u);
+	public ModelAndView userSubmitEdit(@ModelAttribute("userId")int id, 
+			String firstName, 
+			String lastName, 
+			String username,
+			String email, 
+			String createDate) {
+		Date date = null;
+		try {
+			date = DateTimeHelper.stringToDate(createDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		User u = dao.updateUser(new User(firstName, lastName, username, email, date), id);
+		ModelAndView mv = new ModelAndView("userprofile.jsp", "user", u);
 		return mv;
 	}
 	

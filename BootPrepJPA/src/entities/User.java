@@ -34,6 +34,15 @@ public class User {
 		private Date createDate;
 		private String password;
 		
+		public User() {}
+		
+		public User(String firstName, String lastName, String username, String email, Date createDate) {
+			this.firstName= firstName;
+			this.lastName = lastName;
+			this.username = username;
+			this.email = email;
+			this.createDate = createDate;
+		}
 		
 		public String getFirstName() {
 			return firstName;

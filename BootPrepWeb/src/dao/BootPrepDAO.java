@@ -14,4 +14,5 @@ public interface BootPrepDAO {
 	public List<Resource> getAllResources();
 	public List<UserResource> getAllUserResourcesByUserId(int id);
 	public User login(String username, String password);
+	public User updateUser(User user, int id);
 }
