@@ -26,6 +26,7 @@
     <%-- IF USER ID != NULL --%>
     <c:when test="${! empty user}">
         <p>${user}</p>
+        <a href="useredit.do?id=${user.id}">EDIT ACCOUNT</a>
     </c:when>
 </c:choose>
 
