@@ -33,6 +33,7 @@ public class User {
 		@Column(name="start_date")
 		@Temporal(TemporalType.DATE)
 		private Date  createDate;
+		private String password;
 		
 		
 		public String getFirstName() {
@@ -69,6 +70,12 @@ public class User {
 			return id;
 		}
 		
+		public String getPassword() {
+			return password;
+		}
+		public void setPassword(String password) {
+			this.password = password;
+		}
 		public List<UserResource> getUserResources() {
 			return userResources;
 		}
