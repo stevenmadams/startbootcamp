@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,9 +17,10 @@ import javax.persistence.TemporalType;
 public class User {
 		@Id //Maps to Primary Key
 		@GeneratedValue(strategy = GenerationType.IDENTITY) // Tells Java to ignore id, use when auto-incrementing
-		@Column(name="user_id")
 		private int id;
-		private List<User> users;
+		
+		@OneToMany(mappedBy="user")
+		private List<UserResource> userResources;
 		@Column(name="first_name")
 		private String firstName;
 		@Column(name="last_name")
@@ -29,7 +29,7 @@ public class User {
 		private String username;
 		@Column(name="email")
 		private String email;
-		@JoinColumn(name="start_date")
+		@Column(name="start_date")
 		@Temporal(TemporalType.DATE)
 		private Date  createDate;
 		
@@ -67,9 +67,16 @@ public class User {
 		public int getId() {
 			return id;
 		}
+		
+		public List<UserResource> getUserResources() {
+			return userResources;
+		}
+		public void setUserResources(List<UserResource> userResources) {
+			this.userResources = userResources;
+		}
 		@Override
 		public String toString() {
-			return "User [id=" + id + ", users=" + users + ", firstName=" + firstName + ", lastName=" + lastName
+			return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName
 					+ ", username=" + username + ", email=" + email + ", createDate=" + createDate + "]";
 		}
 		

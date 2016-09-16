@@ -14,8 +14,8 @@ import javax.persistence.OneToMany;
 public class Tag {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@OneToMany
-	@JoinColumn(name="tag_id")
+//	@OneToMany
+//	@JoinColumn(name="tag_id")
 	private int id;
 	private String name;
 	
@@ -38,6 +38,10 @@ public class Tag {
 	}
 	public void setResources(List<Resource> resources) {
 		this.resources = resources;
+	}
+	@Override
+	public String toString() {
+		return "Tag [id=" + id + ", name=" + name + ", resources=]";
 	}
 	
 	
