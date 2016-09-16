@@ -19,32 +19,38 @@ public class UserResourceKey implements Serializable {
 		this.user = user;
 		this.resource = resource;
 	}
-	
-	
-	public int getUserId() {
+
+	public int getUser() {
 		return user;
 	}
-	public void setUserId(int userId) {
-		this.user = userId;
+
+
+	public void setUser(int user) {
+		this.user = user;
 	}
-	public int getResourceId() {
+
+
+	public int getResource() {
 		return resource;
 	}
-	public void setResourceId(int resourceId) {
-		this.resource = resourceId;
+
+
+	public void setResource(int resource) {
+		this.resource = resource;
 	}
+
 
 	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof UserResourceKey)) return false;
         UserResourceKey that = (UserResourceKey) o;
-        return Objects.equals(getUserId(), that.getUserId()) &&
-                Objects.equals(getResourceId(), that.getResourceId());
+        return Objects.equals(getUser(), that.getUser()) &&
+                Objects.equals(getResource(), that.getResource());
     }
 	@Override
     public int hashCode() {
-        return Objects.hash(getUserId(), getResourceId());
+        return Objects.hash(getUser(), getResource());
     }
 	@Override
 	public String toString() {
