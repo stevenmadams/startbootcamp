@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 public class User {
 		@Id //Maps to Primary Key
 		@GeneratedValue(strategy = GenerationType.IDENTITY) // Tells Java to ignore id, use when auto-incrementing
-		@OneToMany(mappedBy="user")
+		@Column(name="user_id")
 		private int id;
 		private List<User> users;
 		@Column(name="first_name")
@@ -70,7 +70,7 @@ public class User {
 		@Override
 		public String toString() {
 			return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
-					+ ", email=" + email + ", createDate=" + createDate + "]";
+					+ ", email=" + email + "]";
 		}
 	
 		
