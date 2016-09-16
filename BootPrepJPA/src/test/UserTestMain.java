@@ -19,7 +19,8 @@ public class UserTestMain {
 //		Tag t = em.find(Tag.class, 1);
 //		UserResourceKey key = new UserResourceKey(1, 1);
 //		User u = em.find(User.class, 2);
-		
-		System.out.println(r.getUserResources().get(0).getNotes());
+		em.getTransaction().begin();
+		r.getUserResources().get(0).setNotes("asdf");
+		em.getTransaction().commit();
 	}
 }
