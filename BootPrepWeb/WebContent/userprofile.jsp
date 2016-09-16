@@ -14,9 +14,9 @@
 
 <c:choose>
     <%-- IF USER ID = NULL --%>
-    <c:when test="${empty user}">
+    <c:when test="${userId = 0}">
         <h3>LOG IN</h3>
-        <form method="GET" action="userprofile.do">
+        <form method="POST" action="userprofile.do">
             Username<input type="text" name="username"/>
             Password<input type="password" name="password"/>
           <input type="submit" value ="LOG IN"/>
@@ -26,7 +26,7 @@
     <%-- IF USER ID != NULL --%>
     <c:when test="${! empty user}">
         <p>${user}</p>
-        <a href="useredit.do?id=${user.id}">EDIT ACCOUNT</a>
+        <a href="useredit.do?">EDIT ACCOUNT</a>
     </c:when>
 </c:choose>
 
