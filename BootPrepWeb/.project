@@ -3,6 +3,7 @@
 	<name>BootPrepWeb</name>
 	<comment></comment>
 	<projects>
+		<project>BootPrepJPA</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
