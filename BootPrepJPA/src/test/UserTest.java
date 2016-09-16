@@ -22,7 +22,7 @@
 //
 //	@Before
 //	public void setUp() throws Exception {
-//		emf = Persistence.createEntityManagerFactory("BootPrepJPA");
+//		emf = Persistence.createEntityManagerFactory("JPAVideoStore");
 //		em = emf.createEntityManager();
 //	}
 //
