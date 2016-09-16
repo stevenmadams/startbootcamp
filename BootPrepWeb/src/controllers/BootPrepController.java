@@ -45,8 +45,7 @@ public class BootPrepController {
 	}
 	
 	@RequestMapping(path="useredit.do")
-	public ModelAndView userEdit(int id, String firstName, String lastName, String username,
-									String email, Date startDate) {
+	public ModelAndView userEdit(@ModelAttribute("userId")int id) {
 		User u = dao.getUserById(id);
 		ModelAndView mv = new ModelAndView("useredit.jsp", "user", u);
 		return mv;

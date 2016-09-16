@@ -15,7 +15,7 @@
     Username:<input type="text" name="username" value="${user.username}">
       <%-- Password:<input type="password" name="password">  --%>
       E-Mail:<input type="email" name="email" value="${user.email}">
-      Bootcamp start date: <input type="date" name="startDate" value="${user.startDate}">
+      Bootcamp start date: <input type="date" name="createDate" value="${user.createDate}">
       <input type="submit" value ="SUBMIT CHANGES"/>
 </form>
 

@@ -31,7 +31,7 @@ public class User {
 		private String email;
 		@Column(name="start_date")
 		@Temporal(TemporalType.DATE)
-		private Date  createDate;
+		private Date createDate;
 		private String password;
 		
 		

@@ -14,7 +14,7 @@
 
 <c:choose>
     <%-- IF USER ID = NULL --%>
-    <c:when test="${userId = 0}">
+    <c:when test="${empty user}">
         <h3>LOG IN</h3>
         <form method="POST" action="userprofile.do">
             Username<input type="text" name="username"/>
