@@ -17,8 +17,8 @@
     <c:when test="${empty user}">
         <h3>LOG IN</h3>
         <form method="GET" action="userprofile.do">
-        <input type="text" name="username"/>
-          <input type="password" name="password"/>
+            Username<input type="text" name="username"/>
+            Password<input type="password" name="password"/>
           <input type="submit" value ="LOG IN"/>
         </form>
         <a href="usercreate.html">CREATE ACCOUNT</a>
