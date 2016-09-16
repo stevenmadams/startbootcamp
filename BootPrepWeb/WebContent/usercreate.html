@@ -8,13 +8,14 @@
 </head>
 <body>
 <h3>Create account</h3>
-<form>
+<form method="post" action="usercreate.do">
   First:<input type="text" name="firstName">
     Last:<input type="text" name="lastName">
     Username:<input type="text" name="username">
       Password:<input type="password" name="password">
       E-Mail:<input type="email" name="email">
-
+      Bootcamp start date: <input type="date" name="startDate">
+      <input type="submit" value ="CREATE ACCOUNT"/>
 </form>
 
 
