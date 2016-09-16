@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,8 +18,9 @@ import javax.persistence.TemporalType;
 public class User {
 		@Id //Maps to Primary Key
 		@GeneratedValue(strategy = GenerationType.IDENTITY) // Tells Java to ignore id, use when auto-incrementing
-		@OneToMany(mappedBy="user_id")
+		@OneToMany(mappedBy="user")
 		private int id;
+		private List<User> users;
 		@Column(name="first_name")
 		private String firstName;
 		@Column(name="last_name")
@@ -32,9 +32,6 @@ public class User {
 		@JoinColumn(name="start_date")
 		@Temporal(TemporalType.DATE)
 		private Date  createDate;
-		
-		@OneToMany(mappedBy="user")
-		private List<UserResource> userResources;
 		
 		
 		public String getFirstName() {
