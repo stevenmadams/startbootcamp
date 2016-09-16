@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
 public class User {
 		@Id //Maps to Primary Key
 		@GeneratedValue(strategy = GenerationType.IDENTITY) // Tells Java to ignore id, use when auto-incrementing
-		@OneToMany(mappedBy="user_id")
+		@Column(name="user_id")
 		private int id;
 		@Column(name="first_name")
 		private String firstName;
