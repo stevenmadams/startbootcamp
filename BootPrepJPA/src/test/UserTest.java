@@ -28,7 +28,7 @@ public class UserTest {
 
 	@Test
 	public void test() throws ParseException {
-		User use = em.find(User.class, 1);
+		User user = em.find(User.class, 1);
 		assertEquals("Mary", user.getFirstName());
 		assertEquals("Smith", user.getLastName());
 		assertEquals("MARY.SMITH@sdvidcustomer.org", user.getEmail());
