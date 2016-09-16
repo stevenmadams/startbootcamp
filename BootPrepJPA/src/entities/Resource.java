@@ -74,6 +74,19 @@ import javax.persistence.OneToMany;
 		public void setTags(List<Tag> tags) {
 			this.tags = tags;
 		}
+		public List<UserResource> getUserResources() {
+			return userResources;
+		}
+		public void setUserResources(List<UserResource> userResources) {
+			this.userResources = userResources;
+		}
+		@Override
+		public String toString() {
+			return "Resource [id=" + id + ", name=" + name + ", description=" + description + ", url=" + url
+					+ ", video=" + video + ", photo=" + photo +"]";
+		}
+		
+		
 		
 
 //ADD AND REMOVE METHODS---------------------------------------------------
