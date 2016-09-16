@@ -25,7 +25,6 @@ public class UserResource {
 	private int rating;
 
 	
-	
 	public User getUser() {
 		return user;
 	}

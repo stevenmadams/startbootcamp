@@ -12,7 +12,13 @@ public class UserResourceKey implements Serializable {
 	private int user;
 	private int resource;
 	
+	public UserResourceKey() {}
 	
+	
+	public UserResourceKey(int user, int resource) {
+		this.user = user;
+		this.resource = resource;
+	}
 	
 	
 	public int getUserId() {
