@@ -23,25 +23,25 @@ public class UserController {
 	@Autowired
 	private BootPrepDAO dao;
 	
-	public UserDetails loadUserByUsername(String login)
-            throws UsernameNotFoundException {
-         
-        User user = bootPrepDAO.getUser(login);
- 
-        return new User(
-                user.getFirstName(), 
-                user.getLastName(), 
-                user.getUsername(), 
-                user.getEmail(), 
-                user.getPassword(), 
-                user.getCreateDate().getId()));
+//	public UserDetails loadUserByUsername(String login){
+//           // throws UsernameNotFoundException {
+//        User user = BootPrepDAO.getUser(int id);
+// 
+//        return new User(
+//        		user.getUserId(),
+//                user.getFirstName(), 
+//                user.getLastName(), 
+//                user.getUsername(), 
+//                user.getEmail(), 
+//                user.getPassword(), 
+//                user.getCreateDate()) ;
 	
-	@RequestMapping(path="useredit.do")
-	public ModelAndView userEdit(@ModelAttribute("userId")int id) {
-		User u = dao.getUserById(id);
-		ModelAndView mv = new ModelAndView("useredit.jsp", "user", u);
-		return mv;
-	}
+//	@RequestMapping(path="useredit.do")
+//	public ModelAndView userEdit(@ModelAttribute("userId")int id) {
+//		User u = dao.getUserById(id);
+//		ModelAndView mv = new ModelAndView("useredit.jsp", "user", u);
+//		return mv;
+//	}
 
 	@RequestMapping(path="usersubmitedit.do")
 	public ModelAndView userSubmitEdit(@ModelAttribute("userId")int id, 
@@ -61,34 +61,34 @@ public class UserController {
 		return mv;
 	}
 	
-	@RequestMapping(path="usercreate.do" method = RequestMethod.GET)
-    public String UserCreate (Map<String, Object> model) {
-        User userForm = new User();    
-        model.put("userForm", userForm);
-         
-        return "Registration";
-    }
+//	@RequestMapping(path="usercreate.do" method = RequestMethod.GET)
+//    public String UserCreate (Map<String, Object> model) {
+//        User userForm = new User();    
+//        model.put("userForm", userForm);
+//         
+//        return "Registration";
+//    }
 	
-	@RequestMapping(path="userprocess.do" method = RequestMethod.POST)
-    public String userProcess(@ModelAttribute("userForm") User user,
-            Map<String, Object> model) {
-         
-        // implement our user logic in the space......
-         
-        // for testing purpose:
-        System.out.println("First Name: " + user.getFirstName());
-        System.out.println("Last Name: " + user.getLastName());
-        System.out.println("Username: " + user.getUsername());
-        System.out.println("Password: " + user.getPassword());
-        System.out.println("E-mail: " + user.getEmail());
-        System.out.println("Start date: " + user.getCreateDate());
-         
-        return "RegistrationSuccess";
-    }
+//	@RequestMapping(path="userprocess.do" method = RequestMethod.POST)
+//    public String userProcess(@ModelAttribute("userForm") User user,
+//            Map<String, Object> model) {
+//         
+//        // implement our user logic in the space......
+//         
+//        // for testing purpose:
+//        System.out.println("First Name: " + user.getFirstName());
+//        System.out.println("Last Name: " + user.getLastName());
+//        System.out.println("Username: " + user.getUsername());
+//        System.out.println("Password: " + user.getPassword());
+//        System.out.println("E-mail: " + user.getEmail());
+//        System.out.println("Start date: " + user.getCreateDate());
+//         
+//        return "RegistrationSuccess";
+//    }
 	
-	@RequestMapping(path= "userdelete.do" method = RequestMethod.DELETE)
-	public String deleteUser(@PathVariable int userId) {
-	  this.deleteUser(userId);
-	  return "delete:/users/" + userId;
-	}
+//	@RequestMapping(path= "userdelete.do" method = RequestMethod.DELETE)
+//	public String deleteUser(@PathVariable int userId) {
+//	  this.deleteUser(userId);
+//	  return "delete:/users/" + userId;
+//	}
 }
