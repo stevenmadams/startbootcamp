@@ -22,54 +22,9 @@ public class BootPrepController {
 	@Autowired
 	private BootPrepDAO dao;
 	
-	@ModelAttribute("userId")
-	public int initUserId() {
-		return 0;
-	}
 	
-	@RequestMapping(path="userprofile.do")
-	public ModelAndView getUser(@ModelAttribute("userId") int id,
-			@RequestParam(value="username", required=false) String username,
-			@RequestParam(value="password", required=false) String password) {
-//		System.out.println(id);
-		User u = null;
-		ModelAndView mv = new ModelAndView("userprofile.jsp");
-		if (username != null && password != null) {
-			u = dao.login(username, password);
-			if (u != null) {
-				mv.addObject("userId", u.getId());				
-			} else {
-				mv.addObject("userId", 0);
-			}
-		}
-		mv.addObject("user", u);
-		return mv;
-	}
 	
-	@RequestMapping(path="useredit.do")
-	public ModelAndView userEdit(@ModelAttribute("userId")int id) {
-		User u = dao.getUserById(id);
-		ModelAndView mv = new ModelAndView("useredit.jsp", "user", u);
-		return mv;
-	}
-
-	@RequestMapping(path="usersubmitedit.do")
-	public ModelAndView userSubmitEdit(@ModelAttribute("userId")int id, 
-			String firstName, 
-			String lastName, 
-			String username,
-			String email, 
-			String createDate) {
-		Date date = null;
-		try {
-			date = DateTimeHelper.stringToDate(createDate);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		User u = dao.updateUser(new User(firstName, lastName, username, email, date), id);
-		ModelAndView mv = new ModelAndView("userprofile.jsp", "user", u);
-		return mv;
-	}
+	
 	
 	
 	

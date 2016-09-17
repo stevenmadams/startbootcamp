@@ -34,6 +34,8 @@ public class User {
 		private Date createDate;
 		private String password;
 		
+		
+		
 		public User() {}
 		
 		public User(String firstName, String lastName, String username, String email, Date createDate) {
