@@ -7,7 +7,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,19 +23,7 @@ public class UserController {
 
 	@Autowired
 	private BootPrepDAO dao;
-	
-	public UserDetails loadUserByUsername(String login)
-            throws UsernameNotFoundException {
-         
-        User user = bootPrepDAO.getUser(login);
- 
-        return new User(
-                user.getFirstName(), 
-                user.getLastName(), 
-                user.getUsername(), 
-                user.getEmail(), 
-                user.getPassword(), 
-                user.getCreateDate().getId()));
+
 	
 	@RequestMapping(path="useredit.do")
 	public ModelAndView userEdit(@ModelAttribute("userId")int id) {
@@ -60,7 +50,7 @@ public class UserController {
 		return mv;
 	}
 	
-	@RequestMapping(path="usercreate.do" method = RequestMethod.GET)
+	@RequestMapping(path="usercreate.do", method = RequestMethod.GET)
     public String UserCreate (Map<String, Object> model) {
         User userForm = new User();    
         model.put("userForm", userForm);
@@ -68,7 +58,7 @@ public class UserController {
         return "Registration";
     }
 	
-	@RequestMapping(path="userprocess.do" method = RequestMethod.POST)
+	@RequestMapping(path="userprocess.do", method = RequestMethod.POST)
     public String userProcess(@ModelAttribute("userForm") User user,
             Map<String, Object> model) {
          
@@ -85,7 +75,7 @@ public class UserController {
         return "RegistrationSuccess";
     }
 	
-	@RequestMapping(path= "userdelete.do" method = RequestMethod.DELETE)
+	@RequestMapping(path= "userdelete.do", method = RequestMethod.DELETE)
 	public String deleteUser(@PathVariable int userId) {
 	  this.deleteUser(userId);
 	  return "delete:/users/" + userId;
