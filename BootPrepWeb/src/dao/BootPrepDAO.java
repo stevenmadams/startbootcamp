@@ -16,12 +16,6 @@ public interface BootPrepDAO {
 	public User login(String username, String password);
 	
 	// User table items
-	public User getUser(String login);
-	public User updateUser(User user);
-	public User deleteUser(User user, int id);
-	public User processUser(int id, String firstName, 
-			String lastName, String Username, 
-			String password, String email, 
-			String createDate);
-	public User createUser();
+	public User updateUser(User user, int id);
+	public User createUser(User user);
 }

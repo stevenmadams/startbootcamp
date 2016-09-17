@@ -65,26 +65,7 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 	}
 
 	@Override
-	public User getUser(String login) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public User deleteUser(User user, int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public User processUser(int id, String firstName, String lastName, String Username, String password, String email,
-			String createDate) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public User createUser() {
+	public User createUser(User user) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -99,34 +80,6 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		current.setCreateDate(user.getCreateDate());
 		return current;
 	}
-	
-	@Override
-	public User getUser(String login) {
-        List<User> userList = new ArrayList<User>();
-        Query query = openSession().createQuery("from User u where u.login = :login");
-        query.setParameter("login", login);
-        userList = query.list();
-        if (userList.size() > 0)
-            return userList.get(0);
-        else
-            return null;    
-    }
-	
-	@Override
-	public User deleteUser(User user, int id) {
-		
-		return null;
-	}
-	
-	@Override
-	public User createUser() {
-		
-		return null;
-	}
-	
-	@Override
-	public User processUser(int id, String firstName, String lastName, String Username, String password, String email, String createDate) {	
-		return null;
-	}
+
 	
 }

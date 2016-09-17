@@ -7,7 +7,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,26 +23,13 @@ public class UserController {
 
 	@Autowired
 	private BootPrepDAO dao;
-	
-//	public UserDetails loadUserByUsername(String login){
-//           // throws UsernameNotFoundException {
-//        User user = BootPrepDAO.getUser(int id);
-// 
-//        return new User(
-//        		user.getUserId(),
-//                user.getFirstName(), 
-//                user.getLastName(), 
-//                user.getUsername(), 
-//                user.getEmail(), 
-//                user.getPassword(), 
-//                user.getCreateDate()) ;
-	
-//	@RequestMapping(path="useredit.do")
-//	public ModelAndView userEdit(@ModelAttribute("userId")int id) {
-//		User u = dao.getUserById(id);
-//		ModelAndView mv = new ModelAndView("useredit.jsp", "user", u);
-//		return mv;
-//	}
+
+	@RequestMapping(path="useredit.do")
+	public ModelAndView userEdit(@ModelAttribute("userId")int id) {
+		User u = dao.getUserById(id);
+		ModelAndView mv = new ModelAndView("useredit.jsp", "user", u);
+		return mv;
+	}
 
 	@RequestMapping(path="usersubmitedit.do")
 	public ModelAndView userSubmitEdit(@ModelAttribute("userId")int id, 
@@ -59,7 +48,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("userprofile.jsp", "user", u);
 		return mv;
 	}
-	
+
 //	@RequestMapping(path="usercreate.do" method = RequestMethod.GET)
 //    public String UserCreate (Map<String, Object> model) {
 //        User userForm = new User();    
@@ -68,26 +57,4 @@ public class UserController {
 //        return "Registration";
 //    }
 	
-//	@RequestMapping(path="userprocess.do" method = RequestMethod.POST)
-//    public String userProcess(@ModelAttribute("userForm") User user,
-//            Map<String, Object> model) {
-//         
-//        // implement our user logic in the space......
-//         
-//        // for testing purpose:
-//        System.out.println("First Name: " + user.getFirstName());
-//        System.out.println("Last Name: " + user.getLastName());
-//        System.out.println("Username: " + user.getUsername());
-//        System.out.println("Password: " + user.getPassword());
-//        System.out.println("E-mail: " + user.getEmail());
-//        System.out.println("Start date: " + user.getCreateDate());
-//         
-//        return "RegistrationSuccess";
-//    }
-	
-//	@RequestMapping(path= "userdelete.do" method = RequestMethod.DELETE)
-//	public String deleteUser(@PathVariable int userId) {
-//	  this.deleteUser(userId);
-//	  return "delete:/users/" + userId;
-//	}
 }
