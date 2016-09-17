@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,6 +21,19 @@ public class UserController {
 
 	@Autowired
 	private BootPrepDAO dao;
+	
+	public UserDetails loadUserByUsername(String login)
+            throws UsernameNotFoundException {
+         
+        User user = bootPrepDAO.getUser(login);
+ 
+        return new User(
+                user.getFirstName(), 
+                user.getLastName(), 
+                user.getUsername(), 
+                user.getEmail(), 
+                user.getPassword(), 
+                user.getCreateDate().getId()));
 	
 	@RequestMapping(path="useredit.do")
 	public ModelAndView userEdit(@ModelAttribute("userId")int id) {
@@ -48,25 +60,19 @@ public class UserController {
 		return mv;
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
-    public String viewRegistration (Map<String, Object> model) {
+	@RequestMapping(path="usercreate.do" method = RequestMethod.GET)
+    public String UserCreate (Map<String, Object> model) {
         User userForm = new User();    
         model.put("userForm", userForm);
-         
-//        List<String> professionList = new ArrayList<>();
-//        professionList.add("Hobbyist");
-//        professionList.add("Will attend a coding boot camp");
-//        professionList.add("");
-//        model.put("professionList", professionList);
          
         return "Registration";
     }
 	
-	@RequestMapping(method = RequestMethod.POST)
-    public String processRegistration(@ModelAttribute("userForm") User user,
+	@RequestMapping(path="userprocess.do" method = RequestMethod.POST)
+    public String userProcess(@ModelAttribute("userForm") User user,
             Map<String, Object> model) {
          
-        // implement your own registration logic here...
+        // implement our user logic in the space......
          
         // for testing purpose:
         System.out.println("First Name: " + user.getFirstName());
@@ -75,8 +81,13 @@ public class UserController {
         System.out.println("Password: " + user.getPassword());
         System.out.println("E-mail: " + user.getEmail());
         System.out.println("Start date: " + user.getCreateDate());
-       // System.out.println("profession: " + user.getProfession());
          
         return "RegistrationSuccess";
     }
+	
+	@RequestMapping(path= "userdelete.do" method = RequestMethod.DELETE)
+	public String deleteUser(@PathVariable int userId) {
+	  this.deleteUser(userId);
+	  return "delete:/users/" + userId;
+	}
 }
