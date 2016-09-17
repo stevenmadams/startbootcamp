@@ -27,9 +27,10 @@
 				</span> 
 				<span class="card-summary"> ${resource.description} </span> 
 				<span class="card-meta"> 
-					<c:if test="${userId > 0 && auth == 'true'}">
-						<a href="resourceadd.do?resourceId=${resource.id}">Add This Resource</a>
-					</c:if>
+				<c:if test="${userId > 0 && auth == 'true'}">
+					asdf<%-- <a href="resourceadd.do?resourceId=${resource.id}">Add This Resource</a> --%>
+				</c:if>
+					
 				</span>
 				</a>
 			</c:forEach>

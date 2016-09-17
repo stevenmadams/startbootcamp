@@ -38,8 +38,10 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 
 	@Override
 	public List<Resource> getAllResources() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Resource> resources = new ArrayList<>();
+		String query = "select r from Resource r";
+		resources = em.createQuery(query, Resource.class).getResultList();
+		return resources;
 	}
 
 	@Override
