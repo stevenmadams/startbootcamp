@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -30,6 +31,9 @@ import javax.persistence.OneToMany;
 		
 		@OneToMany(mappedBy="resource")
 		private List<UserResource> userResources;
+		
+		@ManyToMany(mappedBy="resources")
+		private List<User> users;
 		
 		
 		
@@ -80,6 +84,34 @@ import javax.persistence.OneToMany;
 		public void setUserResources(List<UserResource> userResources) {
 			this.userResources = userResources;
 		}
+		public List<User> getUsers() {
+			return users;
+		}
+		public void setUsers(List<User> users) {
+			this.users = users;
+		}
+		
+		
+		//ADD AND REMOVE METHODS---------------------------------------------------
+		// Maybe needed, maybe not?
+		public void addUser(User user) {
+			if (user == null) {
+				users = new ArrayList<>();
+			}
+			if (!users.contains(user)) {
+				users.add(user);
+				user.addResource(this);
+			}
+		}
+
+		public void removeUser(User user) {
+			if (users != null && users.contains(user)) {
+				users.remove(user);
+				user.removeResource(this);
+			}
+		}
+		
+		
 		@Override
 		public String toString() {
 			return "Resource [id=" + id + ", name=" + name + ", description=" + description + ", url=" + url
@@ -89,5 +121,5 @@ import javax.persistence.OneToMany;
 		
 		
 
-//ADD AND REMOVE METHODS---------------------------------------------------
+
 }
