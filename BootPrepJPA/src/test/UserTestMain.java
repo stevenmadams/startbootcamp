@@ -1,11 +1,14 @@
 package test;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import entities.Resource;
 import entities.User;
+import entities.UserResource;
 import entities.UserResourceKey;
 
 public class UserTestMain {
@@ -15,12 +18,23 @@ public class UserTestMain {
 		emf = Persistence.createEntityManagerFactory("BootPrepJPA");
 		em = emf.createEntityManager();
 		
-		Resource r = em.find(Resource.class, 1);
+		Resource r = em.find(Resource.class, 10);
+		Resource r2 = em.find(Resource.class, 1);
 //		Tag t = em.find(Tag.class, 1);
 //		UserResourceKey key = new UserResourceKey(1, 1);
-//		User u = em.find(User.class, 2);
-		em.getTransaction().begin();
-		r.getUserResources().get(0).setNotes("asdf");
-		em.getTransaction().commit();
+//		em.getTransaction().begin();
+//		em.getTransaction().commit();
+		User u = em.find(User.class, 1);
+		u.addResource(r2);
+		List<Resource> res = u.getResources();
+		for (Resource resource : res) {
+			System.out.println("ID: " + resource.getId() + " Name: " + resource.getName());
+		}
+		UserResourceKey key = new UserResourceKey(u.getId(), r2.getId());
+		UserResource ur = em.find(UserResource.class, key);
+		System.out.println( "UserID: " + ur.getUser().getId() + 
+							"Resource ID: " + ur.getResource().getId() +
+							"\nNotes: " + ur.getNotes());
+		
 	}
 }

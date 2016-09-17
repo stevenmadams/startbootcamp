@@ -1,6 +1,7 @@
 package entities;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,6 +38,13 @@ public class User {
 		private Date createDate;
 		private String password;
 		
+		//Maybe we need or can use this?
+		@ManyToMany
+		@JoinTable(name="user_resource",
+		  joinColumns=@JoinColumn(name="user_id"),
+		  inverseJoinColumns=@JoinColumn(name="resource_id")
+		)
+		private List<Resource> resources;
 		
 		
 		public User() {}
@@ -92,6 +103,14 @@ public class User {
 		public void setUserResources(List<UserResource> userResources) {
 			this.userResources = userResources;
 		}
+		public List<Resource> getResources() {
+			return resources;
+		}
+		public void setResources(List<Resource> resources) {
+			this.resources = resources;
+		}
+
+			
 		@Override
 		public String toString() {
 			return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName
@@ -99,9 +118,43 @@ public class User {
 		}
 		
 		
-	 
+		
+		//ADD AND REMOVE METHODS---------------------------------------------------
+		// Maybe needed, maybe not?
+		public void addResource(Resource resource) {
+			if (resource == null) {
+				resources = new ArrayList<>();
+			}
+			if (!resources.contains(resource)) {
+				resources.add(resource);
+				resource.addUser(this);
+			}
+		}
 
-	
+		public void removeResource(Resource resource) {
+			if (resources != null && resources.contains(resource)) {
+				resources.remove(resource);
+				resource.removeUser(this);
+			}
+		}
+
+		// dont think we need these...since only one UserResource per user->resource pair
+//		public void addUserResource(UserResource userResource) {
+//			if (userResource == null) {
+//				userResources = new ArrayList<>();
+//			}
+//			if (!userResources.contains(userResource)) {
+//				userResources.add(userResource);
+//				userResource.setUser(this);
+//			}
+//		}
+//
+//		public void removeUserResource(UserResource userResource) {
+//			if (userResources != null && userResources.contains(userResource)) {
+//				userResources.remove(userResource);
+//				userResource.setUser(null);
+//			}
+//		}
 
 	
 		
