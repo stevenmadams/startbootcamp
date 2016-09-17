@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="/WEB-INF/custom.tld" prefix="jdm" %> <!-- this line either -->
+<%-- <%@ taglib uri="WEB-INF/tag/custom-functions.tld" prefix="myfn" %>  --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,12 +11,19 @@
 
 </head>
 <body>
-<<<<<<< HEAD
-<!-- shouldnt need this line -->
-	<c:if test="${  jdm:contains( resources, resource ) }">style='display:none;'</c:if>
+
+<!-- need to figure out how to make this work -->
+<%-- 	<c:if test="${  myfn:contains( resources, resource ) }">style='display:none;'</c:if> --%>
 	
 	<c:forEach var="resource" items="${resources}">
-		<p>ID: ${resource.id} Name: ${resource.name}</p>
+		<p>ID: ${resource.id} Name: ${resource.name}
+			<c:forEach var="user" items="${resources.users}">
+				<c:if test="${user.id == userId }">
+					<c:set var="found" value="true" scope="request"/>
+				</c:if>
+			</c:forEach>
+			***<u>${found}</u>***
+		</p>
 		<p>URL: ${resource.url} Video: ${resource.video} Image: ${resource.photo}</p>
 		<p>Description: ${resource.description}</p>
 		

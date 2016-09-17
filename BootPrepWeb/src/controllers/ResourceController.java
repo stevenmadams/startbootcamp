@@ -23,7 +23,8 @@ public class ResourceController {
 	public ModelAndView listAllResources() {
 		List<Resource> resources = new ArrayList<>();
 		resources = dao.getAllResources();
-		return new ModelAndView("resourcelist.jsp", "resources", resources);
+		ModelAndView mv = new ModelAndView("resourcelist.jsp", "resources", resources); 
+		return mv;
 	}
 	
 	
