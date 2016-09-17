@@ -5,10 +5,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <title>&#60;BOOT/PREP&#62; Resource List</title>
+<%@ include file="sitehead.jsp" %>
+
 </head>
 <body>
+<%@ include file="sitenavbar.jsp" %>
 	<table border="0">
 		<tr>
 			<th>Title</th>
