@@ -4,11 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <title> &#60;BOOT/PREP&#62; HOME</title>
+<%@ include file="sitehead.jsp" %>
+
 </head>
 <body>
-
+<%@ include file="sitenavbar.jsp" %>
 <a href="userprofile.do?id=${userId}">ACCOUNT</a>
 <a href="resourcelist.do">List Resources</a>
 </body>

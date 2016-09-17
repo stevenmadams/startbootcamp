@@ -22,6 +22,10 @@ public class AuthenticationController {
 	public int initUserId() {
 		return 0;
 	}
+	@ModelAttribute("auth")
+	public boolean initAuth() {
+		return false;
+	}
 	
 	@RequestMapping(path="userprofile.do")
 	public ModelAndView getUser(@ModelAttribute("userId") int id,

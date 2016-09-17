@@ -37,12 +37,6 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 	}
 
 	@Override
-	public List<Resource> getAllResources() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<UserResource> getAllUserResourcesByUserId(int id) {
 		// TODO Auto-generated method stub
 		List<UserResource> userResources = new ArrayList<UserResource>();
@@ -73,6 +67,14 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		current.setEmail(user.getEmail());
 		current.setCreateDate(user.getCreateDate());
 		return current;
+	}
+
+	@Override
+	public List<Resource> getAllResources() {
+		String query = "SELECT r FROM Resource r";
+		List<Resource> results = em.createQuery(query, Resource.class)
+				.getResultList();
+		return results;
 	}
 	
 	@Override

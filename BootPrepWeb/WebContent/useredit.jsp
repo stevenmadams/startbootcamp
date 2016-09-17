@@ -4,10 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <title>&#60;BOOT/PREP&#62; ACCOUNT</title>
+<%@ include file="sitehead.jsp" %>
+
 </head>
 <body>
+<%@ include file="sitenavbar.jsp" %>
 
 	<c:choose>
 		<%-- IF USER ID = NULL --%>

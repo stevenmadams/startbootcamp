@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <title> &#60;BOOT/PREP&#62; ACCOUNT</title>
+<%@ include file="sitehead.jsp" %>
+
 </head>
 <body>
+<%@ include file="sitenavbar.jsp" %>
 <h3>Create account</h3>
 <form method="post" action="usercreate.do">
   First:<input type="text" name="firstName">
