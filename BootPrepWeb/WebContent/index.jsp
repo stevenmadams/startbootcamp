@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<a href="userprofile.do?id=${user.id}">ACCOUNT</a>
-
+<a href="userprofile.do?id=${userId}">ACCOUNT</a>
+<a href="resourcelist.do">List Resources</a>
 </body>
 </html>
