@@ -37,6 +37,12 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 	}
 
 	@Override
+	public List<Resource> getAllResources() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public List<UserResource> getAllUserResourcesByUserId(int id) {
 		// TODO Auto-generated method stub
 		List<UserResource> userResources = new ArrayList<UserResource>();
@@ -59,29 +65,46 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 	}
 
 	@Override
-	public User updateUser(User user, int id) {
-		User current = em.find(User.class, id);
-		current.setFirstName(user.getFirstName());
-		current.setLastName(user.getLastName());
-		current.setUsername(user.getUsername());
-		current.setEmail(user.getEmail());
-		current.setCreateDate(user.getCreateDate());
-		return current;
+	public User getUser(String login) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+//	@Override
+//	public User deleteUser(User user, int id) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
+	@Override
+	public User processUser(int id, String firstName, String lastName, String Username, String password, String email,
+			String createDate) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public List<Resource> getAllResources() {
-		String query = "SELECT r FROM Resource r";
-		List<Resource> results = em.createQuery(query, Resource.class)
-				.getResultList();
-		return results;
-	}
-	
-	@Override
+<<<<<<< HEAD
 	public User deleteUser(User user, int id) {
+=======
+	public User createUser() {
+		// TODO Auto-generated method stub
+>>>>>>> 42edd186d649efd523cc42443e58690a1b77c3ad
 		return null;
 	}
+
+//	@Override
+//	public User updateUser(User user, int id) {
+//		User current = em.find(User.class, id);
+//		current.setFirstName(user.getFirstName());
+//		current.setLastName(user.getLastName());
+//		current.setUsername(user.getUsername());
+//		current.setEmail(user.getEmail());
+//		current.setCreateDate(user.getCreateDate());
+//		return current;
+//	}
 	
+<<<<<<< HEAD
 	@Override
 	public User createUser() {
 		return null;
@@ -91,5 +114,33 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 	public User processUser() {	
 		return null;
 	}
+=======
+//	@Override
+//	public User getUser(String login) {
+//        List<User> userList = new ArrayList<User>();
+//        Query query = openSession().createQuery("from User u where u.login = :login");
+//        query.setParameter("login", login);
+//        userList = query.list();
+//        if (userList.size() > 0)
+//            return userList.get(0);
+//        else
+//            return null;    
+//    }
+	
+//	@Override
+//	public void User deleteUser(User user, int id) {
+//		
+//	}
+//	
+//	@Override
+//	public void User createUser() {
+//		
+//	}
+//	
+//	@Override
+//	public void User processUser(int id, String firstName, String lastName, String Username, String password, String email, String createDate) {	
+//		
+//	}
+>>>>>>> 42edd186d649efd523cc42443e58690a1b77c3ad
 	
 }

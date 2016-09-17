@@ -3,6 +3,9 @@
 <script src="js/libs/modernizr-2.6.2.min.js"></script>
 <!-- jQuery-->
 <script type="text/javascript" src="js/libs/jquery-1.10.2.min.js"></script>
+<%-- fontawesome ICONS --%>
+<script src="https://use.fontawesome.com/f3e697ff49.js"></script>
+
 <!-- framework css -->
 <!--[if gt IE 9]><!-->
 <link type="text/css" rel="stylesheet" href="css/groundwork.css">

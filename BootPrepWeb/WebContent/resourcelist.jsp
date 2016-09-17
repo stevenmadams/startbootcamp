@@ -23,12 +23,21 @@
 						class="card-title">
 							<h3>${resource.name}</h3>
 					</span>
+<<<<<<< HEAD
 				</span> 
 				<span class="card-summary"> ${resource.description} </span> 
 				<span class="card-meta"> 
 					<c:if test="${userId > 0 && auth == 'true'}">
 						<a href="resourceadd.do?resourceId=${resource.id}">Add This Resource</a>
 					</c:if>
+=======
+				</span> <span class="card-summary"> ${resource.description} </span> 
+				<span
+					class="card-meta"> <c:if
+							test="${userId > 0 && auth == 'true'}">
+                THIS IS WHERE THE ADD BUTTON WILL GO!
+				</c:if>
+>>>>>>> 42edd186d649efd523cc42443e58690a1b77c3ad
 				</span>
 				</a>
 			</c:forEach>
