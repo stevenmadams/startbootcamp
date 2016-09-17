@@ -12,7 +12,7 @@ import dao.BootPrepDAO;
 import entities.User;
 
 @Controller
-@SessionAttributes("userId")
+@SessionAttributes({"userId","auth"}) // auth set to true only on successful login
 public class AuthenticationController {
 
 	@Autowired
@@ -34,8 +34,10 @@ public class AuthenticationController {
 			u = dao.login(username, password);
 			if (u != null) {
 				mv.addObject("userId", u.getId());
+				mv.addObject("auth", "true");
 			} else {
 				mv.addObject("userId", 0);
+				mv.addObject("auth", "false");
 			}
 		}
 		mv.addObject("user", u);

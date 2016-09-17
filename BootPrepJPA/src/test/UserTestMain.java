@@ -18,23 +18,23 @@ public class UserTestMain {
 		emf = Persistence.createEntityManagerFactory("BootPrepJPA");
 		em = emf.createEntityManager();
 		
+		em.getTransaction().begin();
 		Resource r = em.find(Resource.class, 10);
-		Resource r2 = em.find(Resource.class, 1);
+		Resource r2 = em.find(Resource.class, 3);
 //		Tag t = em.find(Tag.class, 1);
 //		UserResourceKey key = new UserResourceKey(1, 1);
-//		em.getTransaction().begin();
-//		em.getTransaction().commit();
 		User u = em.find(User.class, 1);
 		u.addResource(r2);
+		em.getTransaction().commit();
 		List<Resource> res = u.getResources();
 		for (Resource resource : res) {
 			System.out.println("ID: " + resource.getId() + " Name: " + resource.getName());
 		}
-		UserResourceKey key = new UserResourceKey(u.getId(), r2.getId());
-		UserResource ur = em.find(UserResource.class, key);
-		System.out.println( "UserID: " + ur.getUser().getId() + 
-							"Resource ID: " + ur.getResource().getId() +
-							"\nNotes: " + ur.getNotes());
+//		UserResourceKey key = new UserResourceKey(u.getId(), r2.getId());
+//		UserResource ur = em.find(UserResource.class, key);
+//		System.out.println( "UserID: " + ur.getUser().getId() + 
+//							"Resource ID: " + ur.getResource().getId() +
+//							"\nNotes: " + ur.getNotes());
 		
 	}
 }
