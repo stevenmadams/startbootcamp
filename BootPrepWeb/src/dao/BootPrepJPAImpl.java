@@ -77,6 +77,19 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		return results;
 	}
 	
+	@Override
+	public void User deleteUser(User user, int id) {
+		
+	}
 	
+	@Override
+	public void User createUser() {
+		
+	}
+	
+	@Override
+	public void User processUser() {	
+		
+	}
 	
 }

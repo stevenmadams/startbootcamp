@@ -11,10 +11,10 @@
 <form method="post" action="usercreate.do">
   First:<input type="text" name="firstName">
     Last:<input type="text" name="lastName">
-    Username:<input type="text" name="username">
+    User name:<input type="text" name="username">
       Password:<input type="password" name="password">
       E-Mail:<input type="email" name="email">
-      Bootcamp start date: <input type="date" name="createDate">
+      Boot camp start date: <input type="date" name="createDate">
       <input type="submit" value ="CREATE ACCOUNT"/>
 </form>
 

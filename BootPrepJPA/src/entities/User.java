@@ -31,12 +31,12 @@ public class User {
 		private String lastName;
 		@Column(name="username")
 		private String username;
+		private String password;
 		@Column(name="email")
 		private String email;
 		@Column(name="start_date")
 		@Temporal(TemporalType.DATE)
 		private Date createDate;
-		private String password;
 		
 		//Maybe we need or can use this?
 		@ManyToMany
@@ -45,7 +45,6 @@ public class User {
 		  inverseJoinColumns=@JoinColumn(name="resource_id")
 		)
 		private List<Resource> resources;
-		
 		
 		public User() {}
 		
@@ -57,6 +56,11 @@ public class User {
 			this.createDate = createDate;
 		}
 		
+		
+		// Getters and Setters
+		public int getId() {
+			return id;
+		}
 		public String getFirstName() {
 			return firstName;
 		}
@@ -87,10 +91,6 @@ public class User {
 		public void setCreateDate(Date createDate) {
 			this.createDate = createDate;
 		}
-		public int getId() {
-			return id;
-		}
-		
 		public String getPassword() {
 			return password;
 		}
@@ -110,13 +110,12 @@ public class User {
 			this.resources = resources;
 		}
 
-			
+		// To String	
 		@Override
 		public String toString() {
 			return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName
 					+ ", username=" + username + ", email=" + email + ", createDate=" + createDate + "]";
 		}
-		
 		
 		
 		//ADD AND REMOVE METHODS---------------------------------------------------
