@@ -39,6 +39,6 @@
 	</c:choose>
 
 
-
+<%@ include file="sitefooter.jsp" %>
 </body>
 </html>

@@ -11,22 +11,31 @@
 
 </head>
 <body>
-<<<<<<< HEAD
+<%@ include file="sitenavbar.jsp" %>
 <!-- shouldnt need this line -->
 	<c:if test="${  jdm:contains( resources, resource ) }">style='display:none;'</c:if>
-	
+	<div class="container">
+	<div class="cards">
 	<c:forEach var="resource" items="${resources}">
-		<p>ID: ${resource.id} Name: ${resource.name}</p>
-		<p>URL: ${resource.url} Video: ${resource.video} Image: ${resource.photo}</p>
-		<p>Description: ${resource.description}</p>
-		
-		
-		<c:if test="${userId > 0 && auth == 'true'}">
-			
-		</c:if>
+		<a class="card" href="#">
+			<span class="card-header" style="background-image: url(${resource.photo});">
+				<span class="card-title">
+					<h3>${resource.name}</h3>
+				</span>
+			</span>
+			<span class="card-summary">
+			${resource.description}
+			</span>
+			<span class="card-meta">
+				<c:if test="${userId > 0 && auth == 'true'}">
+                THIS IS WHERE THE ADD BUTTON WILL GO!
+				</c:if>
+			</span>
+		</a>
+
 	</c:forEach>
-	
-<%@ include file="sitenavbar.jsp" %>
+</div>
+</div>
 
 	<c:choose>
 		<%-- IF Resource ID = NULL --%>
@@ -40,5 +49,7 @@
 			</c:when>
 		</c:otherwise>
 	</c:choose>
+
+	<%@ include file="sitefooter.jsp" %>
 </body>
 </html>

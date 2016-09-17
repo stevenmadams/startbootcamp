@@ -18,6 +18,6 @@
       <input type="submit" value ="CREATE ACCOUNT"/>
 </form>
 
-
+<%@ include file="sitefooter.jsp" %>
 </body>
 </html>

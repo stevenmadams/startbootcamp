@@ -11,19 +11,23 @@
 <body>
 <%@ include file="sitenavbar.jsp" %>
 
-
+<div class="container">
 
 
 <c:choose>
     <%-- IF USER ID = NULL --%>
     <c:when test="${userId == 0 || auth != 'true'}">
+      <div class="one centered fourth padded">
+      <div class="align-center">
         <h3>LOG IN</h3>
         <form method="POST" action="userprofile.do">
             Username<input type="text" name="username"/>
             Password<input type="password" name="password"/>
-          <input type="submit" value ="LOG IN"/>
+          <input class="gapped" type="submit" value ="LOG IN"/>
         </form>
-        <a href="usercreate.html">CREATE ACCOUNT</a>
+        <a role="button" href="usercreate.jsp" rel="author" class="gapped gap-bottom gap-right">Create Account</a>
+      </div>
+    </div>
     </c:when>
     <%-- IF USER ID != NULL --%>
     <c:when test="${userId > 0 && auth == 'true'}">
@@ -32,5 +36,6 @@
     </c:when>
 </c:choose>
 
+</div>
 </body>
 </html>
