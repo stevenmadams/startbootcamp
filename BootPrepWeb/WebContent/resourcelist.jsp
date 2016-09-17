@@ -7,45 +7,33 @@
 <html>
 <head>
 <title>&#60;BOOT/PREP&#62; Resource List</title>
-<%@ include file="sitehead.jsp" %>
+<%@ include file="sitehead.jsp"%>
 
 </head>
 <body>
+	<!-- need to figure out how to make this work -->
+	<%-- 	<c:if test="${  myfn:contains( resources, resource ) }">style='display:none;'</c:if> --%>
 
-<!-- need to figure out how to make this work -->
-<%-- 	<c:if test="${  myfn:contains( resources, resource ) }">style='display:none;'</c:if> --%>
-	
-	<c:forEach var="resource" items="${resources}">
-		<p>ID: ${resource.id} Name: ${resource.name}
-			<c:forEach var="user" items="${resources.users}">
-				<c:if test="${user.id == userId }">
-					<c:set var="found" value="true" scope="request"/>
+	<%@ include file="sitenavbar.jsp"%>
+	<div class="container">
+		<div class="cards">
+			<c:forEach var="resource" items="${resources}">
+				<a class="card" href="#"> <span class="card-header"
+					style="background-image: url(${resource.photo});"> <span
+						class="card-title">
+							<h3>${resource.name}</h3>
+					</span>
+				</span> <span class="card-summary"> ${resource.description} </span> <span
+					class="card-meta"> <c:if
+							test="${userId > 0 && auth == 'true'}">
+                THIS IS WHERE THE ADD BUTTON WILL GO!
 				</c:if>
+				</span>
+				</a>
 			</c:forEach>
-			***<u>${found}</u>***
-		</p>
-		<p>URL: ${resource.url} Video: ${resource.video} Image: ${resource.photo}</p>
-		<p>Description: ${resource.description}</p>
-		
-		
-		<c:if test="${userId > 0 && auth == 'true'}">
-			
-		</c:if>
-	</c:forEach>
-	
-<%@ include file="sitenavbar.jsp" %>
+		</div>
+	</div>
 
-	<c:choose>
-		<%-- IF Resource ID = NULL --%>
-		<c:when test="${empty resource_id}">
-			<p>Please re-enter a selection:</p>
-		</c:when>
-		<c:otherwise>
-			<%-- IF Resource ID != NULL --%>
-			<c:when test="${! empty resource_id}">
-				<p>${resource}</p>
-			</c:when>
-		</c:otherwise>
-	</c:choose>
+	<%@ include file="sitefooter.jsp"%>
 </body>
 </html>
