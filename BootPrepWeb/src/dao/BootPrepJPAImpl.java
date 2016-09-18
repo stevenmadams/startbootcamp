@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.hibernate.Hibernate;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.Resource;
@@ -21,8 +23,7 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 
 	@Override
 	public Resource getResourceById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(Resource.class, id);
 	}
 
 	@Override
@@ -32,8 +33,7 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 
 	@Override
 	public UserResource getUserResourceByKey(UserResourceKey key) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(UserResource.class, key);
 	}
 
 	@Override
@@ -68,8 +68,16 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 
 	@Override
 	public User createUser(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		User newUser = new User();
+		newUser.setFirstName(user.getFirstName());
+		newUser.setLastName(user.getLastName());
+		newUser.setUsername(user.getUsername());
+		newUser.setPassword(user.getPassword());
+		newUser.setEmail(user.getEmail());
+		newUser.setCreateDate(user.getCreateDate());
+		em.persist(newUser);
+	    return user;
+        
 	}
 
 	@Override
@@ -82,7 +90,30 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		current.setCreateDate(user.getCreateDate());
 		return current;
 	}
-	
 
+	@Override
+	public void addResourceToUser(int userId, int resourceId) {
+		User u = em.find(User.class, userId);
+		Resource r = em.find(Resource.class, resourceId);
+		u.addResource(r);
+	}
+
+	@Override
+	public List<Resource> getAllResourcesById(int id) {
+		User u = em.find(User.class, id);
+		// Had to add the following due to LazyInitializationException
+		Hibernate.initialize(u.getResources());
+		return u.getResources();
+	}
+
+	@Override
+	public User removeResourceFromUser(int userId, int resourceId) {
+		User u = em.find(User.class, userId);
+		Resource r = em.find(Resource.class, resourceId);
+		u.removeResource(r);
+		return u;
+	}
+	
+	
 	
 }

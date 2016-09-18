@@ -12,10 +12,14 @@ public interface BootPrepDAO {
 	public User getUserById(int id);
 	public UserResource getUserResourceByKey(UserResourceKey key);
 	public List<Resource> getAllResources();
+	public List<Resource> getAllResourcesById(int id);
 	public List<UserResource> getAllUserResourcesByUserId(int id);
 	public User login(String username, String password);
 	
 	// User table items
 	public User updateUser(User user, int id);
 	public User createUser(User user);
+	
+	public void addResourceToUser(int userId, int resourceId);
+	public User removeResourceFromUser(int userId, int resourceId);
 }

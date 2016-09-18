@@ -12,6 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dao.BootPrepDAO;
 import entities.Resource;
+import entities.User;
+import entities.UserResource;
+import entities.UserResourceKey;
 
 @Controller
 @SessionAttributes({"userId","auth"})
@@ -30,13 +33,35 @@ public class ResourceController {
 	
 	@RequestMapping(path="resourceadd.do")
 	public ModelAndView addResourceToUser(@ModelAttribute("userId") int userId,
-										  @ModelAttribute("auth") boolean auth,
+										  @ModelAttribute("auth") String auth,
 										  int resourceId) {
 		ModelAndView mv = new ModelAndView("resourcelist.jsp");
-		
-		
+		dao.addResourceToUser(userId, resourceId);
 		return mv;
 	}
 	
+	@RequestMapping(path="resource.do")
+	public ModelAndView viewResource(@ModelAttribute("userId") int userId,
+			@ModelAttribute("auth") String auth,
+			int resourceId) {
+		
+		ModelAndView mv = new ModelAndView("resource.jsp");
+		Resource r = dao.getResourceById(resourceId);
+		UserResourceKey key = new UserResourceKey(userId, resourceId);
+		UserResource ur = dao.getUserResourceByKey(key);
+		mv.addObject("userData", ur);
+		mv.addObject("resource", r);
+		return mv;
+	}
+	
+	@RequestMapping(path="resourceRemove.do")
+	public ModelAndView removeResourceFromUser(@ModelAttribute("userId") int userId,
+											   @ModelAttribute("auth") String auth,
+											   int resourceId) {
+		ModelAndView mv = new ModelAndView("userprofile.jsp");
+		User u = dao.removeResourceFromUser(userId, resourceId);
+		mv.addObject("resources", u.getResources());
+		return mv;
+	}
 	
 }
