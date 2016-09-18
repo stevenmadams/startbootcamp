@@ -82,7 +82,15 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		current.setCreateDate(user.getCreateDate());
 		return current;
 	}
-	
 
+	@Override
+	public void addResourceToUser(int userId, int resourceId) {
+		User u = em.find(User.class, userId);
+		Resource r = em.find(Resource.class, resourceId);
+		u.addResource(r);
+		
+	}
+	
+	
 	
 }

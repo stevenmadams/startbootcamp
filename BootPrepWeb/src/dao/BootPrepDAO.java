@@ -18,4 +18,6 @@ public interface BootPrepDAO {
 	// User table items
 	public User updateUser(User user, int id);
 	public User createUser(User user);
+	
+	public void addResourceToUser(int userId, int resourceId);
 }

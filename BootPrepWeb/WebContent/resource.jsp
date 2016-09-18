@@ -15,10 +15,10 @@
 	<p>Video: ${resource.video}</p>
 	<p>Image: ${resource.image}</p>
 
-	<c:if test="${! empty userResources}">
-		<p>Completed: ${userResources.completed}</p>
-		<p>Rating: ${userResources.rating}</p>
-		<p>Notes: ${userResources.notes}</p>
+	<c:if test="${! empty userData}">
+		<p>Completed: ${userData.completed}</p>
+		<p>Rating: ${userData.rating}</p>
+		<p>Notes: ${userData.notes}</p>
 	</c:if>
 
   <%@ include file="sitefooter.jsp" %>
