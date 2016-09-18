@@ -13,7 +13,7 @@
 	<p>Description: ${resource.description}</p>
 	<p>URL: ${resource.url}</p>
 	<p>Video: ${resource.video}</p>
-	<p>Image: ${resource.image}</p>
+	<p>Image: ${resource.photo}</p>
 
 	<c:if test="${! empty userData}">
 		<p>Completed: ${userData.completed}</p>

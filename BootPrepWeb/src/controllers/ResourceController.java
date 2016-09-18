@@ -43,10 +43,13 @@ public class ResourceController {
 	public ModelAndView viewResource(@ModelAttribute("userId") int userId,
 			@ModelAttribute("auth") String auth,
 			int resourceId) {
+System.out.println(userId + " : " + auth + " : " + resourceId);
 		ModelAndView mv = new ModelAndView("resource.jsp");
 		Resource r = dao.getResourceById(resourceId);
 		UserResourceKey key = new UserResourceKey(userId, resourceId);
 		UserResource ur = dao.getUserResourceByKey(key);
+System.out.println("r.name: " + r.getName());
+System.out.println("ur.notes: " + ur.getNotes());
 		mv.addObject("userData", ur);
 		mv.addObject("resource", r);
 		return mv;

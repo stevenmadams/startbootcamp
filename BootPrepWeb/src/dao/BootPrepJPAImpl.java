@@ -21,8 +21,7 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 
 	@Override
 	public Resource getResourceById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(Resource.class, id);
 	}
 
 	@Override
@@ -32,8 +31,7 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 
 	@Override
 	public UserResource getUserResourceByKey(UserResourceKey key) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(UserResource.class, key);
 	}
 
 	@Override

@@ -24,9 +24,9 @@
           <div class="triple-gapped">
             <h3>Log in to your account...</h3>
             <form method="POST" action="userprofile.do">
-              <label for="username">Username</label>
+             <label for="username">Username</label> 
                 <input type="text" name="username"/>
-                <label for="password">Password</label>
+          <label for="password">Password</label>
                 <input type="password" name="password"/>
               <input class="double-gap-top double-gap-bottom" type="submit" value ="LOG IN"/>
             </form>
