@@ -2,14 +2,11 @@ package controllers;
 
 import java.text.ParseException;
 import java.util.Date;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,6 +28,7 @@ public class UserController {
 		return mv;
 	}
 
+
 	@RequestMapping(path="usersubmitedit.do")
 	public ModelAndView userSubmitEdit(@ModelAttribute("userId")int id, 
 			String firstName, 
@@ -49,12 +47,28 @@ public class UserController {
 		return mv;
 	}
 
-//	@RequestMapping(path="usercreate.do" method = RequestMethod.GET)
-//    public String UserCreate (Map<String, Object> model) {
-//        User userForm = new User();    
-//        model.put("userForm", userForm);
-//         
-//        return "Registration";
-//    }
-	
+	@RequestMapping(path = "usercreate.do")
+	public ModelAndView UserCreate(String firstName, String lastName, String username, String email,
+			String createDate) {
+		System.out.println("at start of usercreate.do");
+		User user = new User();
+
+		// Create a user object
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		user.setUsername(username);
+		user.setEmail(email);
+
+		try {
+			user.setCreateDate(DateTimeHelper.stringToDate(createDate));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		System.out.println("at end of usercreate.do");
+
+		User u = dao.createUser(user);
+		ModelAndView mv = new ModelAndView("usercreate.jsp", "user", u);
+		return mv;
+	}
 }
