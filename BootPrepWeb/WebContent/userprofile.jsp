@@ -4,9 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title> &#60;BOOT/PREP&#62; ACCOUNT</title>
-<%@ include file="sitehead.jsp" %>
 
+<%@ include file="sitehead.jsp" %>
+<title> &#60;BOOT/PREP&#62; ACCOUNT</title>
 </head>
 <body>
 <%@ include file="sitenavbar.jsp" %>
@@ -24,7 +24,7 @@
           <div class="triple-gapped">
             <h3>Log in to your account...</h3>
             <form method="POST" action="userprofile.do">
-             <label for="username">Username</label> 
+             <label for="username">Username</label>
                 <input type="text" name="username"/>
           <label for="password">Password</label>
                 <input type="password" name="password"/>
@@ -65,5 +65,7 @@
 </c:choose>
 
 </div>
+
+	<%@ include file="sitefooter.jsp"%>
 </body>
 </html>

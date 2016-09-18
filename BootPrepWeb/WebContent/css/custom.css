@@ -1,6 +1,11 @@
-/*<START ***************************************RESOURCE LIST CARDS CSS>*/
 
-/*
+body {
+	
+    padding-top: 70px;
+}
+
+
+
 .container {
   max-width: 1100px;
   margin: 0 auto;
@@ -61,7 +66,7 @@
   display: block;
 }
 .card .card-summary {
-  padding: 5% 5% 10% 5%;
+  padding: 5% 5% 3% 5%;
 }
 .card .card-header {
   position: relative;
@@ -127,7 +132,7 @@
   background: rgba(157, 187, 63, 0.95);
 }
 .card:hover .card-meta, .card:focus .card-meta {
-  max-height: 3em;
+  max-height: 1em;
 }
 
 img {
@@ -154,9 +159,4 @@ body {
   -o-transition-timing-function: linear;
   -webkit-transition-timing-function: linear;
   transition-timing-function: linear;
-}*/
-*/
-
-
-
-/*<END**************************************** RESOURCE LIST CARDS CSS>
+}
