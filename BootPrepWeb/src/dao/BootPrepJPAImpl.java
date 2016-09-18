@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.Resource;
@@ -66,8 +67,18 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 
 	@Override
 	public User createUser(User user) {
-		// TODO Auto-generated method stub
-		return null;
+//		em.getTransaction().begin();
+		User newUser = new User();
+		newUser.setFirstName(user.getFirstName());
+		newUser.setLastName(user.getLastName());
+		newUser.setUsername(user.getUsername());
+		newUser.setEmail(user.getEmail());
+		newUser.setCreateDate(user.getCreateDate());
+		newUser.setFirstName(user.getFirstName());
+		newUser.setFirstName(user.getFirstName());
+//		em.getTransaction().commit();
+	    return user;
+        
 	}
 
 	@Override
