@@ -24,7 +24,6 @@ public class UserResource {
 	private boolean completed;
 	private int rating;
 	
-
 	
 	public User getUser() {
 		return user;

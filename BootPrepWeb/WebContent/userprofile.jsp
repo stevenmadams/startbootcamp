@@ -48,10 +48,6 @@
         </div>
         </div>
       </div>
-
-
-
-
     </div>
 
 
@@ -61,9 +57,21 @@
     <c:when test="${userId > 0 && auth == 'true'}">
         <p>${user}</p>
         <a href="useredit.do?">EDIT ACCOUNT</a>
-    </c:when>
+        
+        <a href="userListResources.do">List My Study Materials</a>
+   	</c:when>
+	</c:choose>
+	
+<c:choose>
+	<c:when test="${! empty resources}">
+		
+		<c:forEach var="resource" items="${resources}">
+			<p>${resource.name} <a href="resourceRemove.do?resourceId=${resource.id}">Remove</a></p>
+			
+		</c:forEach>
+	</c:when>
 </c:choose>
-
+	
 </div>
 </body>
 </html>

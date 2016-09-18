@@ -37,6 +37,7 @@
 							<c:if test="${userId > 0 && auth == 'true'}">
 					 <button class="gap" href="resourceadd.do?resourceId=${resource.id}">Add This Resource</button>
 					 			</c:if>
+				 			<a href="resourceadd.do?resourceId=${resource.id}">Add Resource!!!!!!</a>
 					 	</span>
 
 				</a>
