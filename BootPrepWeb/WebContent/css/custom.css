@@ -1,6 +1,6 @@
 
 body {
-	
+
     padding-top: 70px;
 }
 
@@ -66,7 +66,7 @@ body {
   display: block;
 }
 .card .card-summary {
-  padding: 5% 5% 3% 5%;
+  padding: 5% 5% 15% 5%;
 }
 .card .card-header {
   position: relative;

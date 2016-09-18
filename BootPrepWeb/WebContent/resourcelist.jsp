@@ -33,12 +33,12 @@
 			<span class="card-summary">
 				${resource.description}
 			</span>
-		
+
 				<span class="card-meta">
 							<c:if test="${userId > 0 && auth == 'true'}">
 					 <button class="gap" href="resourceadd.do?resourceId=${resource.id}">Add This Resource</button>
 					 			</c:if>
-				 			<a href="resourceadd.do?resourceId=${resource.id}">Add Resource!!!!!!</a>
+				 			<button href="resourceadd.do?resourceId=${resource.id}">Add Resource!!!!!!</button>
 					 	</span>
 
 				</c:forEach>

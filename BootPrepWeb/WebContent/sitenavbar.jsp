@@ -21,9 +21,28 @@
 
       </ul>
   <%-- IF STATEMENTS TO SHOW USER IS LOGGED IN - MENU ITEMS: PROFILE / MY RESOURCES / etc... --%>
-      <%-- <ul class="nav navbar-nav navbar-right">
-        <li><a href="userprofile.do?id=${userId}">${user.username}</a></li>
-      </ul> --%>
+  <ul class="nav navbar-nav navbar-right">
+  <c:choose>
+      <%-- IF USER ID = NULL --%>
+
+      <c:when test="${userId == 0 || auth != 'true'}">
+        <p class="navbar-text"><a class="btn btn-default" href="usercreate.jsp" role="button">Create Account</a>
+          <a class="btn btn-default" href="userprofile.jsp" role="button">Log In</a></p>
+
+      </c:when>
+      <%-- IF USER ID != NULL --%>
+      <c:when test="${userId > 0 && auth == 'true'}">
+          <p class="navbar-text">Logged in as: ${user.username}</p>
+          <a class="btn btn-default" href="userprofile.do?id=null" role="button">Log Out</a>
+     	</c:when>
+  	</c:choose>
+
+
+
+
+
+
+      </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
