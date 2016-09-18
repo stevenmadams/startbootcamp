@@ -66,7 +66,10 @@
 	<c:when test="${! empty resources}">
 		
 		<c:forEach var="resource" items="${resources}">
-			<p>${resource.name} <a href="resourceRemove.do?resourceId=${resource.id}">Remove</a></p>
+			<p>
+				<a href="resource.do?resourceId=${resource.id}">${resource.name}</a> 
+				<a href="resourceRemove.do?resourceId=${resource.id}">Remove</a>
+			</p>
 			
 		</c:forEach>
 	</c:when>
