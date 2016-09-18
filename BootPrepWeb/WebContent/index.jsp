@@ -10,7 +10,7 @@
 </head>
 <body>
 <%@ include file="sitenavbar.jsp" %>
-<a href="userprofile.do?id=${userId}">ACCOUNT</a>
+<a href="userprofile.jsp?id=${userId}">ACCOUNT</a>
 <a href="resourcelist.do">List Resources</a>
 <%@ include file="sitefooter.jsp" %>
 </body>

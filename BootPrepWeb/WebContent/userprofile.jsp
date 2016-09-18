@@ -17,17 +17,45 @@
 <c:choose>
     <%-- IF USER ID = NULL --%>
     <c:when test="${userId == 0 || auth != 'true'}">
-      <div class="one centered fourth padded">
-      <div class="align-center">
-        <h3>LOG IN</h3>
-        <form method="POST" action="userprofile.do">
-            Username<input type="text" name="username"/>
-            Password<input type="password" name="password"/>
-          <input class="gapped" type="submit" value ="LOG IN"/>
-        </form>
-        <a role="button" href="usercreate.jsp" rel="author" class="gapped gap-bottom gap-right">Create Account</a>
+
+
+      <div class="row">
+        <div class="one half">
+          <div class="triple-gapped">
+            <h3>Log in to your account...</h3>
+            <form method="POST" action="userprofile.do">
+             <label for="username">Username</label> 
+                <input type="text" name="username"/>
+          <label for="password">Password</label>
+                <input type="password" name="password"/>
+              <input class="double-gap-top double-gap-bottom" type="submit" value ="LOG IN"/>
+            </form>
+
+          </div>
+
+        </div>
+        <div class="one half">
+          <div class="triple-gapped">
+            <h3>Create an account...</h3>
+            <p>Features:</p>
+            <ul>
+              <li>Bookmark resources to your profile</li>
+              <li>Add notes and ratings to your resources</li>
+              <li>Keep track of your progress</li>
+            </ul>
+
+          <a role="button" href="usercreate.jsp" rel="author" class="double-gap-top double-gap-bottom">Create Account</a>
+        </div>
+        </div>
       </div>
+
+
+
+
     </div>
+
+
+
     </c:when>
     <%-- IF USER ID != NULL --%>
     <c:when test="${userId > 0 && auth == 'true'}">
