@@ -17,7 +17,15 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="index.jsp">Home</a></li>
-          <li><a href="resourcelist.do">Resources</a></li>
+
+        <c:choose>
+      <%-- IF USER IS LOGGED IN --%>
+          <c:when test="${userId > 0 && auth == 'true'}">
+            <li><a href="resourcelist.do?view=add">Resources</a></li>
+          </c:when>
+          <c:when test="${userId == 0 || auth != 'true'}">
+              <li><a href="resourcelist.do">Resources</a></li>
+          </c:when>
         <li><a href="userprofile.do?id=${userId}">Account</a></li>
 
       </ul>

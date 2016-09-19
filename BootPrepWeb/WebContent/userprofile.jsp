@@ -45,7 +45,7 @@
 
 					</div>
 					<div class="col-md-6">
-						<div class="triple-gapped">
+
 							<h3>Create an account...</h3>
 							<p>Features:</p>
 							<ul>
@@ -57,7 +57,7 @@
 							<a role="button" href="usercreate.jsp" class="btn btn-default">Create
 								Account</a>
 						</div>
-					</div>
+
 				</div>
 
 
@@ -74,7 +74,9 @@
 							<div class="text-center">
 								<h1 class="uncapitalize">${user.username}</h1>
 								<p>${user.firstName} ${user.lastName}</p>
-                <a class="btn" href="#">
+                <p>Start date: ${user.createDate}</p>
+                <p>Todays date: ${datetime-local}</p>
+                <a class="btn" href="useredit.do?">
   <i class="fa fa-pencil-square-o fa-lg"></i> Edit Account</a>
 							</div>
 						</div>
