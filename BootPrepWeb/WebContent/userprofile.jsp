@@ -73,7 +73,7 @@
 						<div class="panel-body">
 							<div class="text-center">
 								<h1>${user.username}</h1>
-								<p>${user.firstName}${user.lastName}</p>
+								<p>${user.firstName} ${user.lastName}</p>
 							</div>
 						</div>
 					</div>

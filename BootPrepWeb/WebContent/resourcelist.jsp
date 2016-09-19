@@ -24,8 +24,10 @@
 
 			<c:forEach var="resource" items="${resources}">
 
-				<a class="card" href="#">
+				<div class="card">
 			<span class="card-header" style="background-image: url(${resource.photo});">
+
+				<a href="resource.do?resourceId=${resource.id}">
 				<span class="card-title">
 					<h3>	${resource.name}</h3>
 				</span>
@@ -33,14 +35,14 @@
 			<span class="card-summary">
 				${resource.description}
 			</span>
-
+		</a>
 				<span class="card-meta">
 							<c:if test="${userId > 0 && auth == 'true'}">
-					 <button class="gap" href="resourceadd.do?resourceId=${resource.id}">Add This Resource</button>
+					 <a class="btn btn-default" role="button" href="resourceadd.do?resourceId=${resource.id}">Add This Resource</a>
 					 			</c:if>
-				 			<button href="resourceadd.do?resourceId=${resource.id}">Add Resource!!!!!!</button>
-					 	</span>
 
+					 	</span>
+					</div>
 				</c:forEach>
 
 
