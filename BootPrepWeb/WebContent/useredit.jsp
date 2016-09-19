@@ -26,11 +26,11 @@
 		<c:when test="${userId > 0 && auth == 'true'}">
 			<h3>Edit account</h3>
 			<form method="post" action="usersubmitedit.do">
-				First:<input type="text" name="firstName" value="${user.firstName}">
-				Last:<input type="text" name="lastName" value="${user.lastName}">
-				Username:<input type="text" name="username" value="${user.username}">
+				First:<input type="text" name="firstName" value="${user.firstName}" required>
+				Last:<input type="text" name="lastName" value="${user.lastName}" required>
+				Username:<input type="text" name="username" value="${user.username}" required>
 				<%-- Password:<input type="password" name="password">  --%>
-				E-Mail:<input type="email" name="email" value="${user.email}">
+				E-Mail:<input type="email" name="email" value="${user.email}" required>
 				Bootcamp start date: <input type="date" name="createDate"
 					value="${user.createDate}"> <input type="submit"
 					value="SUBMIT CHANGES" />

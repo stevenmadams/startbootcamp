@@ -8,13 +8,13 @@
 </head>
 <body>
 	<h3>Enter details about the resource below</h3>
-	
+
 	<form action="resourceCreate.do" method="post">
-		URL			<input type="text" name="url">
-		Title		<input type="text" name="name">
-		Description	<input type="text" name="description">
+		URL			<input type="text" name="url" required>
+		Title		<input type="text" name="name" required>
+		Description	<input type="text" name="description" required maxlength="150">
 					<input type="submit" value="Create">
 	</form>
-	
+
 </body>
 </html>
