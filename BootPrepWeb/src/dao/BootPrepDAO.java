@@ -24,6 +24,7 @@ public interface BootPrepDAO {
 	public List<Resource> getAllResourcesById(int id);
 	public Resource createResource(Resource r);
 	public List<Integer> getResourceIdsForUser(int id);
+	public List<Resource> getAllResourcesNotAdded(int userId);
 	
 	
 	// UserResource

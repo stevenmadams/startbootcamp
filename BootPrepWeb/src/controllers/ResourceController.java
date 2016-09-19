@@ -38,12 +38,22 @@ public class ResourceController {
 	}
 	
 	@RequestMapping(path="resourcelist.do")
-	public ModelAndView listAllResources(@ModelAttribute("userId") int userId) {
+	public ModelAndView listAllResources(@ModelAttribute("userId") int userId,
+										 String view) {
 		List<Resource> resources = new ArrayList<>();
-		List<Integer> resourceIds = dao.getResourceIdsForUser(userId);
-		resources = dao.getAllResources();
+		if (view == null) view = "";
+		switch (view) {
+		case "add":
+			resources = dao.getAllResourcesNotAdded(userId);
+			break;
+		case "my":
+			resources = dao.getAllResourcesById(userId);
+			break;
+		default:
+			resources = dao.getAllResources();
+			break;
+		}
 		ModelAndView mv = new ModelAndView("resourcelist.jsp", "resources", resources); 
-		mv.addObject("resourceIds", resourceIds);
 		return mv;
 	}
 	

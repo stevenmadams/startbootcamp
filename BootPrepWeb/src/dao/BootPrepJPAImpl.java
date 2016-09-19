@@ -82,6 +82,17 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		Hibernate.initialize(u.getResources());
 		return u.getResources();
 	}
+	
+	@Override
+	public List<Resource> getAllResourcesNotAdded(int userId) {
+		String sql = "SELECT ud.resource FROM UserData ud WHERE ud.user.id != ?1";
+		List<Resource> results = em.createQuery(sql, Resource.class)
+								.setParameter(1, userId)
+								.getResultList();
+		return results;
+	}
+	
+	
 
 	@Override
 	public User removeResourceFromUser(int userId, int resourceId) {
@@ -150,5 +161,4 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		}
 		return null;
 	}
-	// added for git
 }
