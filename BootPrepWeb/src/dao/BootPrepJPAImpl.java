@@ -112,6 +112,18 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		em.persist(r);	
 		return r;
 	}
+
+	@Override
+	public UserData updateUserData(UserDataKey key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public UserData createUserData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	
