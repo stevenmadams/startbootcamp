@@ -47,13 +47,13 @@
 
 							<c:choose>
 								<%-- IF USER HAS THIS RESOURCE --%>
-								<c:when test="${myfn:contains(resourceIds, resource.id)}">
+								<c:when test="${add != 'true'}">
 									<a class="btn btn-default" role="button" href="resource.do?resourceId=${resource.id}">
 										View This Resource
 									</a>
 								</c:when>
 								<%-- IF USER DOESNT HAVE THIS RESOURCE --%>
-								<c:when test="${!myfn:contains(resourceIds, resource.id)}">
+								<c:when test="${add == 'true'}">
 									<a class="btn btn-default" role="button" href="resourceadd.do?resourceId=${resource.id}">
 										Add This Resource
 									</a>
