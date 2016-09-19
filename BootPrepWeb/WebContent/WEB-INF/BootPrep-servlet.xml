@@ -16,6 +16,10 @@
 	<!-- Declare DAO bean so it can use Spring annotations and be injected in 
 		our controller -->
 	<bean id="dao" class="dao.BootPrepJPAImpl" />
+	
+	<!-- Possibly needed if making a POJO to pass session info across controllers -->
+	<!-- <bean id="sessionInfo" class="session.SessionInfo"/> -->
+	
 	<!-- Declare EntityManagerFactory so we can inject an Entity Manager into 
 		our DAO -->
 	<bean id="myEntityManagerFactory"

@@ -17,7 +17,7 @@ import entities.UserData;
 import entities.UserDataKey;
 
 @Controller
-@SessionAttributes({"userId","auth"})
+@SessionAttributes({"userId","auth", "username"})
 public class ResourceController {
 
 	@Autowired
@@ -30,6 +30,10 @@ public class ResourceController {
 	}
 	@ModelAttribute("auth")
 	public String initAuth() {
+		return "";
+	}
+	@ModelAttribute("username")
+	public String initUserName() {
 		return "";
 	}
 	

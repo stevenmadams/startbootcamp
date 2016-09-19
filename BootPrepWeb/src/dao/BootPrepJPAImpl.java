@@ -43,13 +43,6 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		resources = em.createQuery(query, Resource.class).getResultList();
 		return resources;
 	}
-
-	@Override
-	public List<UserData> getAllUserDatasByUserId(int id) {
-		// TODO Auto-generated method stub
-		List<UserData> userDatas = new ArrayList<UserData>();
-		return userDatas;
-	}
 	
 	@Override
 	public User login(String username, String password) {

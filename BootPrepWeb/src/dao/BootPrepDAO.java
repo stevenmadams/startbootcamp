@@ -27,5 +27,5 @@ public interface BootPrepDAO {
 	
 	// UserResource
 	public UserData getUserDataByKey(UserDataKey key);
-	public List<UserData> getAllUserDatasByUserId(int id);
+
 }
