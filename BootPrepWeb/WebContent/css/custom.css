@@ -7,21 +7,22 @@ body {
 }
 
 h1{font-family: 'Allerta Stencil', sans-serif;
-text-transform: capitalize;
+text-transform: uppercase;
 }
 	h2{font-family: 'Allerta Stencil', sans-serif;
-	text-transform: capitalize;
+	text-transform: uppercase;
 }
 		h3{font-family: 'Allerta Stencil', sans-serif;
-		text-transform: capitalize;
+		text-transform: uppercase;
 }
 			h4{font-family: 'Allerta Stencil', sans-serif;
 		text-transform: capitalize;}
 				h5{font-family: 'Allerta Stencil', sans-serif;
-				text-transform: capitalize;
+				text-transform: uppercase;
 }
 					h6{font-family: 'Allerta Stencil', sans-serif;
-					text-transform: capitalize;
+					text-transform: uppercase;
+
 }
 
 .uncapitalize {
@@ -30,7 +31,7 @@ text-transform: capitalize;
 
 .nav {
 	font-family: 'Allerta Stencil', sans-serif;
-	text-transform: capitalize;
+	text-transform: uppercase;
 }
 
 

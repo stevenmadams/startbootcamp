@@ -1,5 +1,8 @@
 package controllers;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,6 +74,9 @@ public class AuthenticationController {
 				mv.addObject("userId", u.getId());
 				mv.addObject("auth", "true");
 				mv.addObject("username", u.getUsername());
+//				Date today = Calendar.getInstance().getTime();
+//				int countdown = u.getCreateDate().compareTo(today);
+//				mv.addObject("date", countdown );
 			} else {
 				mv.addObject("userId", 0);
 				mv.addObject("auth", "false");
