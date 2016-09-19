@@ -41,10 +41,12 @@ public class ResourceController {
 	public ModelAndView listAllResources(@ModelAttribute("userId") int userId,
 										 String view) {
 		List<Resource> resources = new ArrayList<>();
+		ModelAndView mv = new ModelAndView("resourcelist.jsp");
 		if (view == null) view = "";
 		switch (view) {
 		case "add":
 			resources = dao.getAllResourcesNotAdded(userId);
+			mv.addObject("add", true);
 			break;
 		case "my":
 			resources = dao.getAllResourcesById(userId);
@@ -53,7 +55,7 @@ public class ResourceController {
 			resources = dao.getAllResources();
 			break;
 		}
-		ModelAndView mv = new ModelAndView("resourcelist.jsp", "resources", resources); 
+		mv.addObject("resources", resources); 
 		return mv;
 	}
 	

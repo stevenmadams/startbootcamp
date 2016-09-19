@@ -26,8 +26,9 @@
           <c:when test="${userId == 0 || auth != 'true'}">
               <li><a href="resourcelist.do">Resources</a></li>
           </c:when>
+       </c:choose>
         <li><a href="userprofile.do?id=${userId}">Account</a></li>
-
+			
       </ul>
   <%-- IF STATEMENTS TO SHOW USER IS LOGGED IN - MENU ITEMS: PROFILE / MY RESOURCES / etc... --%>
   <ul class="nav navbar-nav navbar-right">
