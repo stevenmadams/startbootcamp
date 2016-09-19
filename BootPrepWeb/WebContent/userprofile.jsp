@@ -63,26 +63,23 @@
     </c:when>
     <%-- IF USER ID != NULL --%>
     <c:when test="${userId > 0 && auth == 'true'}">
-            <div class="col-md-6">
-              <div class="panel panel-default">
-  <div class="panel-body">
-    <div class="text-center">
-        <h1>${user.username}</h1>
-        <p>${user.firstName} ${user.lastName}</p>
-      </div>
-    </div>
-      </div>
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="text-center">
+								<h1>${user.username}</h1>
+								<p>${user.firstName}${user.lastName}</p>
+							</div>
+						</div>
+					</div>
+        </div>
+					<div class="col-md-6">
+						<a href="useredit.do?">EDIT ACCOUNT</a> <a
+							href="userListResources.do">List My Study Materials</a> <a
+							href="resourcecreate.jsp">Create a new Study Resource</a>
 
-            <div class="col-md-6">
-        <a href="useredit.do?">EDIT ACCOUNT</a>
-
-        <a href="userListResources.do">List My Study Materials</a>
-
-        <a href="resourcecreate.jsp">Create a new Study Resource</a>
-
-      </div>
-
-   	</c:when>
+					</div>
+			</c:when>
 	</c:choose>
 
 <c:choose>
@@ -98,7 +95,7 @@
 	</c:when>
 </c:choose>
 
-</div>
+
 </div>
 
 	<%@ include file="sitefooter.jsp"%>
