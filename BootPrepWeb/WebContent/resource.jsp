@@ -20,7 +20,15 @@
 	<%-- User Data Area --%>
 	<c:if test="${userId > 0 && auth == 'true'}">
 		<form action="userDataUpdate.do" method="post">
-			<p>Completed: ${userData.completed}</p>
+
+			<a href="userDataUpdate.do?resourceId=${resource.id}&completed=${userData.completed}">
+              Completed
+                  <span><input type="checkbox" name="completed" value="${userData.completed}" disabled
+                      <c:if test="${userData.completed}">checked</c:if>>
+                  </span>
+
+          	</a>
+			
 			<p>Rating: ${userData.rating}</p>
 			<textarea name="notes">${userData.notes}</textarea>
 			<input type="hidden" name="resourceId" value="${resource.id}">
