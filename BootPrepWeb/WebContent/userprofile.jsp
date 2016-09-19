@@ -72,7 +72,7 @@
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<div class="text-center">
-								<h1>${user.username}</h1>
+								<h1 class="uncapitalize">${user.username}</h1>
 								<p>${user.firstName} ${user.lastName}</p>
                 <a class="btn" href="#">
   <i class="fa fa-pencil-square-o fa-lg"></i> Edit Account</a>
