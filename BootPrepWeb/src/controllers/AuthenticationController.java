@@ -55,10 +55,16 @@ public class AuthenticationController {
 	
 	@RequestMapping(path="userprofile.do")
 	public ModelAndView getUser(@ModelAttribute("userId") int id,
+			@ModelAttribute("auth") String auth,
 			@RequestParam(value="username", required=false) String username,
 			@RequestParam(value="password", required=false) String password) {
-//		System.out.println(id);
 		User u = null;
+
+		if (id > 0 && auth.equals("true")) {
+			// Adding some stuff
+			u = dao.getUserById(id);
+		}
+
 		ModelAndView mv = new ModelAndView("userprofile.jsp");
 		if (username != null && password != null) {
 			u = dao.login(username, password);
