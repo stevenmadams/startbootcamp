@@ -74,6 +74,8 @@
 							<div class="text-center">
 								<h1>${user.username}</h1>
 								<p>${user.firstName} ${user.lastName}</p>
+                <a class="btn" href="#">
+  <i class="fa fa-pencil-square-o fa-lg"></i> Edit Account</a>
 							</div>
 						</div>
 					</div>
@@ -119,6 +121,32 @@
 		</c:choose>
 
 	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	<%@ include file="sitefooter.jsp"%>
 </body>

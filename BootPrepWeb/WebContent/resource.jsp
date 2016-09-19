@@ -10,6 +10,15 @@
 </head>
 <body>
 <%@ include file="sitenavbar.jsp" %>
+
+<div class="container-fluid">
+<div class="cover">
+  <img alt="${resource.name} Cover Photo" class="cover__image" src="${resource.photo}" /></div>
+</div>
+
+
+
+
 	<p>ID: ${resource.id}</p>
 	<p>Name: ${resource.name}</p>
 	<p>Description: ${resource.description}</p>
@@ -28,7 +37,7 @@
                   </span>
 
           	</a>
-			
+
 			<p>Rating: ${userData.rating}</p>
       <fieldset class="rating">
     <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
