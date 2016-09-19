@@ -6,9 +6,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>&#60;BOOT/PREP&#62; Resource List</title>
+
 <%@ include file="sitehead.jsp"%>
-<link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css">
+<title>&#60;BOOT/PREP&#62; Resource List</title>
 
 </head>
 <body>
@@ -16,38 +16,40 @@
 	<%-- 	<c:if test="${  myfn:contains( resources, resource ) }">style='display:none;'</c:if> --%>
 
 	<%@ include file="sitenavbar.jsp"%>
-	<div class="container">
 
-		<div class="cards">
+	<div class="container">
+  <h1>Flexbox</h1>
+	<!-- card list -->
+<div class="cards">
 
 			<c:forEach var="resource" items="${resources}">
 
-
-				<a class="card" href="resource.do?resourceId=${resource.id}">
-					 <span class="card-header" style="background-image: url(${resource.photo});">
-						 <span class="card-title">
-							<h3>${resource.name}</h3>
-					</span>
-
+				<a class="card" href="#">
+			<span class="card-header" style="background-image: url(${resource.photo});">
+				<span class="card-title">
+					<h3>	${resource.name}</h3>
 				</span>
-				<span class="card-summary"> ${resource.description} </span>
-
+			</span>
+			<span class="card-summary">
+				${resource.description}
+			</span>
 
 				<span class="card-meta">
 							<c:if test="${userId > 0 && auth == 'true'}">
 					 <button class="gap" href="resourceadd.do?resourceId=${resource.id}">Add This Resource</button>
 					 			</c:if>
-				 			<a href="resourceadd.do?resourceId=${resource.id}">Add Resource!!!!!!</a>
+				 			<button href="resourceadd.do?resourceId=${resource.id}">Add Resource!!!!!!</button>
 					 	</span>
-
-				</a>
-
 
 				</c:forEach>
 
 
-			</div>
+
+
+
+</div>
 	</div>
+
 
 	<%@ include file="sitefooter.jsp"%>
 </body>

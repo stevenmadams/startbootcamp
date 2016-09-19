@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title> &#60;BOOT/PREP&#62; ACCOUNT</title>
-<%@ include file="sitehead.jsp" %>
 
+<%@ include file="sitehead.jsp" %>
+<title> &#60;BOOT/PREP&#62; ACCOUNT</title>
 </head>
 <body>
 <%@ include file="sitenavbar.jsp" %>

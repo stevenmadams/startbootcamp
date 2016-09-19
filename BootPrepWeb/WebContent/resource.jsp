@@ -4,8 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Selected Resource - ${resource.name}</title>
+
 <%@ include file="sitehead.jsp" %>
+<title>Selected Resource - ${resource.name}</title>
 </head>
 <body>
 <%@ include file="sitenavbar.jsp" %>

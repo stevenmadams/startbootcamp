@@ -1,20 +1,18 @@
-<meta charset="UTF-8">
-<!-- Modernizr -->
-<script src="js/libs/modernizr-2.6.2.min.js"></script>
-<!-- jQuery-->
-<script type="text/javascript" src="js/libs/jquery-1.10.2.min.js"></script>
-<%-- fontawesome ICONS --%>
-<script src="https://use.fontawesome.com/f3e697ff49.js"></script>
+<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-<!-- framework css -->
-<!--[if gt IE 9]><!-->
-<link type="text/css" rel="stylesheet" href="css/groundwork.css">
-<!--<![endif]-->
-<!--[if lte IE 9]>
-<link type="text/css" rel="stylesheet" href="css/groundwork-core.css">
-<link type="text/css" rel="stylesheet" href="css/groundwork-type.css">
-<link type="text/css" rel="stylesheet" href="css/groundwork-ui.css">
-<link type="text/css" rel="stylesheet" href="css/groundwork-anim.css">
-<link type="text/css" rel="stylesheet" href="css/groundwork-ie.css">
-<![endif]-->
-<link type="text/css" rel="stylesheet" href="css/custom.css">
+
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/custom.css">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+
+<script src="https://use.fontawesome.com/f3e697ff49.js"></script>

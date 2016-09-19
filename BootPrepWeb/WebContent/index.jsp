@@ -4,9 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title> &#60;BOOT/PREP&#62; HOME</title>
-<%@ include file="sitehead.jsp" %>
 
+<%@ include file="sitehead.jsp" %>
+<title> &#60;BOOT/PREP&#62; HOME</title>
 </head>
 <body>
 <%@ include file="sitenavbar.jsp" %>
