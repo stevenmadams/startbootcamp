@@ -7,18 +7,31 @@ body {
 }
 
 h1{font-family: 'Allerta Stencil', sans-serif;
+text-transform: capitalize;
 }
 	h2{font-family: 'Allerta Stencil', sans-serif;
+	text-transform: capitalize;
 }
 		h3{font-family: 'Allerta Stencil', sans-serif;
+		text-transform: capitalize;
 }
-			h4{font-family: 'Allerta Stencil', sans-serif;}
+			h4{font-family: 'Allerta Stencil', sans-serif;
+		text-transform: capitalize;}
 				h5{font-family: 'Allerta Stencil', sans-serif;
+				text-transform: capitalize;
 }
 					h6{font-family: 'Allerta Stencil', sans-serif;
+					text-transform: capitalize;
 }
 
+.uncapitalize {
+	text-transform: none;
+}
 
+.nav {
+	font-family: 'Allerta Stencil', sans-serif;
+	text-transform: capitalize;
+}
 
 
 
