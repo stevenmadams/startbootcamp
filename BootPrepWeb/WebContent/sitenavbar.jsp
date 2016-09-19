@@ -33,7 +33,7 @@
       </c:when>
       <%-- IF USER ID != NULL --%>
       <c:when test="${userId > 0 && auth == 'true'}">
-          <p class="navbar-text">Logged in as: ${username}   <a class="btn btn-default" href="logout.do" role="button">Log Out</a></p>
+          <p class="navbar-text text-center">Logged in as: ${username}   <a class="btn btn-default" href="logout.do" role="button">Log Out</a></p>
 
      	</c:when>
   	</c:choose>

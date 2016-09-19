@@ -81,8 +81,9 @@
 				</div>
 
 				<div class="col-md-6">
-					<a href="useredit.do?">EDIT ACCOUNT</a> <a
-						href="userListResources.do">List My Study Materials</a> <a
+					<a href="useredit.do?">EDIT ACCOUNT</a>
+          <a href="userListResources.do">List My Study Materials</a>
+            <a
 						href="resourcecreate.jsp">Create a new Study Resource</a>
 
 				</div>
@@ -91,14 +92,29 @@
 
 		<c:choose>
 			<c:when test="${! empty resources}">
-
+        <div class="col-md-12">
+          <h1 class="text-center">My Resources</h1>
+              <hr>
+                <div class="panel panel-default">
+      						<div class="panel-body">
+        <div action="userListResources.do" method="GET">
 				<c:forEach var="resource" items="${resources}">
-					<p>
-						<a href="resource.do?resourceId=${resource.id}">${resource.name}</a>
-						<a href="resourceRemove.do?resourceId=${resource.id}">Remove</a>
-					</p>
+					<div class="row">
+
+						<div class="col-xs-10">
+              <a href="resource.do?resourceId=${resource.id}">${resource.name}</a>
+            </div>
+            <div class="col-xs-2">
+            <a href="resourceRemove.do?resourceId=${resource.id}"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+          </div>
+          <hr>
+					</div>
 
 				</c:forEach>
+      </table>
+    </div>
+  </div>
+    </div>
 			</c:when>
 		</c:choose>
 
