@@ -63,9 +63,11 @@
 
 
 
+
 			</c:when>
 			<%-- IF USER ID != NULL --%>
 			<c:when test="${userId > 0 && auth == 'true'}">
+
 				<div class="col-md-6">
 					<div class="panel panel-default">
 						<div class="panel-body">
@@ -75,6 +77,7 @@
 							</div>
 						</div>
 					</div>
+
 				</div>
 
 				<div class="col-md-6">
