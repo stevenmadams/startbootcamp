@@ -123,7 +123,6 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		current.setCompleted(data.isCompleted());
 		String notes = (data.getNotes() == null) ? current.getNotes() : data.getNotes();
 		Integer rating = (data.getRating() == null) ? current.getRating() : data.getRating();
-		// had problems here
 		current.setNotes(notes);
 		current.setRating(rating);
 		return current;
