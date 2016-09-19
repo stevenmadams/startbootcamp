@@ -122,8 +122,10 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		UserData current = em.find(UserData.class, key);
 		current.setCompleted(data.isCompleted());
 		String notes = (data.getNotes() == null) ? current.getNotes() : data.getNotes();
+		Integer rating = (data.getRating() == null) ? current.getRating() : data.getRating();
+		// had problems here
 		current.setNotes(notes);
-		current.setRating(data.getRating());
+		current.setRating(rating);
 		return current;
 	}
 

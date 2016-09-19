@@ -57,6 +57,10 @@ public class UserDataController {
 				@RequestParam(value="rating", required=false) Integer rating) {
 			ModelAndView mv = new ModelAndView("resource.jsp");
 System.out.println("Notes send to controlelr: " + notes);
+System.out.println("Rating sent: " + rating);
+System.out.println("Completed sent: " + completed);
+
+
 			Resource r = dao.getResourceById(resourceId);
 			UserDataKey key = new UserDataKey(userId, resourceId);
 			UserData updated = new UserData(rating, notes, !completed);

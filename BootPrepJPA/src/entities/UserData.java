@@ -22,7 +22,7 @@ public class UserData {
 	
 	private String notes;
 	private boolean completed;
-	private int rating;
+	private Integer rating;
 	
 	public UserData() {}
 	
@@ -60,7 +60,7 @@ public class UserData {
 	public void setCompleted(boolean completed) {
 		this.completed = completed;
 	}
-	public int getRating() {
+	public Integer getRating() {
 		return rating;
 	}
 	public void setRating(int rating) {
