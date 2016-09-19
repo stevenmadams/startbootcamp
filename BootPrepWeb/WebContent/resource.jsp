@@ -23,6 +23,7 @@
 			<p>Completed: ${userData.completed}</p>
 			<p>Rating: ${userData.rating}</p>
 			<textarea name="notes">${userData.notes}</textarea>
+			<input type="hidden" name="resourceId" value="${resource.id}">
 			<input type="submit" value="Update">
 		</form>
 		

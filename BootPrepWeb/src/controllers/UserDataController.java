@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.BootPrepDAO;
+import entities.UserDataKey;
 
 @Controller
 @SessionAttributes({"userId", "auth", "username"})
@@ -48,9 +49,10 @@ public class UserDataController {
 		@RequestMapping(path="userDataUpdate.do")
 		public ModelAndView update(@ModelAttribute("userId") int id,
 				@ModelAttribute("auth") String auth,
+				@RequestParam("resourceId") Integer resourceId,
 				@RequestParam("notes") String notes) {
 			ModelAndView mv = new ModelAndView("resource.jsp");
-			
+//			UserDataKey key = new UserDataKey(user, resource);
 			
 			
 			return mv;

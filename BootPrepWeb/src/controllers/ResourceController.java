@@ -49,8 +49,12 @@ public class ResourceController {
 	public ModelAndView addResourceToUser(@ModelAttribute("userId") int userId,
 										  @ModelAttribute("auth") String auth,
 										  int resourceId) {
-		ModelAndView mv = new ModelAndView("resourcelist.jsp");
+		ModelAndView mv = new ModelAndView("userprofile.jsp");
+		User u = dao.getUserById(userId);
 		dao.addResourceToUser(userId, resourceId);
+		List<Resource> resources = dao.getAllResourcesById(userId);
+		mv.addObject("user", u);
+		mv.addObject("resources", resources);
 		return mv;
 	}
 	

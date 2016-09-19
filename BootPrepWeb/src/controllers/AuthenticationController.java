@@ -75,7 +75,6 @@ public class AuthenticationController {
 				mv.addObject("auth", "false");
 			}
 		}
-System.out.println("userprofile.do: " + u);
 		mv.addObject("user", u);
 		return mv;
 	}
