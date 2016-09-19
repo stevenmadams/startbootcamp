@@ -4,8 +4,8 @@ import java.util.List;
 
 import entities.Resource;
 import entities.User;
-import entities.UserResource;
-import entities.UserResourceKey;
+import entities.UserData;
+import entities.UserDataKey;
 
 public interface BootPrepDAO {
 	// Auth
@@ -26,6 +26,6 @@ public interface BootPrepDAO {
 	
 	
 	// UserResource
-	public UserResource getUserResourceByKey(UserResourceKey key);
-	public List<UserResource> getAllUserResourcesByUserId(int id);
+	public UserData getUserDataByKey(UserDataKey key);
+	public List<UserData> getAllUserDatasByUserId(int id);
 }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 
-public class UserResourceKey implements Serializable {
+public class UserDataKey implements Serializable {
 	/**
 	 * 
 	 */
@@ -12,10 +12,10 @@ public class UserResourceKey implements Serializable {
 	private int user;
 	private int resource;
 	
-	public UserResourceKey() {}
+	public UserDataKey() {}
 	
 	
-	public UserResourceKey(int user, int resource) {
+	public UserDataKey(int user, int resource) {
 		this.user = user;
 		this.resource = resource;
 	}
@@ -43,8 +43,8 @@ public class UserResourceKey implements Serializable {
 	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UserResourceKey)) return false;
-        UserResourceKey that = (UserResourceKey) o;
+        if (!(o instanceof UserDataKey)) return false;
+        UserDataKey that = (UserDataKey) o;
         return Objects.equals(getUser(), that.getUser()) &&
                 Objects.equals(getResource(), that.getResource());
     }

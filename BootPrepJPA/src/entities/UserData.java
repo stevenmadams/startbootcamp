@@ -8,9 +8,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@IdClass(UserResourceKey.class)
+@IdClass(UserDataKey.class)
 @Table(name="user_resource")
-public class UserResource {
+public class UserData {
 	@Id
 	@ManyToOne
 	@JoinColumn(name="user_id")

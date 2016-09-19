@@ -24,7 +24,7 @@ public class User {
 		private int id;
 		
 		@OneToMany(mappedBy="user")
-		private List<UserResource> userResources;
+		private List<UserData> userDatas;
 		@Column(name="first_name")
 		private String firstName;
 		@Column(name="last_name")
@@ -97,11 +97,11 @@ public class User {
 		public void setPassword(String password) {
 			this.password = password;
 		}
-		public List<UserResource> getUserResources() {
-			return userResources;
+		public List<UserData> getUserDatas() {
+			return userDatas;
 		}
-		public void setUserResources(List<UserResource> userResources) {
-			this.userResources = userResources;
+		public void setUserDatas(List<UserData> userDatas) {
+			this.userDatas = userDatas;
 		}
 		public List<Resource> getResources() {
 			return resources;

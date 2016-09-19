@@ -12,8 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import entities.Resource;
 import entities.User;
-import entities.UserResource;
-import entities.UserResourceKey;
+import entities.UserData;
+import entities.UserDataKey;
 
 @Transactional
 public class BootPrepJPAImpl implements BootPrepDAO {
@@ -32,8 +32,8 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 	}
 
 	@Override
-	public UserResource getUserResourceByKey(UserResourceKey key) {
-		return em.find(UserResource.class, key);
+	public UserData getUserDataByKey(UserDataKey key) {
+		return em.find(UserData.class, key);
 	}
 
 	@Override
@@ -45,10 +45,10 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 	}
 
 	@Override
-	public List<UserResource> getAllUserResourcesByUserId(int id) {
+	public List<UserData> getAllUserDatasByUserId(int id) {
 		// TODO Auto-generated method stub
-		List<UserResource> userResources = new ArrayList<UserResource>();
-		return userResources;
+		List<UserData> userDatas = new ArrayList<UserData>();
+		return userDatas;
 	}
 	
 	@Override

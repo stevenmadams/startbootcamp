@@ -8,8 +8,8 @@ import javax.persistence.Persistence;
 
 import entities.Resource;
 import entities.User;
-import entities.UserResource;
-import entities.UserResourceKey;
+import entities.UserData;
+import entities.UserDataKey;
 
 public class UserTestMain {
 	public static void main(String[] args) {

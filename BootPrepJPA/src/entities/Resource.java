@@ -30,7 +30,7 @@ import javax.persistence.OneToMany;
 		private List<Tag> tags;
 		
 		@OneToMany(mappedBy="resource")
-		private List<UserResource> userResources;
+		private List<UserData> userDatas;
 		
 		@ManyToMany(mappedBy="resources")
 		private List<User> users;
@@ -85,11 +85,11 @@ import javax.persistence.OneToMany;
 		public void setTags(List<Tag> tags) {
 			this.tags = tags;
 		}
-		public List<UserResource> getUserResources() {
-			return userResources;
+		public List<UserData> getUserDatas() {
+			return userDatas;
 		}
-		public void setUserResources(List<UserResource> userResources) {
-			this.userResources = userResources;
+		public void setUserDatas(List<UserData> userDatas) {
+			this.userDatas = userDatas;
 		}
 		public List<User> getUsers() {
 			return users;

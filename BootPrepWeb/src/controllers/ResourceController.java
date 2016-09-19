@@ -13,8 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 import dao.BootPrepDAO;
 import entities.Resource;
 import entities.User;
-import entities.UserResource;
-import entities.UserResourceKey;
+import entities.UserData;
+import entities.UserDataKey;
 
 @Controller
 @SessionAttributes({"userId","auth"})
@@ -57,8 +57,8 @@ public class ResourceController {
 		
 		ModelAndView mv = new ModelAndView("resource.jsp");
 		Resource r = dao.getResourceById(resourceId);
-		UserResourceKey key = new UserResourceKey(userId, resourceId);
-		UserResource ur = dao.getUserResourceByKey(key);
+		UserDataKey key = new UserDataKey(userId, resourceId);
+		UserData ur = dao.getUserDataByKey(key);
 		mv.addObject("userData", ur);
 		mv.addObject("resource", r);
 		return mv;
