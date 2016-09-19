@@ -2,10 +2,12 @@ package controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.BootPrepDAO;
@@ -18,6 +20,7 @@ public class AuthenticationController {
 	@Autowired
 	private BootPrepDAO dao;
 	
+	// Session Attributes
 	@ModelAttribute("userId")
 	public int initUserId() {
 		return 0;
@@ -46,6 +49,13 @@ public class AuthenticationController {
 		}
 		mv.addObject("user", u);
 		return mv;
+	}
+	
+	@RequestMapping(path="logout.do")
+	public String logout(SessionStatus status, Model model) {
+		model.addAttribute("auth", "false");
+		status.setComplete();
+		return "index.jsp";
 	}
 	
 }

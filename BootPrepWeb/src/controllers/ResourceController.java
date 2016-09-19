@@ -23,17 +23,15 @@ public class ResourceController {
 	@Autowired
 	private BootPrepDAO dao;
 	
-	// testing *************************************************
-		@ModelAttribute("userId")
-		public int initUserId() {
-			return 0;
-		}
-		@ModelAttribute("auth")
-		public String initAuth() {
-			return "";
-		}
-		
-	// testing *************************************************	
+	// Session Attributes
+	@ModelAttribute("userId")
+	public int initUserId() {
+		return 0;
+	}
+	@ModelAttribute("auth")
+	public String initAuth() {
+		return "";
+	}
 	
 	@RequestMapping(path="resourcelist.do")
 	public ModelAndView listAllResources() {

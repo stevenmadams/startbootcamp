@@ -22,8 +22,8 @@ public class UserController {
 
 	@Autowired
 	private BootPrepDAO dao;
-
-// testing *************************************************
+	
+	// Session Attributes
 	@ModelAttribute("userId")
 	public int initUserId() {
 		return 0;
@@ -33,7 +33,7 @@ public class UserController {
 		return "";
 	}
 	
-// testing *************************************************	
+	
 	
 	@RequestMapping(path="useredit.do")
 	public ModelAndView userEdit(@ModelAttribute("userId")int id) {
