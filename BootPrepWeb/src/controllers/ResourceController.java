@@ -23,6 +23,18 @@ public class ResourceController {
 	@Autowired
 	private BootPrepDAO dao;
 	
+	// testing *************************************************
+		@ModelAttribute("userId")
+		public int initUserId() {
+			return 0;
+		}
+		@ModelAttribute("auth")
+		public String initAuth() {
+			return "";
+		}
+		
+	// testing *************************************************	
+	
 	@RequestMapping(path="resourcelist.do")
 	public ModelAndView listAllResources() {
 		List<Resource> resources = new ArrayList<>();
@@ -61,6 +73,16 @@ public class ResourceController {
 		ModelAndView mv = new ModelAndView("userprofile.jsp");
 		User u = dao.removeResourceFromUser(userId, resourceId);
 		mv.addObject("resources", u.getResources());
+		return mv;
+	}
+	
+	@RequestMapping(path="resourceCreate.do")
+	public ModelAndView goToCreatePage(@ModelAttribute("userId") int userId,
+			   @ModelAttribute("auth") String auth,
+			   String url, String name, String description ) {
+		ModelAndView mv = new ModelAndView("resourcecreate.jsp");
+		Resource r = dao.createResource(new Resource(url, name, description));
+		mv.addObject("newResource", r);
 		return mv;
 	}
 	

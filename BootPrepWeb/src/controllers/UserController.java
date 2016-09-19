@@ -23,6 +23,18 @@ public class UserController {
 	@Autowired
 	private BootPrepDAO dao;
 
+// testing *************************************************
+	@ModelAttribute("userId")
+	public int initUserId() {
+		return 0;
+	}
+	@ModelAttribute("auth")
+	public String initAuth() {
+		return "";
+	}
+	
+// testing *************************************************	
+	
 	@RequestMapping(path="useredit.do")
 	public ModelAndView userEdit(@ModelAttribute("userId")int id) {
 		User u = dao.getUserById(id);
@@ -70,7 +82,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="userListResources.do")
-	public ModelAndView userListResources(@ModelAttribute("userId")int id,
+	public ModelAndView userListResources(@ModelAttribute("userId") Integer id,
 			@ModelAttribute("auth") String auth) {
 		ModelAndView mv = new ModelAndView("userprofile.jsp");
 		List<Resource> resources = dao.getAllResourcesById(id);

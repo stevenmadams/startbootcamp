@@ -113,6 +113,12 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		u.removeResource(r);
 		return u;
 	}
+
+	@Override
+	public Resource createResource(Resource r) {
+		em.persist(r);	
+		return r;
+	}
 	
 	
 	

@@ -23,8 +23,8 @@ public class AuthenticationController {
 		return 0;
 	}
 	@ModelAttribute("auth")
-	public boolean initAuth() {
-		return false;
+	public String initAuth() {
+		return "";
 	}
 	
 	@RequestMapping(path="userprofile.do")

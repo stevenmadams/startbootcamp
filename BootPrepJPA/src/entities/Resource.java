@@ -35,6 +35,13 @@ import javax.persistence.OneToMany;
 		@ManyToMany(mappedBy="resources")
 		private List<User> users;
 		
+		public Resource() {}
+		
+		public Resource(String url, String name, String description) {
+			this.url = url;
+			this.name = name;
+			this.description = description;
+		}
 		
 		
 //GET AND SET---------------------------------------------------

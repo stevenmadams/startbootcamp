@@ -59,6 +59,8 @@
         <a href="useredit.do?">EDIT ACCOUNT</a>
         
         <a href="userListResources.do">List My Study Materials</a>
+        
+        <a href="resourcecreate.jsp">Create a new Study Resource</a>
    	</c:when>
 	</c:choose>
 	

@@ -8,18 +8,24 @@ import entities.UserResource;
 import entities.UserResourceKey;
 
 public interface BootPrepDAO {
-	public Resource getResourceById(int id);
-	public User getUserById(int id);
-	public UserResource getUserResourceByKey(UserResourceKey key);
-	public List<Resource> getAllResources();
-	public List<Resource> getAllResourcesById(int id);
-	public List<UserResource> getAllUserResourcesByUserId(int id);
+	// Auth
 	public User login(String username, String password);
 	
-	// User table items
+	// User stuff
+	public User getUserById(int id);
 	public User updateUser(User user, int id);
 	public User createUser(User user);
 	
+	// Resources
+	public Resource getResourceById(int id);
 	public void addResourceToUser(int userId, int resourceId);
 	public User removeResourceFromUser(int userId, int resourceId);
+	public List<Resource> getAllResources();
+	public List<Resource> getAllResourcesById(int id);
+	public Resource createResource(Resource r);
+	
+	
+	// UserResource
+	public UserResource getUserResourceByKey(UserResourceKey key);
+	public List<UserResource> getAllUserResourcesByUserId(int id);
 }
