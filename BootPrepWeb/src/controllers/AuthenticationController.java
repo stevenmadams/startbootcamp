@@ -60,7 +60,6 @@ public class AuthenticationController {
 			@RequestParam(value="password", required=false) String password) {
 		User u = null;
 		if (id > 0 && auth.equals("true")) {
-			// Adding some stuff
 			u = dao.getUserById(id);
 		}
 		ModelAndView mv = new ModelAndView("userprofile.jsp");
