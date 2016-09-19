@@ -53,12 +53,13 @@ public class UserDataController {
 				@ModelAttribute("auth") String auth,
 				@RequestParam("resourceId") Integer resourceId,
 				@RequestParam(value="notes", required=false) String notes,
-				@RequestParam(value="completed", required=false) boolean completed) {
+				@RequestParam(value="completed", required=false) boolean completed,
+				@RequestParam(value="rating", required=false) Integer rating) {
 			ModelAndView mv = new ModelAndView("resource.jsp");
 System.out.println("Notes send to controlelr: " + notes);
 			Resource r = dao.getResourceById(resourceId);
 			UserDataKey key = new UserDataKey(userId, resourceId);
-			UserData updated = new UserData(notes, !completed);
+			UserData updated = new UserData(rating, notes, !completed);
 			updated = dao.updateUserData(key, updated);
 			mv.addObject("resource", r);
 			mv.addObject("userData", updated);

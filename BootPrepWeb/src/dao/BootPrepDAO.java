@@ -7,10 +7,10 @@ import entities.User;
 import entities.UserData;
 import entities.UserDataKey;
 
+
 public interface BootPrepDAO {
 	// Auth
 	public User login(String username, String password);
-	
 	// User stuff
 	public User getUserById(int id);
 	public User updateUser(User user, int id);

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="myfn" uri="http://samplefn"%>
 <%-- <%@ taglib uri="WEB-INF/tag/custom-functions.tld" prefix="myfn" %>  --%>
 <!DOCTYPE html>
 <html>
@@ -32,11 +33,12 @@
 								<h3>${resource.name}</h3>
 						</span></span> <span class="card-summary"> ${resource.description} </span> </a> <span
 						class="card-meta"> 
-						<c:if test="${userId > 0 && auth == 'true'}">
+						${myfn:hello("Josiah")}
+						<%-- <c:if test="${userId > 0 && auth == 'true'}">
 							<a class="btn btn-default" role="button"
 								href="resourceadd.do?resourceId=${resource.id}">Add This
 								Resource</a>
-						</c:if>
+						</c:if> --%>
 
 					</span>
 				</div>

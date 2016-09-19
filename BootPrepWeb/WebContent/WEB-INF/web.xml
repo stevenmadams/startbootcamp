@@ -13,4 +13,17 @@
     <servlet-name>BootPrep</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  
+  <jsp-config>
+       <taglib>
+         <taglib-uri>
+           http://samplefn
+         </taglib-uri>
+         <taglib-location>
+           /WEB-INF/tags/custom.tld
+         </taglib-location>
+       </taglib> 
+       </jsp-config>
+  
 </web-app> 
+

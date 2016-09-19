@@ -104,7 +104,9 @@ public class UserController {
 			@ModelAttribute("auth") String auth) {
 		ModelAndView mv = new ModelAndView("userprofile.jsp");
 		List<Resource> resources = dao.getAllResourcesById(id);
+		User u = dao.getUserById(id);
 		mv.addObject("resources", resources);
+		mv.addObject("user", u);
 		return mv;
 	}
 }

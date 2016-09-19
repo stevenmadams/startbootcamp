@@ -30,6 +30,11 @@ public class UserData {
 		this.notes = notes;
 		this.completed = completed;
 	}
+	public UserData(Integer rating, String notes, boolean completed) {
+		this.rating = rating;
+		this.notes = notes;
+		this.completed = completed;
+	}
 	
 	public User getUser() {
 		return user;

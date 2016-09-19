@@ -4,11 +4,10 @@
   version="2.1">
   <tlib-version>1.0</tlib-version>
     <short-name>myfn</short-name>
-    <uri>WEB-INF/tag/custom-functions.tld</uri>
+    <uri>http://samplefn</uri>
     <function>
-      <name>contains</name>
-      <function-class>helpers.CustomTag</function-class>
-      <function-signature>boolean contains(java.util.Collection,
-          java.lang.Object)</function-signature>
+      <name>hello</name>
+      <function-class>helpers.Functions</function-class>
+      <function-signature>java.lang.String hello(java.lang.String)</function-signature>
   </function>
 </taglib>

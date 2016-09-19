@@ -1,0 +1,25 @@
+<taglib version="2.0" xmlns="http://java.sun.com/xml/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">
+
+	<tlib-version>2.0</tlib-version>
+	<jsp-version>2.0</jsp-version>
+	<short-name>quote</short-name>
+	<uri>tag lib version id</uri>
+	<description>
+		This tag library contains several tag extensions
+		useful for formatting content for HTML.
+	</description>
+
+	<tag>
+		<name>test</name>
+		<tag-class>helpers.Functions</tag-class>
+		<body-content>tagdependent</body-content>
+		<!-- <attribute> <name>fontAttributes</name> </attribute> <attribute> <name>commentColor</name> 
+			</attribute> <attribute> <name>quoteColor</name> </attribute> -->
+	</tag>
+
+	<!-- <function> <name>hello</name> <function-class>helpers.Functions</function-class> 
+		<function-signature>java.lang.String hello( java.Lang.String )</function-signature> 
+		</function> -->
+</taglib>
