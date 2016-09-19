@@ -17,7 +17,7 @@ import entities.UserDataKey;
 
 @Transactional
 public class BootPrepJPAImpl implements BootPrepDAO {
-
+	// line added for git
 	@PersistenceContext
 	private EntityManager em;
 
@@ -109,7 +109,6 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		}
 		return ids;
 	}
-
 	
 	// UserData Methods
 	@Override
@@ -123,7 +122,6 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		current.setCompleted(data.isCompleted());
 		String notes = (data.getNotes() == null) ? current.getNotes() : data.getNotes();
 		Integer rating = (data.getRating() == null) ? current.getRating() : data.getRating();
-		// had problems here
 		current.setNotes(notes);
 		current.setRating(rating);
 		return current;
@@ -134,7 +132,7 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 	
 	
 	// Authentication Methods
@@ -152,5 +150,5 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		}
 		return null;
 	}
-	
+	// added for git
 }
