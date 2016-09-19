@@ -74,6 +74,7 @@ public class ResourceController {
 											   int resourceId) {
 		ModelAndView mv = new ModelAndView("userprofile.jsp");
 		User u = dao.removeResourceFromUser(userId, resourceId);
+		mv.addObject("user", u);
 		mv.addObject("resources", u.getResources());
 		return mv;
 	}
