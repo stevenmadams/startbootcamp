@@ -27,6 +27,6 @@ public interface BootPrepDAO {
 	
 	// UserResource
 	public UserData getUserDataByKey(UserDataKey key);
-	public UserData updateUserData(UserDataKey key);
+	public UserData updateUserData(UserDataKey key, UserData data);
 	public UserData createUserData();
 }

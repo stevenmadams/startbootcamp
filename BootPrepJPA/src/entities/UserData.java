@@ -24,6 +24,12 @@ public class UserData {
 	private boolean completed;
 	private int rating;
 	
+	public UserData() {}
+	
+	public UserData(String notes, boolean completed) {
+		this.notes = notes;
+		this.completed = completed;
+	}
 	
 	public User getUser() {
 		return user;

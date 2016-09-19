@@ -21,42 +21,12 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 	@PersistenceContext
 	private EntityManager em;
 
-	@Override
-	public Resource getResourceById(int id) {
-		return em.find(Resource.class, id);
-	}
-
+	
+	
+	// User methods
 	@Override
 	public User getUserById(int id) {
 		return em.find(User.class, id);
-	}
-
-	@Override
-	public UserData getUserDataByKey(UserDataKey key) {
-		return em.find(UserData.class, key);
-	}
-
-	@Override
-	public List<Resource> getAllResources() {
-		List<Resource> resources = new ArrayList<>();
-		String query = "select r from Resource r";
-		resources = em.createQuery(query, Resource.class).getResultList();
-		return resources;
-	}
-	
-	@Override
-	public User login(String username, String password) {
-		String query = "select u from User u where u.username = ?1";
-		User user = em.createQuery(query, User.class)
-				.setParameter(1, username)
-				.getSingleResult();
-		if (user == null) {
-			return null;
-		}
-		if (password.equals(user.getPassword())) {
-			return user;
-		}
-		return null;
 	}
 
 	@Override
@@ -84,6 +54,20 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		return current;
 	}
 
+	// Resource methods
+	@Override
+	public Resource getResourceById(int id) {
+		return em.find(Resource.class, id);
+	}
+	
+	@Override
+	public List<Resource> getAllResources() {
+		List<Resource> resources = new ArrayList<>();
+		String query = "select r from Resource r";
+		resources = em.createQuery(query, Resource.class).getResultList();
+		return resources;
+	}
+	
 	@Override
 	public void addResourceToUser(int userId, int resourceId) {
 		User u = em.find(User.class, userId);
@@ -113,10 +97,21 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		return r;
 	}
 
+	
+	// UserData Methods
 	@Override
-	public UserData updateUserData(UserDataKey key) {
-		// TODO Auto-generated method stub
-		return null;
+	public UserData getUserDataByKey(UserDataKey key) {
+		return em.find(UserData.class, key);
+	}
+	
+	@Override
+	public UserData updateUserData(UserDataKey key, UserData data) {
+		UserData current = em.find(UserData.class, key);
+		current.setCompleted(data.isCompleted());
+		String notes = (data.getNotes() == null) ? current.getNotes() : data.getNotes();
+		current.setNotes(notes);
+		current.setRating(data.getRating());
+		return current;
 	}
 
 	@Override
@@ -124,7 +119,23 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	
 	
+	// Authentication Methods
+	@Override
+	public User login(String username, String password) {
+		String query = "select u from User u where u.username = ?1";
+		User user = em.createQuery(query, User.class)
+				.setParameter(1, username)
+				.getSingleResult();
+		if (user == null) {
+			return null;
+		}
+		if (password.equals(user.getPassword())) {
+			return user;
+		}
+		return null;
+	}
 	
 }
