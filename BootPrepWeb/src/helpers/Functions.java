@@ -1,8 +1,10 @@
 package helpers;
 
+import java.util.List;
+
 public class Functions {
 
-	public static String hello(String str) {
-        return "Hiya " + str;
+	public static boolean contains(List<?> coll, Object o) {
+		return coll.contains(o);
       }
 }

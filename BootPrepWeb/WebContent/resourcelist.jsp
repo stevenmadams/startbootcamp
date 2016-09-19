@@ -33,12 +33,25 @@
 								<h3>${resource.name}</h3>
 						</span></span> <span class="card-summary"> ${resource.description} </span> </a> <span
 						class="card-meta"> 
-						${myfn:hello("Josiah")}
-						<%-- <c:if test="${userId > 0 && auth == 'true'}">
-							<a class="btn btn-default" role="button"
-								href="resourceadd.do?resourceId=${resource.id}">Add This
-								Resource</a>
-						</c:if> --%>
+				
+					<c:if test="${userId > 0 && auth == 'true'}">
+						
+					 	<c:choose>
+					 		<%-- IF USER HAS THIS RESOURCE --%>
+					 		<c:when test="${myfn:contains(resourceIds, resource.id)}">
+					 			<h1>I ALREADY HAVE THIS!</h1>
+					 			<h1>I ALREADY HAVE THIS!</h1>
+					 			<h1>I ALREADY HAVE THIS!</h1>
+					 			<h1>I ALREADY HAVE THIS!</h1>
+					 		</c:when>
+					 		<%-- IF USER DOESNT HAVE THIS RESOURCE --%>
+					 		<c:when test="${!myfn:contains(resourceIds, resource.id)}">
+								<a class="btn btn-default" role="button" href="resourceadd.do?resourceId=${resource.id}">
+									Add This Resource
+								</a>
+					 		</c:when>
+					 	</c:choose>
+					</c:if>	
 
 					</span>
 				</div>

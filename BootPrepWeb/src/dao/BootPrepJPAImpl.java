@@ -1,13 +1,13 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.hibernate.Hibernate;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.Resource;
@@ -95,6 +95,19 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 	public Resource createResource(Resource r) {
 		em.persist(r);	
 		return r;
+	}
+	
+	@Override
+	public List<Integer> getResourceIdsForUser(int id) {
+		String query = "SELECT ud.resource FROM UserData ud WHERE ud.user.id = ?1";
+		List<Resource> results = em.createQuery(query, Resource.class)
+								.setParameter(1, id)
+								.getResultList();
+		List<Integer> ids = new ArrayList<>();
+		for (Resource resource : results) {
+			ids.add(resource.getId());
+		}
+		return ids;
 	}
 
 	
