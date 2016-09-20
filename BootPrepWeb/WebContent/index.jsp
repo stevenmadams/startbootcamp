@@ -12,7 +12,6 @@
 <title> &#60;BOOT/PREP&#62; HOME</title>
 </head>
 <body>
-  <div class="bg-img">
 
 
 <%@ include file="sitenavbar.jsp" %>
@@ -29,7 +28,7 @@
         <div class="item active">
           <img class="first-slide hidden-xs" src="img/bannerphoto1.jpg" alt="First slide">
             <img class="first-slide hidden-sm hidden-md hidden-lg" src="img/bannerphoto1xs.jpg" alt="First slide">
-          <div class="container verticalmiddle">
+          <div class="container">
             <div class="carousel-caption ">
               <h1>Example headline.</h1>
               <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
@@ -62,6 +61,5 @@
 <a href="userprofile.jsp?id=${userId}">ACCOUNT</a>
 <a href="resourcelist.do">List Resources</a>
 <%@ include file="sitefooter.jsp" %>
-  </div>
 </body>
 </html>
