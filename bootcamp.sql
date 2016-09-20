@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `start_date` DATETIME NULL,
-  `user_photo` VARCHAR(2083) NULL DEFAULT 'No picture uploaded',
+  `user_photo` VARCHAR(2083) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
@@ -47,6 +47,7 @@ CREATE TABLE IF NOT EXISTS `resource` (
   `url` VARCHAR(2083) NULL,
   `video` VARCHAR(2083) NULL,
   `photo` VARCHAR(2083) NULL,
+  `snippet` VARCHAR(200) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -97,6 +98,7 @@ DROP TABLE IF EXISTS `resource_tag` ;
 CREATE TABLE IF NOT EXISTS `resource_tag` (
   `resource_id` INT NOT NULL,
   `tag_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
   PRIMARY KEY (`resource_id`, `tag_id`),
   INDEX `resource_tag_idx` (`tag_id` ASC),
   CONSTRAINT `tag_resource`
@@ -233,16 +235,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bootcamp`;
-INSERT INTO `resource` (`id`, `name`, `description`, `url`, `video`, `photo`) VALUES (1, 'Hour of Code', 'The Hour of Code is a global movement reaching tens of millions of students in 180+ countries. Anyone, anywhere can organize an Hour of Code event. One-hour tutorials are available in over 45 languages. No experience needed. Ages 4 to 104.', 'https://hourofcode.com/us', '', 'http://dummyimage.com/112x140.png/ff4444/ffffff');
-INSERT INTO `resource` (`id`, `name`, `description`, `url`, `video`, `photo`) VALUES (2, 'Free Code Camp', 'Learn to code and help nonprofits. ', 'https://www.freecodecamp.com/', '', 'http://dummyimage.com/100x197.png/cc0000/ffffff');
-INSERT INTO `resource` (`id`, `name`, `description`, `url`, `video`, `photo`) VALUES (3, 'MIT OpenCourceWare', 'MIT OpenCourseWare (OCW) is a web-based publication of virtually all MIT course content. OCW is open and available to the world and is a permanent MIT activity.', 'https://www.codeschool.com/', '', 'http://dummyimage.com/219x178.png/5fa2dd/ffffff');
-INSERT INTO `resource` (`id`, `name`, `description`, `url`, `video`, `photo`) VALUES (4, 'Code School', 'Code School is an online learning destination for existing and aspiring developers that teaches through entertaining content. Each course is built around a creative theme and storyline so that it feels like you’re playing a game, not sitting in a classroom. We combine gaming mechanics with video instruction and in-browser coding challenges to make learning fun and memorable. With over 60 courses covering HTML/CSS, JavaScript, Ruby, Python, .NET, iOS, Git, databases, and more, Code School pairs experienced instructors with meticulously produced, high-quality content inspired by our community and network of members.', 'https://www.codeschool.com/', '', 'http://dummyimage.com/145x231.jpg/dddddd/000000');
-INSERT INTO `resource` (`id`, `name`, `description`, `url`, `video`, `photo`) VALUES (5, 'W3Schools', 'W3Schools is a web developers site, with tutorials and references on web development languages such as HTML, CSS, JavaScript, PHP, SQL, and Bootstrap, covering most aspects of web programming.', 'http://www.w3schools.com/default.asp', '', 'http://dummyimage.com/170x219.jpg/cc0000/ffffff');
-INSERT INTO `resource` (`id`, `name`, `description`, `url`, `video`, `photo`) VALUES (6, 'Khan Academy', 'In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.\n\nSuspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.', 'https://www.khanacademy.org/computing/computer-programming', '', 'http://dummyimage.com/205x176.png/dddddd/000000');
-INSERT INTO `resource` (`id`, `name`, `description`, `url`, `video`, `photo`) VALUES (7, 'Bento', 'Teach yourself to code Everything you need to be a self-taught expert developer', 'https://bento.io/', '', 'http://dummyimage.com/214x170.png/5fa2dd/ffffff');
-INSERT INTO `resource` (`id`, `name`, `description`, `url`, `video`, `photo`) VALUES (8, 'Codecademy', 'Codecademy the best place for our team to learn, teach, and create the online learning experience of the future..', 'https://www.codecademy.com/', '', 'http://dummyimage.com/247x237.jpg/dddddd/000000');
-INSERT INTO `resource` (`id`, `name`, `description`, `url`, `video`, `photo`) VALUES (9, 'Coursea', 'Coursera is an education platform that partners with top universities and organizations worldwide, to offer courses online for anyone to take.', 'https://www.coursera.org/', '', 'http://dummyimage.com/144x226.png/5fa2dd/ffffff');
-INSERT INTO `resource` (`id`, `name`, `description`, `url`, `video`, `photo`) VALUES (10, 'edX', 'Founded by Harvard University and MIT in 2012, edX is an online learning destination and MOOC provider, offering high-quality courses from the world’s best universities and institutions to learners everywhere.  With more than 90 global partners, we are proud to count the world’s leading universities, nonprofits, and institutions as our members. EdX university members top the QS World University Rankings® with our founders receiving the top honors, and edX partner institutions ranking highly on the full list.', 'https://www.edx.org/', '', 'http://dummyimage.com/224x209.bmp/5fa2dd/ffffff');
+INSERT INTO `resource` (`id`, `name`, `description`, `url`, `video`, `photo`, `snippet`) VALUES (1, 'Hour of Code', 'The Hour of Code is a global movement reaching tens of millions of students in 180+ countries. Anyone, anywhere can organize an Hour of Code event. One-hour tutorials are available in over 45 languages. No experience needed. Ages 4 to 104.', 'https://hourofcode.com/us', '', 'http://dummyimage.com/112x140.png/ff4444/ffffff', NULL);
+INSERT INTO `resource` (`id`, `name`, `description`, `url`, `video`, `photo`, `snippet`) VALUES (2, 'Free Code Camp', 'Learn to code and help nonprofits. ', 'https://www.freecodecamp.com/', '', 'http://dummyimage.com/100x197.png/cc0000/ffffff', NULL);
+INSERT INTO `resource` (`id`, `name`, `description`, `url`, `video`, `photo`, `snippet`) VALUES (3, 'MIT OpenCourceWare', 'MIT OpenCourseWare (OCW) is a web-based publication of virtually all MIT course content. OCW is open and available to the world and is a permanent MIT activity.', 'https://www.codeschool.com/', '', 'http://dummyimage.com/219x178.png/5fa2dd/ffffff', NULL);
+INSERT INTO `resource` (`id`, `name`, `description`, `url`, `video`, `photo`, `snippet`) VALUES (4, 'Code School', 'Code School is an online learning destination for existing and aspiring developers that teaches through entertaining content. Each course is built around a creative theme and storyline so that it feels like you’re playing a game, not sitting in a classroom. We combine gaming mechanics with video instruction and in-browser coding challenges to make learning fun and memorable. With over 60 courses covering HTML/CSS, JavaScript, Ruby, Python, .NET, iOS, Git, databases, and more, Code School pairs experienced instructors with meticulously produced, high-quality content inspired by our community and network of members.', 'https://www.codeschool.com/', '', 'http://dummyimage.com/145x231.jpg/dddddd/000000', NULL);
+INSERT INTO `resource` (`id`, `name`, `description`, `url`, `video`, `photo`, `snippet`) VALUES (5, 'W3Schools', 'W3Schools is a web developers site, with tutorials and references on web development languages such as HTML, CSS, JavaScript, PHP, SQL, and Bootstrap, covering most aspects of web programming.', 'http://www.w3schools.com/default.asp', '', 'http://dummyimage.com/170x219.jpg/cc0000/ffffff', NULL);
+INSERT INTO `resource` (`id`, `name`, `description`, `url`, `video`, `photo`, `snippet`) VALUES (6, 'Khan Academy', 'In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.\n\nSuspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.', 'https://www.khanacademy.org/computing/computer-programming', '', 'http://dummyimage.com/205x176.png/dddddd/000000', NULL);
+INSERT INTO `resource` (`id`, `name`, `description`, `url`, `video`, `photo`, `snippet`) VALUES (7, 'Bento', 'Teach yourself to code Everything you need to be a self-taught expert developer', 'https://bento.io/', '', 'http://dummyimage.com/214x170.png/5fa2dd/ffffff', NULL);
+INSERT INTO `resource` (`id`, `name`, `description`, `url`, `video`, `photo`, `snippet`) VALUES (8, 'Codecademy', 'Codecademy the best place for our team to learn, teach, and create the online learning experience of the future..', 'https://www.codecademy.com/', '', 'http://dummyimage.com/247x237.jpg/dddddd/000000', NULL);
+INSERT INTO `resource` (`id`, `name`, `description`, `url`, `video`, `photo`, `snippet`) VALUES (9, 'Coursea', 'Coursera is an education platform that partners with top universities and organizations worldwide, to offer courses online for anyone to take.', 'https://www.coursera.org/', '', 'http://dummyimage.com/144x226.png/5fa2dd/ffffff', NULL);
+INSERT INTO `resource` (`id`, `name`, `description`, `url`, `video`, `photo`, `snippet`) VALUES (10, 'edX', 'Founded by Harvard University and MIT in 2012, edX is an online learning destination and MOOC provider, offering high-quality courses from the world’s best universities and institutions to learners everywhere.  With more than 90 global partners, we are proud to count the world’s leading universities, nonprofits, and institutions as our members. EdX university members top the QS World University Rankings® with our founders receiving the top honors, and edX partner institutions ranking highly on the full list.', 'https://www.edx.org/', '', 'http://dummyimage.com/224x209.bmp/5fa2dd/ffffff', NULL);
 
 COMMIT;
 

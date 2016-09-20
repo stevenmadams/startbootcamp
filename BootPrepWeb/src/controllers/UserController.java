@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -101,26 +100,17 @@ public class UserController {
 	}
 	
 	// Delete a user object
-//	@RequestMapping(path = "userdelete.do")
-//	public ModelAndView deleteUser(@ModelAttribute("userId") Integer id) {
-//		User user = dao.getUserById(id);
-//		ModelAndView mv = new ModelAndView("userprofile.jsp", "user", user);
-//		System.out.println("in userdelete.do/UserController");
-//		deleteUser(id);
-//		mv.setViewName("userdelete.jsp");
-//		mv.addObject("user");
-//		System.out.println(user);
-//		return mv;
-//	}
-	
-	/**
-     * This method will delete an user by it's SSOID value.
-     */
-    @RequestMapping(path= "userdelete.do")
-    public String deleteUser(@PathVariable int id) {
-        deleteUser(id);
-        return "redirect:/list";
-    }
+	@RequestMapping(path = "userdelete.do")
+	public ModelAndView deleteUser(@ModelAttribute("userId") Integer id) {
+		User user = dao.getUserById(id);
+		ModelAndView mv = new ModelAndView("userprofile.jsp", "user", user);
+		System.out.println("in userdelete.do/UserController");
+		deleteUser(id);
+		mv.setViewName("userdelete.jsp");
+		mv.addObject("user");
+		System.out.println(user);
+		return mv;
+	}
 
 	
 	@RequestMapping(path="userListResources.do")
