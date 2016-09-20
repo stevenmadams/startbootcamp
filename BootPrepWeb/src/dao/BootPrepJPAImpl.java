@@ -85,18 +85,13 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 	
 	@Override
 	public List<Resource> getAllResourcesNotAdded(int userId) {
-System.out.println("asdfasdf");
 		User u = em.find(User.class, userId);
-System.out.println("Here..." + u.getUsername());
-		String sql = "SELECT ud.resource FROM UserData ud WHERE ud.user.id != ?1 AND ud.user.username = ?2";
+		String sql = "SELECT r FROM Resource r WHERE r NOT IN "
+				   + "(SELECT ur.resource.id from UserData ur "
+				   + "WHERE ur.user.id = ?1 )";
 		List<Resource> results = em.createQuery(sql, Resource.class)
 								.setParameter(1, userId)
-								.setParameter(2, u.getUsername())
 								.getResultList();
-System.out.println("results: " + results);
-		for (Resource resource : results) {
-			System.out.println("Resource ID: " + resource.getId() + " : " + resource.getName());
-		}
 		return results;
 	}
 	

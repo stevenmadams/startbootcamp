@@ -56,10 +56,6 @@ public class UserDataController {
 				@RequestParam(value="completed", required=false) boolean completed,
 				@RequestParam(value="rating", required=false) Integer rating) {
 			ModelAndView mv = new ModelAndView("resource.jsp");
-System.out.println("Notes send to controlelr: " + notes);
-System.out.println("Rating sent: " + rating);
-System.out.println("Completed sent: " + completed);
-
 
 			Resource r = dao.getResourceById(resourceId);
 			UserDataKey key = new UserDataKey(userId, resourceId);
@@ -67,7 +63,6 @@ System.out.println("Completed sent: " + completed);
 			updated = dao.updateUserData(key, updated);
 			mv.addObject("resource", r);
 			mv.addObject("userData", updated);
-System.out.println("Sent out of controller:" + updated.getNotes());
 			return mv;
 		}
 	
