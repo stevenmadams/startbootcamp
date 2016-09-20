@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import entities.Resource;
+import entities.ResourceTag;
 import entities.User;
 import entities.UserData;
 import entities.UserDataKey;
@@ -26,6 +27,7 @@ public interface BootPrepDAO {
 	public Resource createResource(Resource r);
 	public List<Integer> getResourceIdsForUser(int id);
 	public List<Resource> getAllResourcesNotAdded(int userId);
+	public Resource addTagToResource(String tagName, int userId, int resourceId);
 	
 	
 	// UserResource

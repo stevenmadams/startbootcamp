@@ -71,6 +71,22 @@ public class Tag {
 		}
 	}
 	
+	public void addResource(Resource resource) {
+		if (resource == null) {
+			resources = new ArrayList<>();
+		}
+		if (!resources.contains(resource)) {
+			resources.add(resource);
+			resource.addTag(this);
+		}
+	}
+
+	public void removeResource(Resource resource) {
+		if (resources != null && resources.contains(resource)) {
+			resources.remove(resource);
+			resource.removeTag(this);
+		}
+	}
 	
 	
 }

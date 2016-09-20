@@ -57,5 +57,6 @@ public class UserTestMain {
 //		em.persist(rt2);
 //		em.getTransaction().commit();
 //		System.out.println(r.getResourceTags());
+	
 	}
 }
