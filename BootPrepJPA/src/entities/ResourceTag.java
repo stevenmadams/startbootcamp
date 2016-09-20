@@ -12,7 +12,6 @@ import javax.persistence.Table;
 @IdClass(ResourceTagKey.class)
 @Table(name="resource_tag")
 public class ResourceTag {
-	
 	@Id
 	@ManyToOne
 	@JoinColumn(name="tag_id")
@@ -22,7 +21,7 @@ public class ResourceTag {
 	@ManyToOne
 	@JoinColumn(name="resource_id")
 	private Resource resource;
-
+	
 	@Column(name="user_id")
 	private int user;
 	

@@ -4,6 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="myfn" uri="http://samplefn"%>
 <%-- <%@ taglib uri="WEB-INF/tag/custom-functions.tld" prefix="myfn" %>  --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions"
+    prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,18 +35,23 @@
 			<div class="cards">
 
 				<c:forEach var="resource" items="${resources}">
-					
+
 					<div class="card">
 						<span class="card-header"
 							style="background-image: url(${resource.photo});"> <a
 							href="resource.do?resourceId=${resource.id}"> <span
 								class="card-title">
 									<h3>${resource.name}</h3>
-							</span></span> <span class="card-summary"> ${resource.description} 
-							
+							</span></span> <span class="card-summary">
+							<c:if test="${fn:length(resource.description)>=160}">
+							${fn:substring(resource.description,0,160)}...
+							</c:if>
+							<c:if test="${fn:length(resource.description)<160}">
+							${resource.description}
+							</c:if>
 							</span> </a> <span
 							class="card-meta">
-							
+
 						<c:if test="${userId > 0 && auth == 'true'}">
 
 							<c:choose>
@@ -80,18 +87,22 @@
 		<div class="cards">
 
 			<c:forEach var="resource" items="${resources}">
-				
+
 				<div class="card">
 					<span class="card-header"
 						style="background-image: url(${resource.photo});"> <a
 						href="resource.do?resourceId=${resource.id}"> <span
 							class="card-title">
 								<h3>${resource.name}</h3>
-						</span></span> <span class="card-summary"> ${resource.description} 
-							<p>
+						</span></span> <span class="card-summary"><c:if test="${fn:length(resource.description)>=160}">
+						${fn:substring(resource.description,0,160)}...
+						</c:if>
+						<c:if test="${fn:length(resource.description)<160}">
+						${resource.description}
+						</c:if>
 								Tags:
 								<c:forEach var="tag" items="${resource.tags}">
-									${tag.name} 
+									${tag.name}
 								</c:forEach>
 							</p>
 						</span> </a> <span
