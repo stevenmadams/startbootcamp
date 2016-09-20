@@ -30,7 +30,7 @@
             <img class="first-slide hidden-sm hidden-md hidden-lg" src="img/bannerphoto1xs.jpg" alt="First slide">
           <div class="container">
             <div class="carousel-caption ">
-              <h1 style="size: 6em;">Helpful Resources</h1>
+              <h1 style="font-size: 3em;">Helpful Resources</h1>
               <p>&#60;BOOT/PREP&#62; is your source for curated articles that will help prepare you for coding bootcamp!</p>
               <p><a class="btn btn-lg btn-primary" href="resourcelist.jsp" role="button">Start Learning!</a></p>
             </div>
@@ -41,7 +41,7 @@
             <img class="first-slide hidden-sm hidden-md hidden-lg" src="img/bannerphoto2xs.jpg" alt="First slide">
           <div class="container verticalmiddle">
             <div class="carousel-caption">
-              <h1>Keep track of your progress...</h1>
+              <h1 style="font-size: 3em;">Keep track of your progress...</h1>
               <p>With a &#60;BOOT/PREP&#62; account, you can add notes, rate articles, and add your own custom resources.</p>
               <p><a class="btn btn-lg btn-primary" href="userprofile.jsp" role="button">Sign Up Today!</a></p>
             </div>

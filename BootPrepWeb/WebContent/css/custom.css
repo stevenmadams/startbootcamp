@@ -23,13 +23,20 @@ body {
 
 }
 
-h1{font-family: 'Allerta Stencil', sans-serif;
+h1 {
+font-size: 3em;
+font-family: 'Allerta Stencil', sans-serif;
 text-transform: uppercase;
+
 }
-	h2{font-family: 'Allerta Stencil', sans-serif;
+	h2{
+    font-size: 2.5em;
+    font-family: 'Allerta Stencil', sans-serif;
 	text-transform: uppercase;
 }
-		h3{font-family: 'Allerta Stencil', sans-serif;
+		h3{
+      font-size: 2em;
+      font-family: 'Allerta Stencil', sans-serif;
 		text-transform: uppercase;
 }
 			h4{font-family: 'Allerta Stencil', sans-serif;
@@ -215,7 +222,6 @@ text-transform: uppercase;
 
 fieldset, label { margin: 0; padding: 0; }
 /*body{ margin: 20px; }*/
-h1 { font-size: 1.5em; margin: 10px; }
 
 /****** Style Star Rating Widget *****/
 

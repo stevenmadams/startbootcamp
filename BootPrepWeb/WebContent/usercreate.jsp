@@ -35,14 +35,17 @@
           <input type="password" class="form-control" name="password" required id="4">
         </div>
         <div class="form-group">
+          <label for="7">DONT USE YET *** Account Photo URL</label>
+          <input type="url" class="form-control" name="username" id="7">
+        </div>
+        <div class="form-group">
           <label for="5">E-mail*</label>
-          <input type="password" class="form-control" name="password" required id="5">
+          <input type="email" class="form-control" name="email" required id="5">
         </div>
         <div class="form-group">
           <label for="6">Bootcamp Start Date (optional)</label>
           <input type="date" class="form-control" name="createDate" id="6">
         </div>
-
             <input type="submit" class="btn btn-default" value ="CREATE ACCOUNT"/>
       </form>
 
