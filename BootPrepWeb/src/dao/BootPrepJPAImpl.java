@@ -5,8 +5,10 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.hibernate.Hibernate;
 import org.springframework.transaction.annotation.Transactional;
@@ -173,10 +175,16 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 	// Authentication Methods
 	@Override
 	public User login(String username, String password) {
-		String query = "select u from User u where u.username = ?1";
-		User user = em.createQuery(query, User.class)
-				.setParameter(1, username)
-				.getSingleResult();
+		String sql = "select u from User u where u.username = ?1";
+		TypedQuery<User> query = em.createQuery(sql, User.class)
+				.setParameter(1, username);
+		User user = null;
+		try {
+			user = query.getSingleResult();
+		} catch (NoResultException nre) {
+			user = null;
+		}
+
 		if (user == null) {
 			return null;
 		}

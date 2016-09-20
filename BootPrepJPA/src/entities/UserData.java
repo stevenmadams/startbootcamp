@@ -1,10 +1,13 @@
 package entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,12 +16,12 @@ import javax.persistence.Table;
 public class UserData {
 	@Id
 	@ManyToOne
-	@JoinColumn(name="user_id")
 	private User user;
 	@Id
 	@ManyToOne
 	@JoinColumn(name="resource_id")
 	private Resource resource;
+	
 	
 	private String notes;
 	private boolean completed;
@@ -63,9 +66,12 @@ public class UserData {
 	public Integer getRating() {
 		return rating;
 	}
-	public void setRating(int rating) {
+	public void setRating(Integer rating) {
 		this.rating = rating;
 	}
+
+	
+	
 	@Override
 	public String toString() {
 		return "UserResource [user=" + user + ", resource=" + resource + ", notes=" + notes + ", completed="
