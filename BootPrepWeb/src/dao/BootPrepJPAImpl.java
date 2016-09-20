@@ -1,10 +1,11 @@
 package dao;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 import org.hibernate.Hibernate;
@@ -53,6 +54,26 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		current.setCreateDate(user.getCreateDate());
 		return current;
 	}
+	
+	@Override
+	public User deleteUser(int id) {
+		System.out.println("Deleting a user...");
+		EntityManagerFactory emf =
+			Persistence.createEntityManagerFactory("BootPrepJPA");
+		EntityManager em = emf.createEntityManager();
+	
+		em.getTransaction().begin();
+		
+		User user = em.find(User.class, id);
+		em.remove(user);
+		em.getTransaction().commit();
+	
+		em.close();
+		emf.close();
+		System.out.println("at delete");
+		return null;
+	}
+
 
 	// Resource methods
 	@Override

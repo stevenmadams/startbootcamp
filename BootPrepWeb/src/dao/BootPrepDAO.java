@@ -15,6 +15,7 @@ public interface BootPrepDAO {
 	public User getUserById(int id);
 	public User updateUser(User user, int id);
 	public User createUser(User user);
+	public User deleteUser(int id);
 	
 	// Resources
 	public Resource getResourceById(int id);
