@@ -23,6 +23,7 @@ import javax.persistence.OneToMany;
 		private String url;
 		private String video;
 		private String photo;
+		private String snippet;
 		
 	
 		@ManyToMany(fetch=FetchType.EAGER)
@@ -46,11 +47,20 @@ import javax.persistence.OneToMany;
 			this.url = url;
 			this.name = name;
 			this.description = description;
+			setSnippet(description);
 		}
 		
 		
 //GET AND SET---------------------------------------------------
-
+		public String getSnippet() {
+			return snippet;
+		}
+		public void setSnippet(String description) {
+			if (description.length() < 160) {
+				this.snippet = description;
+			}
+			this.snippet = description.substring(0, 159) + "...";
+		}
 		public String getName() {
 			return name;
 		}
