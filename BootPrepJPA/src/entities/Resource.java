@@ -47,12 +47,13 @@ import javax.persistence.OneToMany;
 			this.url = url;
 			this.name = name;
 			this.description = description;
-			setSnippet(description);
+			
 		}
 		
 		
 //GET AND SET---------------------------------------------------
 		public String getSnippet() {
+//		
 			return snippet;
 		}
 		public void setSnippet(String description) {
