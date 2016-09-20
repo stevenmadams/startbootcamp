@@ -1,6 +1,7 @@
 html, body {
   width: 100%;
-  height: auto;
+  min-height: 100%;
+	max-height: 100000%;
 }
 
 
@@ -13,7 +14,7 @@ body {
 		/*background-position: center;
 		background-size: cover;*/
 		background-image: linear-gradient(to bottom right,#002f4b,#FFFFFF);
-		background-size: cover;
+		background-size: contain;
 		background-position: center;
 		background-repeat: no-repeat;
 
@@ -22,13 +23,20 @@ body {
 
 }
 
-h1{font-family: 'Allerta Stencil', sans-serif;
+h1 {
+font-size: 3em;
+font-family: 'Allerta Stencil', sans-serif;
 text-transform: uppercase;
+
 }
-	h2{font-family: 'Allerta Stencil', sans-serif;
+	h2{
+    font-size: 2.5em;
+    font-family: 'Allerta Stencil', sans-serif;
 	text-transform: uppercase;
 }
-		h3{font-family: 'Allerta Stencil', sans-serif;
+		h3{
+      font-size: 2em;
+      font-family: 'Allerta Stencil', sans-serif;
 		text-transform: uppercase;
 }
 			h4{font-family: 'Allerta Stencil', sans-serif;
@@ -154,10 +162,10 @@ text-transform: uppercase;
   max-height: 0;
   overflow: hidden;
   color: #666;
-  font-size: .78em;
+  font-size: 1em;
   text-transform: uppercase;
   position: absolute;
-  bottom: 5%;
+  bottom: 2%;
   padding: 0 5%;
   -moz-transition-property: max-height;
   -o-transition-property: max-height;
@@ -214,7 +222,6 @@ text-transform: uppercase;
 
 fieldset, label { margin: 0; padding: 0; }
 /*body{ margin: 20px; }*/
-h1 { font-size: 1.5em; margin: 10px; }
 
 /****** Style Star Rating Widget *****/
 

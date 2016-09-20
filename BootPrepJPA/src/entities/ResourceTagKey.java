@@ -60,5 +60,4 @@ public class ResourceTagKey implements Serializable {
 	}
 	
 	
-	
 }

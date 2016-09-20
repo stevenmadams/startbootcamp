@@ -30,9 +30,9 @@
             <img class="first-slide hidden-sm hidden-md hidden-lg" src="img/bannerphoto1xs.jpg" alt="First slide">
           <div class="container">
             <div class="carousel-caption ">
-              <h1>Example headline.</h1>
-              <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Start Learning!</a></p>
+              <h1 style="font-size: 3em;">Helpful Resources</h1>
+              <p>&#60;BOOT/PREP&#62; is your source for curated articles that will help prepare you for coding bootcamp!</p>
+              <p><a class="btn btn-lg btn-primary" href="resourcelist.jsp" role="button">Start Learning!</a></p>
             </div>
           </div>
         </div>
@@ -41,9 +41,9 @@
             <img class="first-slide hidden-sm hidden-md hidden-lg" src="img/bannerphoto2xs.jpg" alt="First slide">
           <div class="container verticalmiddle">
             <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign Up Today!</a></p>
+              <h1 style="font-size: 3em;">Keep track of your progress...</h1>
+              <p>With a &#60;BOOT/PREP&#62; account, you can add notes, rate articles, and add your own custom resources.</p>
+              <p><a class="btn btn-lg btn-primary" href="userprofile.jsp" role="button">Sign Up Today!</a></p>
             </div>
           </div>
         </div>

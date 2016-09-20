@@ -23,9 +23,9 @@ style="background: url('${resource.photo}') center center no-repeat; background-
     <div class="col-md-6">
 	<%-- <p>ID: ${resource.id}</p> --%>
 	<h1>${resource.name}</h1>
-	<p><i class="fa fa-quote-left fa-3x fa-pull-left fa-border" aria-hidden="true"></i>${resource.description}</p>
+
   <blockquote>
-  <p>${resource.description}</p>
+  <p><i class="fa fa-quote-left fa-2x fa-pull-left fa-border" aria-hidden="true"></i>${resource.description}</p>
 </blockquote>
 	<a href="${resource.url}" target="_blank" class="btn btn-default btn-lg"><i class="fa fa-external-link" aria-hidden="true"></i> View Resource Site</a>
 	<p>Video: ${resource.video}</p>
