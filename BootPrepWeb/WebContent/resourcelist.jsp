@@ -18,7 +18,7 @@
 
 	<%@ include file="sitenavbar.jsp"%>
 
-	<div class="container">
+	<div class="containercards">
 	<c:choose>
 <%-- IF USER IS LOGGED IN --%>
 		<c:when test="${userId > 0 && auth == 'true'}">
