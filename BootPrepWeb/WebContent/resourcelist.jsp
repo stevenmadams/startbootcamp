@@ -33,16 +33,18 @@
 			<div class="cards">
 
 				<c:forEach var="resource" items="${resources}">
-
+					
 					<div class="card">
 						<span class="card-header"
 							style="background-image: url(${resource.photo});"> <a
 							href="resource.do?resourceId=${resource.id}"> <span
 								class="card-title">
 									<h3>${resource.name}</h3>
-							</span></span> <span class="card-summary"> ${resource.description} </span> </a> <span
+							</span></span> <span class="card-summary"> ${resource.description} 
+							
+							</span> </a> <span
 							class="card-meta">
-
+							
 						<c:if test="${userId > 0 && auth == 'true'}">
 
 							<c:choose>
@@ -78,14 +80,21 @@
 		<div class="cards">
 
 			<c:forEach var="resource" items="${resources}">
-
+				
 				<div class="card">
 					<span class="card-header"
 						style="background-image: url(${resource.photo});"> <a
 						href="resource.do?resourceId=${resource.id}"> <span
 							class="card-title">
 								<h3>${resource.name}</h3>
-						</span></span> <span class="card-summary"> ${resource.description} </span> </a> <span
+						</span></span> <span class="card-summary"> ${resource.description} 
+							<p>
+								Tags:
+								<c:forEach var="tag" items="${resource.tags}">
+									${tag.name} 
+								</c:forEach>
+							</p>
+						</span> </a> <span
 						class="card-meta">
 								<a class="btn btn-default" role="button" href="userprofile.do">Create an account</a>
 
