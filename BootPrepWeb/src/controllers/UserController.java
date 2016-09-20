@@ -1,5 +1,6 @@
 package controllers;
 
+import java.sql.ResultSet;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
@@ -94,9 +95,27 @@ public class UserController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		User u = dao.createUser(user);
-		ModelAndView mv = new ModelAndView("usercreate.jsp", "user", u);
-		return mv;
+//		String status=null;
+//	    ConnectionHandler handler=new ConnectionHandler(); //class for connection
+//	    Connection conn=handler.createConnection();
+//	    Statement stmt=conn.createStatement();
+//	    String query="SELECT * FROM user WHERE username= ?"; //get username
+//
+//	    ResultSet rs=stmt.executeQuery(query); 
+//	    String checkUser=rs.getString(1);
+//	    String checkPass=rs.getString(2);
+//	    	if(checkUser.equals(username) && checkPass.equals(password)){
+//	    		status="True";
+//	    		System.out.println("User name already token");
+//	    		user = null;
+//	    	} else{
+//	    		status="False";
+//	    	}
+//	    conn.close();
+//		}
+	User u = dao.createUser(user);
+	ModelAndView mv = new ModelAndView("usercreate.jsp", "user", u);
+	return mv;
 	}
 	
 	// Delete a user object

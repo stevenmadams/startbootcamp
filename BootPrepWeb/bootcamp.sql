@@ -7,7 +7,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema bootcamp
 -- -----------------------------------------------------
--- DROP SCHEMA IF EXISTS `bootcamp` ;
+DROP SCHEMA IF EXISTS `bootcamp` ;
 
 -- -----------------------------------------------------
 -- Schema bootcamp
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `start_date` DATETIME NULL,
-  `user_photo` VARCHAR(2083) NULL DEFAULT 'No picture uploaded',
+  `user_photo` VARCHAR(2083) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
