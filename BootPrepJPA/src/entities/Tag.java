@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -22,6 +23,9 @@ public class Tag {
 	@ManyToMany(mappedBy="tags")
 	private List<Resource> resources;
 	
+	@OneToMany(mappedBy="tag")
+	private List<ResourceTag> tagResources;
+	
 	
 	//GET AND SET---------------------------------------------------
 	public String getName() {
@@ -42,6 +46,29 @@ public class Tag {
 	@Override
 	public String toString() {
 		return "Tag [id=" + id + ", name=" + name + ", resources=]";
+	}
+	public List<ResourceTag> getTagResources() {
+		return tagResources;
+	}
+	public void setTagResources(List<ResourceTag> tagResources) {
+		this.tagResources = tagResources;
+	}
+	
+	public void addTagResource(ResourceTag tagResource) {
+		if (tagResource == null) {
+			tagResources = new ArrayList<>();
+		}
+		if (!tagResources.contains(tagResource)) {
+			tagResources.add(tagResource);
+			tagResource.setTag(this);
+		}
+	}
+
+	public void removeTagResource(ResourceTag tagResource) {
+		if (tagResources != null && tagResources.contains(tagResource)) {
+			tagResources.remove(tagResource);
+			tagResource.setTag(null);
+		}
 	}
 	
 	

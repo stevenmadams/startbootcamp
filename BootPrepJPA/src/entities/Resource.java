@@ -35,6 +35,9 @@ import javax.persistence.OneToMany;
 		@ManyToMany(mappedBy="resources")
 		private List<User> users;
 		
+		@OneToMany(mappedBy="resource")
+		private List<ResourceTag> resourceTags;
+		
 		public Resource() {}
 		
 		public Resource(String url, String name, String description) {
@@ -117,6 +120,33 @@ import javax.persistence.OneToMany;
 				user.removeResource(this);
 			}
 		}
+		
+		public List<ResourceTag> getResourceTags() {
+			return resourceTags;
+		}
+
+		public void setResourceTags(List<ResourceTag> resourceTags) {
+			this.resourceTags = resourceTags;
+		}
+		
+		public void addResourceTag(ResourceTag resourceTag) {
+			if (resourceTag == null) {
+				resourceTags = new ArrayList<>();
+			}
+			if (!resourceTags.contains(resourceTag)) {
+				resourceTags.add(resourceTag);
+				resourceTag.setResource(this);
+			}
+		}
+
+		public void removeResourceTag(ResourceTag resourceTag) {
+			if (resourceTags != null && resourceTags.contains(resourceTag)) {
+				resourceTags.remove(resourceTag);
+				resourceTag.setResource(null);
+			}
+		}
+		
+		
 		
 		
 		@Override
