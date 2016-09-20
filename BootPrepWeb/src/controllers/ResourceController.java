@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -104,6 +106,27 @@ public class ResourceController {
 		ModelAndView mv = new ModelAndView("resourcecreate.jsp");
 		Resource r = dao.createResource(new Resource(url, name, description));
 		mv.addObject("newResource", r);
+		return mv;
+	}
+	
+	@RequestMapping(path="resourceTagEdit.do")
+	public ModelAndView addTagToResource(@ModelAttribute("userId") int userId,
+			@ModelAttribute("auth") String auth,
+			@RequestParam(value="action", required=false) String action, 
+			@RequestParam(value="tagName", required=false) String tagName, 
+			int resourceId) {
+		ModelAndView mv = new ModelAndView("resource.jsp");
+		Resource r = null;
+		try { // exception thrown if resource already has the tag
+			r = dao.addTagToResource(tagName, userId, resourceId);
+		} catch (JpaSystemException cve) {
+			r = dao.getResourceById(resourceId);
+			mv.addObject("error", true);
+		}
+		mv.addObject("resource", r);
+		mv.addObject("tags", r.getTags());
+System.out.println("here...controller...");
+		
 		return mv;
 	}
 	

@@ -41,15 +41,23 @@ import javax.persistence.OneToMany;
 		@OneToMany(mappedBy="resource")
 		private List<ResourceTag> resourceTags;
 		
-		public Resource() {}
+		public Resource() { }
 		
 		public Resource(String url, String name, String description) {
 			this.url = url;
 			this.name = name;
 			this.description = description;
-			
+
 		}
 		
+		// Methods
+		public List<String> getTagNames() {
+			List<String> names = new ArrayList();
+			for (Tag tag : tags) {
+				names.add(tag.getName());
+			}
+			return names;
+		}
 		
 //GET AND SET---------------------------------------------------
 		public String getSnippet() {
@@ -159,7 +167,22 @@ import javax.persistence.OneToMany;
 			}
 		}
 		
-		
+		public void addTag(Tag tag) {
+			if (tag == null) {
+				tags = new ArrayList<>();
+			}
+			if (!tags.contains(tag)) {
+				tags.add(tag);
+				tag.addResource(this);
+			}
+		}
+
+		public void removeTag(Tag tag) {
+			if (tags != null && tags.contains(tag)) {
+				tags.remove(tag);
+				tag.removeResource(this);
+			}
+		}
 		
 		
 		@Override

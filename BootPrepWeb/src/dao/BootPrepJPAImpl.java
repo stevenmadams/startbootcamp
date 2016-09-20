@@ -11,9 +11,12 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.hibernate.Hibernate;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.Resource;
+import entities.ResourceTag;
+import entities.Tag;
 import entities.User;
 import entities.UserData;
 import entities.UserDataKey;
@@ -183,7 +186,7 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 			user = query.getSingleResult();
 		} catch (NoResultException nre) {
 			user = null;
-		}
+		} 
 
 		if (user == null) {
 			return null;
@@ -191,6 +194,49 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		if (password.equals(user.getPassword())) {
 			return user;
 		}
+		return null;
+	}
+
+	@Override
+	public Resource addTagToResource(String tagName, int userId, int resourceId) {
+		Resource r = em.find(Resource.class, resourceId);
+		Tag tag = uniqueTag(tagName);
+		ResourceTag rt = new ResourceTag();
+		rt.setResource(r);
+		rt.setTag(tag);
+		rt.setUser(userId);
+		em.persist(rt);
+		return r;
+	}
+	
+	private List<Tag> allTags() {
+		String sql = "select t from Tag t";
+		List<Tag> tags = em.createQuery(sql, Tag.class).getResultList();
+		return tags;
+	}
+	
+	private Tag uniqueTag(String tagName){
+		String sql = "select t from Tag t where t.name = ?1";
+		Tag tag = null;
+		try {
+			// if tag is found, return it
+System.out.println("Running query...");
+			tag = em.createQuery(sql, Tag.class)
+					.setParameter(1, tagName)
+					.getSingleResult();
+System.out.println("got tag..."+tag.getName());
+		} catch (NoResultException nre) {
+			Tag createTag = new Tag();
+			createTag.setName(tagName);
+			em.persist(createTag);
+			tag = createTag;
+		}
+		return tag;
+	}
+	
+	private Tag createTag() {
+		
+		
 		return null;
 	}
 }
