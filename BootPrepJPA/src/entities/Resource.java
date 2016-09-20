@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +24,8 @@ import javax.persistence.OneToMany;
 		private String video;
 		private String photo;
 		
-		@ManyToMany
+	
+		@ManyToMany(fetch=FetchType.EAGER)
 		@JoinTable(name="resource_tag",
 				joinColumns=@JoinColumn(name="resource_id"),
 				inverseJoinColumns=@JoinColumn(name="tag_id"))
