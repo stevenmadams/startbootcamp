@@ -17,28 +17,28 @@ style="background: url('${resource.photo}') center center no-repeat; background-
 <%-- </div> --%>
 
 
-
+<hr>
 <div class="container">
-	<p>ID: ${resource.id}</p>
-	<p>Name: ${resource.name}</p>
-	<p>Description: ${resource.description}</p>
-	<a href="${resource.url}" target="_blank">SOURCE</a>
+  <div class="row">
+    <div class="col-md-6">
+	<%-- <p>ID: ${resource.id}</p> --%>
+	<h1>${resource.name}</h1>
+	<p><i class="fa fa-quote-left fa-3x fa-pull-left fa-border" aria-hidden="true"></i>${resource.description}</p>
+  <blockquote>
+  <p>${resource.description}</p>
+</blockquote>
+	<a href="${resource.url}" target="_blank" class="btn btn-default btn-lg"><i class="fa fa-external-link" aria-hidden="true"></i> View Resource Site</a>
 	<p>Video: ${resource.video}</p>
-	<p>Image: ${resource.photo}</p>
-
+</div>
+<div class="col-md-6">
 	<%-- User Data Area --%>
 	<c:if test="${userId > 0 && auth == 'true'}">
 		<form action="userDataUpdate.do" method="post">
 
-			<a href="userDataUpdate.do?resourceId=${resource.id}&completed=${userData.completed}">
-              Completed
-                  <span><input type="checkbox" name="completed" value="${userData.completed}" disabled
-                      <c:if test="${userData.completed}">checked</c:if>>
-                  </span>
 
-          	</a>
-
-			<p>Rating: ${userData.rating}</p>
+    <div class="row">
+      <div class="col-sm-6">
+			<%-- <p>Rating: ${userData.rating}</p> --%>
       	<fieldset class="rating">
 		    <input type="radio" id="star5" name="rating" value="5" <c:if test="${userData.rating == 5}"> checked="checked" </c:if>/><label class = "full" for="star5" title="Awesome - 5 stars"
         ></label>
@@ -52,12 +52,31 @@ style="background: url('${resource.photo}') center center no-repeat; background-
 		    <input type="radio" id="star1" name="rating" value="1" <c:if test="${userData.rating == 1}"> checked="checked" </c:if>/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
 
 		</fieldset>
-			<textarea name="notes">${userData.notes}</textarea>
+  </div>
+  <div class="col-sm-6">
+    <a href="userDataUpdate.do?resourceId=${resource.id}&completed=${userData.completed}">
+            Completed
+                <span><input type="checkbox" name="completed" value="${userData.completed}" disabled
+                    <c:if test="${userData.completed}">checked</c:if>>
+                </span>
+
+          </a>
+        </div>
+  </div>
+    <div class="form-group">
+  <label for="mynotes">My Resource Notes</label>
+  <textarea class="form-control" id="mynotes" rows="4" name="notes">${userData.notes}</textarea>
+</div>
+
 			<input type="hidden" name="resourceId" value="${resource.id}">
-			<input type="submit" value="Update">
+			<button type="submit" class="btn btn-default">
+        <%-- <i class="fa fa-floppy-o" aria-hidden="true">  --%>
+          Save</button>
 		</form>
 
 	</c:if>
+</div>
+</div>
 </div>
 
   <%@ include file="sitefooter.jsp" %>

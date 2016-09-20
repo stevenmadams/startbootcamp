@@ -10,7 +10,6 @@
 </head>
 <body>
 	<%@ include file="sitenavbar.jsp"%>
-
 	<div class="container">
 
 
@@ -124,11 +123,6 @@
 
 	</div>
 </div>
-
-
-
-
-
 
 
 
