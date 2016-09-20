@@ -53,5 +53,12 @@ public class ResourceTagKey implements Serializable {
     public int hashCode() {
         return Objects.hash(getTag(), getResourceId());
     }
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
+	
+	
 	
 }
