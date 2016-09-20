@@ -6,7 +6,7 @@
 
   <!-- Bootstrap -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="css/custom.css">
+	<link href="css/custom.css" rel="stylesheet">
 
     <%-- FONTS --%>
     <link href="https://fonts.googleapis.com/css?family=Allerta+Stencil|Open+Sans" rel="stylesheet">
