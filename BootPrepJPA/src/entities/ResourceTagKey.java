@@ -1,6 +1,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class ResourceTagKey implements Serializable {
 
@@ -46,6 +47,16 @@ public class ResourceTagKey implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+	@Override
+    public int hashCode() {
+        return Objects.hash(getTag(), getResourceId());
+    }
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
 	}
 	
 	

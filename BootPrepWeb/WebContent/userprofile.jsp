@@ -10,7 +10,6 @@
 </head>
 <body>
 	<%@ include file="sitenavbar.jsp"%>
-
 	<div class="container">
 
 
@@ -78,6 +77,8 @@
                 <p>Todays date: ${datetime-local}</p>
                 <a class="btn" href="useredit.do?">
   <i class="fa fa-pencil-square-o fa-lg"></i> Edit Account</a>
+   <a class="btn" href="userdelete.do?">
+  <i class="fa fa-pencil-square-o fa-lg"></i> Delete Account</a>
 							</div>
 						</div>
 					</div>
@@ -124,11 +125,6 @@
 
 	</div>
 </div>
-
-
-
-
-
 
 
 
