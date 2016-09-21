@@ -66,13 +66,14 @@
 								<%-- IF USER HAS THIS RESOURCE --%>
 								<c:when test="${add != 'true'}">
 									<a class="btn btn-default" role="button" href="resource.do?resourceId=${resource.id}">
-										View This Resource
-									</a>
+										<i class="fa fa-search" aria-hidden="true"></i> View</a>
+									<a class="btn btn-default" role="button" href="resourceRemove.do?resourceId=${resource.id}&view=list">
+										<i class="fa fa-times-circle" aria-hidden="true"></i> Remove</a>
 								</c:when>
 								<%-- IF USER DOESNT HAVE THIS RESOURCE --%>
 								<c:when test="${add == 'true'}">
 									<a class="btn btn-default" role="button" href="resourceadd.do?resourceId=${resource.id}">
-										Add This Resource
+										<i class="fa fa-plus" aria-hidden="true"></i> Resource
 									</a>
 								</c:when>
 							</c:choose>
