@@ -97,30 +97,13 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		return null;
 	}
 	
-//	@Override
-//	public void listUsers( ){
-//////		      Session session = FactoryBean.openSession();
-//		      Transaction tx = null;
-//		      try{
-//		         tx = (Transaction) session.beginTransaction();
-//		         List users = session.createQuery("FROM User").list(); 
-//		         for (Iterator iterator = 
-//		                           users.iterator(); iterator.hasNext();){
-//		            User user = (User) iterator.next(); 
-//		            System.out.print("First Name: " + user.getFirstName()); 
-//		            System.out.print("  Last Name: " + user.getLastName()); 
-//		            System.out.print("  Username: " + user.getUsername()); 
-//		            System.out.print("  password: " + user.getPassword()); 
-//		            System.out.println("  Email: " + user.getEmail());  
-//		         }
-//		         tx.commit();
-//		      }catch (HibernateException e) {
-//		         if (tx!=null) tx.rollback();
-//		         e.printStackTrace(); 
-//		      }finally {
-//		         session.close(); 
-//		      }
-//		   }
+	@Override
+	public void listUsers( ){
+		String queryString =
+			     "SELECT s FROM Staff s WHERE s.lastName='Kong'";
+			List<User> results = em.createQuery(queryString, User.class)
+			           .getResultList();
+	}
 
 
 	// Resource methods *********************************************************
