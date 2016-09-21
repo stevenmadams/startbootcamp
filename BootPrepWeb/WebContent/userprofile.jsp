@@ -129,7 +129,7 @@
 											<a href="resource.do?resourceId=${resource.id}">${resource.name}</a>
 										</div>
 										<div class="col-xs-2">
-											<a href="resourceRemove.do?resourceId=${resource.id}"><i
+											<a href="resourceRemove.do?resourceId=${resource.id}&view=profile"><i
 												class="fa fa-times-circle" aria-hidden="true"></i></a>
 										</div>
 										<hr>
