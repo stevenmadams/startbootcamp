@@ -10,6 +10,8 @@
 </head>
 <body>
 <%@ include file="sitenavbar.jsp" %>
+<div class="container">
+<div class="row">
 
 	<c:choose>
 		<%-- IF USER ID = NULL --%>
@@ -24,19 +26,63 @@
 		</c:when>
 		<%-- IF USER ID != NULL --%>
 		<c:when test="${userId > 0 && auth == 'true'}">
-			<h3>Edit account</h3>
-			<form method="post" action="usersubmitedit.do">
-				First:<input type="text" name="firstName" value="${user.firstName}" required>
-				Last:<input type="text" name="lastName" value="${user.lastName}" required>
-				Username:<input type="text" name="username" value="${user.username}" required>
-				<%-- Password:<input type="password" name="password">  --%>
-				E-Mail:<input type="email" name="email" value="${user.email}" required>
-				Bootcamp start date: <input type="date" name="createDate"
-					value="${user.createDate}"> <input type="submit"
-					value="SUBMIT CHANGES" />
-			</form>
-		</c:when>
-	</c:choose>
+
+
+
+
+	<div class="col-md-6 col-md-offset-3">
+
+
+	  <div class="panel panel-default">
+	    <div class="panel-heading">
+	      <h3 class="panel-title">Update account</h3>
+	    </div>
+	    <div class="panel-body">
+	      <form method="post" action="usersubmitedit.do">
+	        <div class="form-group">
+	          <label for="1">First Name*</label>
+	          <input type="text" class="form-control" name="firstName" value="${user.firstName}" required id="1">
+	        </div>
+	        <div class="form-group">
+	          <label for="2">Last Name*</label>
+	          <input type="text" class="form-control" name="lastName" value="${user.lastName}" required id="2">
+	        </div>
+	        <div class="form-group">
+	          <label for="3">Username*</label>
+	          <input type="text" class="form-control" name="username" value="${user.username}" required id="3">
+	        </div>
+	        <div class="form-group">
+	          <label for="4">Password*</label>
+	          <input type="password" class="form-control" name="password" value="${user.password}" required id="4">
+	        </div>
+	        <div class="form-group">
+	          <label for="7">Account Photo URL</label>
+	          <input type="url" class="form-control" name="userPhoto" value="${user.userPhoto}"id="7">
+	        </div>
+	        <div class="form-group">
+	          <label for="5">E-mail*</label>
+	          <input type="email" class="form-control" name="email" value="${user.email}" required id="5">
+	        </div>
+	        <div class="form-group">
+	          <label for="6">Bootcamp Start Date (optional)</label>
+	          <input type="date" class="form-control" name="createDate" value="${user.createDate}" id="6">
+	        </div>
+	            <input type="submit" class="btn btn-default" value ="UPDATE ACCOUNT"/>
+	      </form>
+
+	    </div>
+	  </div>
+
+
+
+
+
+
+	</div>
+</c:when>
+</c:choose>
+	</div>
+	</div>
 
 
 <%@ include file="sitefooter.jsp" %>

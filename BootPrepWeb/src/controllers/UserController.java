@@ -65,6 +65,7 @@ public class UserController {
 			String lastName, 
 			String username,
 			String email, 
+			String userPhoto,
 			String createDate) {
 		Date date = null;
 		try {
@@ -72,7 +73,7 @@ public class UserController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		User u = dao.updateUser(new User(firstName, lastName, username, email, date), id);
+		User u = dao.updateUser(new User(firstName, lastName, username, email, userPhoto, date), id);
 		ModelAndView mv = new ModelAndView("userprofile.jsp", "user", u);
 		return mv;
 	}
