@@ -100,7 +100,7 @@ public class UserController {
 			user.setCreateDate(DateTimeHelper.stringToDate(createDate));
 		} catch (ParseException e) { }
 		User u = dao.createUser(user);
-		ModelAndView mv = new ModelAndView("usercreate.jsp", "user", u);
+		ModelAndView mv = new ModelAndView("userprofile.jsp", "user", u);
 		return mv;
 	}
 	

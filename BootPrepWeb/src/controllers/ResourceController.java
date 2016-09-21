@@ -79,20 +79,12 @@ public class ResourceController {
 	public ModelAndView viewResource(@ModelAttribute("userId") int userId,
 			@ModelAttribute("auth") String auth,
 			int resourceId) {
-		
 		ModelAndView mv = new ModelAndView("resource.jsp");
-		Resource r = dao.getResourceById(resourceId);
-		UserDataKey key = new UserDataKey(userId, resourceId);
-		UserData ur = dao.getUserDataByKey(key);
-		List<Integer> rtags = dao.resourceTagUserIds(userId, resourceId);
-		if (ur != null && ur.getUser().getId() == userId) {
-			mv.addObject("userHasResource", true);
-		}
-		mv.addObject("userData", ur);
-		mv.addObject("resource", r);
-		mv.addObject("rTags", rtags);
+		mv = viewLoader(mv, userId, resourceId);
 		return mv;
 	}
+	
+
 	
 	@RequestMapping(path="resourceRemove.do")
 	public ModelAndView removeResourceFromUser(@ModelAttribute("userId") int userId,
@@ -136,10 +128,9 @@ public class ResourceController {
 			removeTag(mv, userId, resourceId, tagId);
 			break;
 		default:
-			mv.setViewName("userprofile.jsp");
+			viewLoader(mv, userId, resourceId);
 			break;
 		}
-		
 		return mv;
 	}
 	
@@ -151,9 +142,7 @@ public class ResourceController {
 			r = dao.getResourceById(resourceId);
 			mv.addObject("error", true);
 		}
-		List<Integer> rtags = dao.resourceTagUserIds(userId, resourceId);
-		mv.addObject("resource", r);
-		mv.addObject("rTags", rtags);
+		viewLoader(mv, userId, resourceId);
 	}
 	
 	private void removeTag(ModelAndView mv, int userId, int resourceId, int tagId) {
@@ -163,9 +152,23 @@ public class ResourceController {
 			mv.addObject("error", true);
 			r = dao.getResourceById(resourceId);
 		}
+		viewLoader(mv, userId, resourceId);
+	}
+	
+	// general load things into view via the needed IDs
+	private ModelAndView viewLoader(ModelAndView mv, int userId, int resourceId) {
+		UserDataKey key = new UserDataKey(userId, resourceId);
+		UserData ur = dao.getUserDataByKey(key);
 		List<Integer> rtags = dao.resourceTagUserIds(userId, resourceId);
+		if (ur != null && ur.getUser().getId() == userId) {
+			mv.addObject("userHasResource", true);
+		}
+		Resource r = dao.getResourceById(resourceId);
+		mv.addObject("userData", ur);
 		mv.addObject("resource", r);
 		mv.addObject("rTags", rtags);
+		return mv;
 	}
+	
 	
 }

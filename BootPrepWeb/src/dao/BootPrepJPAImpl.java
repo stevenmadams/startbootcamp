@@ -9,12 +9,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transaction;
 
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.springframework.beans.factory.FactoryBean;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.Resource;
@@ -53,7 +55,13 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		newUser.setPassword(user.getPassword());
 		newUser.setEmail(user.getEmail());
 		newUser.setCreateDate(user.getCreateDate());
-		em.persist(newUser);
+		try {
+			em.persist(newUser);
+		} catch (PersistenceException pe) {
+			System.out.println("here...");
+			em.clear();
+			return null;
+		}
 	    return user;
         
 	}
@@ -89,30 +97,30 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		return null;
 	}
 	
-	@Override
-	public void listUsers( ){
-		      Session session = factory.openSession();
-		      Transaction tx = null;
-		      try{
-		         tx = session.beginTransaction();
-		         List users = session.createQuery("FROM User").list; 
-		         for (Iterator iterator = 
-		                           users.iterator(); iterator.hasNext();){
-		            User user = (User) iterator.next(); 
-		            System.out.print("First Name: " + user.getFirstName()); 
-		            System.out.print("  Last Name: " + user.getLastName()); 
-		            System.out.print("  Username: " + user.getUsername()); 
-		            System.out.print("  password: " + user.getPassword()); 
-		            System.out.println("  Email: " + user.getEmail());  
-		         }
-		         tx.commit();
-		      }catch (HibernateException e) {
-		         if (tx!=null) tx.rollback();
-		         e.printStackTrace(); 
-		      }finally {
-		         session.close(); 
-		      }
-		   }
+//	@Override
+//	public void listUsers( ){
+//////		      Session session = FactoryBean.openSession();
+//		      Transaction tx = null;
+//		      try{
+//		         tx = (Transaction) session.beginTransaction();
+//		         List users = session.createQuery("FROM User").list(); 
+//		         for (Iterator iterator = 
+//		                           users.iterator(); iterator.hasNext();){
+//		            User user = (User) iterator.next(); 
+//		            System.out.print("First Name: " + user.getFirstName()); 
+//		            System.out.print("  Last Name: " + user.getLastName()); 
+//		            System.out.print("  Username: " + user.getUsername()); 
+//		            System.out.print("  password: " + user.getPassword()); 
+//		            System.out.println("  Email: " + user.getEmail());  
+//		         }
+//		         tx.commit();
+//		      }catch (HibernateException e) {
+//		         if (tx!=null) tx.rollback();
+//		         e.printStackTrace(); 
+//		      }finally {
+//		         session.close(); 
+//		      }
+//		   }
 
 
 	// Resource methods *********************************************************
@@ -256,6 +264,7 @@ System.out.println(results);
 		rt.setTag(tag);
 		rt.setUser(userId);
 		em.persist(rt);
+System.out.println("dao tags list size: " + r.getTags().size());
 		return r;
 	}
 	
@@ -268,6 +277,7 @@ System.out.println(results);
 			r = rt.getResource();
 			em.remove(rt);
 		}
+		r = em.find(Resource.class, resourceId);
 		return r;
 	}
 
