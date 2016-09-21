@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import entities.Resource;
 import entities.ResourceTag;
+import entities.ResourceTagKey;
 import entities.Tag;
 import entities.User;
 import entities.UserData;
@@ -196,6 +197,18 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		em.persist(rt);
 		return r;
 	}
+	
+	@Override
+	public Resource removeTagFromResource(int userId, int resourceId, int tagId) {
+		ResourceTag rt = 
+				em.find(ResourceTag.class, new ResourceTagKey(resourceId, tagId, userId));
+		Resource r = null;
+		if (rt != null ) {
+			r = rt.getResource();
+			em.remove(rt);
+		}
+		return r;
+	}
 
 	private boolean validAddition(Resource r, User u) {
 		if (!r.getUsers().contains(u)) {
@@ -209,13 +222,7 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 				.getResultList();
 		return results.size() < MAX_TAGS;
 	}
-	
-	private List<Tag> allTags() {
-		String sql = "select t from Tag t";
-		List<Tag> tags = em.createQuery(sql, Tag.class).getResultList();
-		return tags;
-	}
-	
+
 	private Tag uniqueTag(String tagName){
 		String sql = "select t from Tag t where t.name = ?1";
 		Tag tag = null;

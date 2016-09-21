@@ -113,7 +113,8 @@ public class ResourceController {
 	public ModelAndView addTagToResource(@ModelAttribute("userId") int userId,
 			@ModelAttribute("auth") String auth,
 			@RequestParam(value="action", required=false) String action, 
-			@RequestParam(value="tagName", required=false) String tagName, 
+			@RequestParam(value="tagName", required=false) String tagName,
+			@RequestParam(value="tagId", required=false) int tagId,
 			int resourceId) {
 		ModelAndView mv = new ModelAndView("resource.jsp");
 		Resource r = null;
@@ -127,12 +128,10 @@ public class ResourceController {
 			addTag(mv, tagName, userId, resourceId);
 			break;
 		case "remove":
-	
-			break;
-		case "submit":
-			
+			removeTag(mv, userId, resourceId, tagId);
 			break;
 		default:
+			mv.setViewName("userprofile.jsp");
 			break;
 		}
 		
@@ -147,6 +146,17 @@ public class ResourceController {
 		} catch (JpaSystemException cve) {
 			r = dao.getResourceById(resourceId);
 			mv.addObject("error", true);
+		}
+		mv.addObject("resource", r);
+		mv.addObject("tags", r.getTags());
+	}
+	
+	private void removeTag(ModelAndView mv, int userId, int resourceId, int tagId) {
+		Resource r = null;
+		r = dao.removeTagFromResource(userId, resourceId, tagId);
+		if (r == null) {
+			mv.addObject("error", true);
+			r = dao.getResourceById(resourceId);
 		}
 		mv.addObject("resource", r);
 		mv.addObject("tags", r.getTags());
