@@ -37,6 +37,8 @@ public class User {
 		@Column(name="start_date")
 		@Temporal(TemporalType.DATE)
 		private Date createDate;
+		@Column(name="user_photo")
+		private String userPhoto;
 		
 		//Maybe we need or can use this?
 		@ManyToMany
@@ -108,6 +110,14 @@ public class User {
 		}
 		public void setResources(List<Resource> resources) {
 			this.resources = resources;
+		}
+
+		public String getUserPhoto() {
+			return userPhoto;
+		}
+
+		public void setUserPhoto(String userPhoto) {
+			this.userPhoto = userPhoto;
 		}
 
 		// To String	

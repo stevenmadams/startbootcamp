@@ -28,6 +28,7 @@ public interface BootPrepDAO {
 	public Resource createResource(Resource r);
 	public List<Integer> getResourceIdsForUser(int id);
 	public List<Resource> getAllResourcesNotAdded(int userId);
+	public double averageRating(int resourceId);
 	
 	// Tags
 	public Resource addTagToResource(String tagName, int userId, int resourceId);

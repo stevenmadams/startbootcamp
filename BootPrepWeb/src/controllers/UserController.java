@@ -92,13 +92,13 @@ public class UserController {
 
 	@RequestMapping(path = "usercreate.do")
 	public ModelAndView UserCreate(String firstName, String lastName, String username, String email,
-			String createDate, String password) {
+			String createDate, String password, String userPhoto) {
 		User user = new User();
 		// Create a user object
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
 		user.setUsername(username);
-System.out.println("in controller:" + username);
+		user.setUserPhoto(userPhoto);
 		user.setPassword(password);
 		user.setEmail(email);
 		try {

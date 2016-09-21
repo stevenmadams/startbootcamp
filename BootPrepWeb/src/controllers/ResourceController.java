@@ -138,6 +138,11 @@ public class ResourceController {
 		}
 		return mv;
 	}
+	@RequestMapping(path="average.do")
+	public ModelAndView average(int resourceId) {
+		dao.averageRating(resourceId);
+		return null;
+	}
 	
 	private void addTag(ModelAndView mv, String tagName, int userId, int resourceId) {
 		Resource r = null;

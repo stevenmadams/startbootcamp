@@ -22,6 +22,7 @@ public class ResourceTag {
 	@JoinColumn(name="resource_id")
 	private Resource resource;
 	
+	@Id
 	@Column(name="user_id")
 	private int user;
 	
