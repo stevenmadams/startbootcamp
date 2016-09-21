@@ -140,7 +140,7 @@ public class ResourceController {
 			r = dao.addTagToResource(tagName, userId, resourceId);
 		} catch (JpaSystemException cve) {
 			r = dao.getResourceById(resourceId);
-			mv.addObject("error", true);
+			mv.addObject("error", "Resource already has this tag.");
 		}
 		viewLoader(mv, userId, resourceId);
 	}
@@ -149,7 +149,7 @@ public class ResourceController {
 		Resource r = null;
 		r = dao.removeTagFromResource(userId, resourceId, tagId);
 		if (r == null) {
-			mv.addObject("error", true);
+			mv.addObject("error", "Can only remove tags that you created.");
 			r = dao.getResourceById(resourceId);
 		}
 		viewLoader(mv, userId, resourceId);
