@@ -89,6 +89,9 @@ public class UserController {
 	public ModelAndView UserCreate(String firstName, String lastName, String username, String email,
 			String createDate, String password, String userPhoto) {
 		User user = new User();
+		User u = null;
+		int code = 0;
+		ModelAndView mv = new ModelAndView("userprofile.jsp");
 		// Create a user object
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
@@ -99,9 +102,34 @@ public class UserController {
 		try {
 			user.setCreateDate(DateTimeHelper.stringToDate(createDate));
 		} catch (ParseException e) { }
-		User u = dao.createUser(user);
-		ModelAndView mv = new ModelAndView("userprofile.jsp", "user", u);
+		if ((code = dao.validUsernameAndEmail(user)) == 0) {
+			u = dao.createUser(user);
+			u = dao.login(u.getUsername(), u.getPassword());
+			if (u != null) {
+				mv.addObject("userId", u.getId());
+				mv.addObject("auth", "true");
+				mv.addObject("username", u.getUsername());
+			} else {
+				mv.addObject("error", "Error logging in. Please try again.");
+			}
+		} else {
+			mv.addObject("error", setError(code));
+		}
+		mv.addObject("user", u);
 		return mv;
+	}
+	
+	private String setError(int code) {
+		switch (code) {
+		case -1:
+			return "The requested username and email are already associated with an account.";
+		case 1:
+			return "That username is already taken";
+		case 2:
+			return "That email address is already being used";
+		default:
+			return "Error. Could not complete action.";
+		}
 	}
 	
 	// Delete a user object

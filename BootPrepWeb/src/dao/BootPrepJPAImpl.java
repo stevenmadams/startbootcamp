@@ -55,15 +55,8 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		newUser.setPassword(user.getPassword());
 		newUser.setEmail(user.getEmail());
 		newUser.setCreateDate(user.getCreateDate());
-		try {
-			em.persist(newUser);
-		} catch (PersistenceException pe) {
-			System.out.println("here...");
-			em.clear();
-			return null;
-		}
+		em.persist(newUser);
 	    return user;
-        
 	}
 
 	@Override
@@ -105,7 +98,30 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 			           .getResultList();
 	}
 
-
+	// Return 0 if both valid. 
+	// 1 if username invalid
+	// 2 if email invalid
+	// -1 if both invalid
+	@Override
+	public int validUsernameAndEmail(User user) {
+		String sql = "SELECT u FROM User u WHERE u.username = ?1 OR u.email = ?2";
+		List<User> found = em.createQuery(sql, User.class)
+				      .setParameter(1, user.getUsername())
+				      .setParameter(2, user.getEmail())
+				      .getResultList();
+		if (found.size() > 1) {
+			return -1;
+		}
+		if (found.size() == 0) {
+			return 0;
+		}
+		if (found.get(0).getEmail().equals(user.getEmail())) {
+			return 2;
+		} else if (found.get(0).getUsername().equals(user.getUsername())) {
+			return 1;
+		}
+		return 0;
+	}
 	// Resource methods *********************************************************
 	@Override
 	public Resource getResourceById(int id) {
@@ -247,7 +263,6 @@ System.out.println(results);
 		rt.setTag(tag);
 		rt.setUser(userId);
 		em.persist(rt);
-System.out.println("dao tags list size: " + r.getTags().size());
 		return r;
 	}
 	
