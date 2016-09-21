@@ -17,7 +17,12 @@ public interface BootPrepDAO {
 	public User updateUser(User user, int id);
 	public User createUser(User user);
 	public User deleteUser(int id);
+<<<<<<< HEAD
+	public User getUser();
+	public void listUsers();
+=======
 	public int validUsernameAndEmail(User user);
+>>>>>>> da28377438400becc073293147d448ba3337ca2f
 	
 	// Resources
 	public Resource getResourceById(int id);

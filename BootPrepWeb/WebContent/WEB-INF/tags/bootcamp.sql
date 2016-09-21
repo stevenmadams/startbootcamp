@@ -28,11 +28,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `start_date` DATETIME NULL,
-<<<<<<< HEAD
   `user_photo` VARCHAR(2083) NULL,
-=======
-  `user_photo` VARCHAR(2083) NULL DEFAULT 'No picture uploaded',
->>>>>>> 9d6434e3c25c017d0c6660ee681f5a826a5c610d
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
@@ -101,10 +97,6 @@ DROP TABLE IF EXISTS `resource_tag` ;
 CREATE TABLE IF NOT EXISTS `resource_tag` (
   `resource_id` INT NOT NULL,
   `tag_id` INT NOT NULL,
-<<<<<<< HEAD
-=======
-  `user_id` INT NOT NULL,
->>>>>>> 9d6434e3c25c017d0c6660ee681f5a826a5c610d
   PRIMARY KEY (`resource_id`, `tag_id`),
   INDEX `resource_tag_idx` (`tag_id` ASC),
   CONSTRAINT `tag_resource`

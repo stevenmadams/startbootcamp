@@ -7,7 +7,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema bootcamp
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `bootcamp` ;
+-- DROP SCHEMA IF EXISTS `bootcamp` ;
 
 -- -----------------------------------------------------
 -- Schema bootcamp
