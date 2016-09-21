@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.BootPrepDAO;
+import entities.Resource;
 import entities.User;
 
 @Controller
@@ -62,21 +64,22 @@ public class AuthenticationController {
 			@RequestParam(value="username", required=false) String username,
 			@RequestParam(value="password", required=false) String password) {
 		User u = null;
+		ModelAndView mv = new ModelAndView("userprofile.jsp");
 
 		if (id > 0 && auth.equals("true")) {
 			u = dao.getUserById(id);
+			List<Resource> resources = dao.getAllResourcesById(u.getId());
+			mv.addObject("resources", resources);
 		}
 
-		ModelAndView mv = new ModelAndView("userprofile.jsp");
 		if (username != null && password != null) {
 			u = dao.login(username, password);
 			if (u != null) {
 				mv.addObject("userId", u.getId());
 				mv.addObject("auth", "true");
 				mv.addObject("username", u.getUsername());
-//				Date today = Calendar.getInstance().getTime();
-//				int countdown = u.getCreateDate().compareTo(today);
-//				mv.addObject("date", countdown );
+				List<Resource> resources = dao.getAllResourcesById(u.getId());
+				mv.addObject("resources", resources);
 			} else {
 				mv.addObject("error", "Invalid username or password.");
 				mv.addObject("userId", 0);

@@ -65,42 +65,35 @@ public class ResourceController {
 	@RequestMapping(path="resourceadd.do")
 	public ModelAndView addResourceToUser(@ModelAttribute("userId") int userId,
 										  @ModelAttribute("auth") String auth,
-										  int resourceId) {
-		ModelAndView mv = new ModelAndView("userprofile.jsp");
-		User u = dao.getUserById(userId);
+										  Integer resourceId) {
 		dao.addResourceToUser(userId, resourceId);
-		List<Resource> resources = dao.getAllResourcesById(userId);
-		mv.addObject("user", u);
-		mv.addObject("resources", resources);
-		return mv;
+		return listAllResources(userId, "my");
 	}
 	
 	@RequestMapping(path="resource.do")
 	public ModelAndView viewResource(@ModelAttribute("userId") int userId,
 			@ModelAttribute("auth") String auth,
-			int resourceId) {
+			Integer resourceId) {
 		ModelAndView mv = new ModelAndView("resource.jsp");
 		mv = viewLoader(mv, userId, resourceId);
 		return mv;
 	}
 	
-
-	
 	@RequestMapping(path="resourceRemove.do")
 	public ModelAndView removeResourceFromUser(@ModelAttribute("userId") int userId,
 									   @ModelAttribute("auth") String auth,
 									   @RequestParam(value="view", required=false) String view,
-											   int resourceId) {
-		ModelAndView mv = null;
+									   Integer resourceId) {
+		ModelAndView mv = new ModelAndView();
+		User u = dao.removeResourceFromUser(userId, resourceId);
 		if (view.equals("list")) {
-			listAllResources(userId, "my");
+			return listAllResources(userId, "my");
 		} else if (view.equals("resource")) {
 			mv.setViewName("resource.jsp");
 			viewLoader(mv, userId, resourceId);
 		} else {
 			mv.setViewName("userprofile.jsp");
 		}
-		User u = dao.removeResourceFromUser(userId, resourceId);
 		mv.addObject("user", u);
 		mv.addObject("resources", u.getResources());
 		return mv;
@@ -122,7 +115,7 @@ public class ResourceController {
 			@RequestParam(value="action", required=false) String action, 
 			@RequestParam(value="tagName", required=false) String tagName,
 			@RequestParam(value="tagId", required=false) Integer tagId,
-			int resourceId) {
+			Integer resourceId) {
 		ModelAndView mv = new ModelAndView("resource.jsp");
 		Resource r = null;
 		if (userId == 0 || auth != "true") {
