@@ -77,7 +77,7 @@
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<div class="text-center">
-								<img src="${user.userphoto}" alt="photo of ${user.username}" class="img-circle">
+								<img src="${user.userPhoto}" alt="photo of ${user.username}" class="img-circle">
 								<h1 class="uncapitalize">${user.username}</h1>
 								<p>${user.firstName}${user.lastName}</p>
 								<p>Start date: ${user.createDate}</p>
