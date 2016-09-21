@@ -23,50 +23,62 @@
 			<div class="col-md-6">
 				<%-- <p>ID: ${resource.id}</p> --%>
 				<h1>${resource.name}</h1>
-<%-- TAGS! --%>
-        <%-- when user is GUEST and does not own resource --%>
-        <c:if test="${userId == 0 || auth != 'true'}">
-          <p><i class="fa fa-tags" aria-hidden="true"></i>
-          <c:forEach var="tag" items="${resource.tags}">
-            <button type="button" class="btn btn-default btn-xs">${tag.name}</button>
-          </c:forEach>
-        </p>
-        </c:if>
-        <%-- when user is logged in and does not own resource --%>
-        <c:if test="${userId > 0 && auth == 'true' && empty userHasResource}">
+				<%-- TAGS! --%>
+				<%-- when user is GUEST and does not own resource --%>
+				<c:if test="${userId == 0 || auth != 'true'}">
+					<p>
+						<i class="fa fa-tags" aria-hidden="true"></i>
+						<c:forEach var="tag" items="${resource.tags}">
+							<button type="button" class="btn btn-default btn-xs">${tag.name}
+							</button>
+						</c:forEach>
+					</p>
+				</c:if>
+				<%-- when user is logged in and does not own resource --%>
+				<c:if
+					test="${userId > 0 && auth == 'true' && empty userHasResource}">
 
-            <p><i class="fa fa-tags" aria-hidden="true"></i>
-            <c:forEach var="tag" items="${resource.tags}">
-              <button type="button" class="btn btn-default btn-xs">${tag.name}</button>
-            </c:forEach>
-          </p>
+					<p>
+						<i class="fa fa-tags" aria-hidden="true"></i>
+						<c:forEach var="tag" items="${resource.tags}">
+							<button type="button" class="btn btn-default btn-xs">${tag.name}</button>
+						</c:forEach>
+					</p>
 
-        </c:if>
-        <%-- when user is logged in and has resource --%>
-        <c:if test="${userId > 0 && auth == 'true' && userHasResource == 'true'}">
-          <p><i class="fa fa-tags" aria-hidden="true"></i>
-          <c:forEach var="tag" items="${resource.tags}">
-            <button type="button" class="btn btn-default btn-xs">${tag.name}</button>
-          </c:forEach>
-          <button class="btn btn-primary btn-xs" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-          </button>
-          </p>
-          <div class="collapse" id="collapseExample">
-            <div class="well">
-            <form>
-              <p> this is where the stuff will go</p>
-            </form>
-            </div>
-          </div>
+				</c:if>
+				<%-- when user is logged in and has resource --%>
+				<c:if
+					test="${userId > 0 && auth == 'true' && userHasResource == 'true'}">
+					<p>
+						<i class="fa fa-tags" aria-hidden="true"></i>
+						<c:forEach var="tag" items="${resource.tags}">
+							<button type="button" class="btn btn-default btn-xs">${tag.name}
+								<c:forEach var="rtag" items="${rTags}">
+									<c:if test="${rtag == tag.id}">X</c:if>
+								</c:forEach>
+							</button>
+						</c:forEach>
+						<button class="btn btn-primary btn-xs" type="button"
+							data-toggle="collapse" data-target="#collapseExample"
+							aria-expanded="false" aria-controls="collapseExample">
+							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+						</button>
+					</p>
+					<div class="collapse" id="collapseExample">
+						<div class="well">
+							<form>
+								<p>this is where the stuff will go</p>
+							</form>
+						</div>
+					</div>
 
 
 
 
 
 
-        </c:if>
-<%-- END TAGS! --%>
+				</c:if>
+				<%-- END TAGS! --%>
 				<blockquote>
 					<p>
 						<i class="fa fa-quote-left fa-2x fa-pull-left fa-border"
@@ -79,7 +91,8 @@
 			</div>
 			<div class="col-md-6">
 				<%-- User Data Area --%>
-				<c:if test="${userId > 0 && auth == 'true' && userHasResource == 'true'}">
+				<c:if
+					test="${userId > 0 && auth == 'true' && userHasResource == 'true'}">
 					<form action="userDataUpdate.do" method="post">
 
 
@@ -89,9 +102,8 @@
 								<fieldset class="rating">
 									<input type="radio" id="star5" name="rating" value="5"
 										<c:if test="${userData.rating == 5}"> checked="checked" </c:if> /><label
-										class="full" for="star5" title="Awesome - 5 stars"></label>
-
-									<input type="radio" id="star4" name="rating" value="4"
+										class="full" for="star5" title="Awesome - 5 stars"></label> <input
+										type="radio" id="star4" name="rating" value="4"
 										<c:if test="${userData.rating == 4}"> checked="checked" </c:if> /><label
 										class="full" for="star4" title="Pretty good - 4 stars"></label>
 

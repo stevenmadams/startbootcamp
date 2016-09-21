@@ -169,6 +169,23 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		return ids;
 	}
 	
+	@Override
+	public ResourceTag getResourceTag(int userId, int resourceId, int tagId) {
+		return em.find(ResourceTag.class, new ResourceTagKey(resourceId, tagId, userId));
+	}
+	@Override
+	public List<Integer> resourceTagUserIds(int userId, int resourceId) {
+		String sql = "SELECT rt.tag.id FROM ResourceTag rt "
+				   + "WHERE user = ?1 AND rt.resource.id = ?2 ";
+		@SuppressWarnings("unchecked")
+		List<Integer> results = (List<Integer>)em.createQuery(sql)
+								.setParameter(1, userId)
+								.setParameter(2, resourceId)
+								.getResultList();
+System.out.println(results);
+		return results;
+	}
+	
 	// UserData Methods  *********************************************************
 	@Override
 	public UserData getUserDataByKey(UserDataKey key) {

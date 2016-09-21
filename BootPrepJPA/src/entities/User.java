@@ -40,6 +40,7 @@ public class User {
 		@Column(name="user_photo")
 		private String userPhoto;
 		
+		
 		//Maybe we need or can use this?
 		@ManyToMany
 		@JoinTable(name="user_resource",
