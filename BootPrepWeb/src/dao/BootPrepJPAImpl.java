@@ -200,6 +200,10 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 	@Override
 	public Resource addTagToResource(String tagName, int userId, int resourceId) {
 		Resource r = em.find(Resource.class, resourceId);
+		// If user isn't associated to this resource, don't change tags
+		if (!resourceHasUser(r, userId)) {
+			return r;
+		}
 		Tag tag = uniqueTag(tagName);
 		ResourceTag rt = new ResourceTag();
 		rt.setResource(r);
@@ -207,6 +211,17 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		rt.setUser(userId);
 		em.persist(rt);
 		return r;
+	}
+	
+	private boolean resourceHasUser(Resource r, int userId) {
+		boolean in = false;
+		for (User user : r.getUsers()) {
+			if (user.getId() == userId) {
+				in = true;
+				break;
+			}
+		}
+		return in;
 	}
 	
 	private List<Tag> allTags() {
@@ -234,9 +249,4 @@ System.out.println("got tag..."+tag.getName());
 		return tag;
 	}
 	
-	private Tag createTag() {
-		
-		
-		return null;
-	}
 }

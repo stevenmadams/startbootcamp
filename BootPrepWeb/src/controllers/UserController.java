@@ -105,7 +105,7 @@ public class UserController {
 		User user = dao.getUserById(id);
 		ModelAndView mv = new ModelAndView("userprofile.jsp", "user", user);
 		System.out.println("in userdelete.do/UserController");
-		deleteUser(id);
+		dao.deleteUser(id);
 		mv.setViewName("userdelete.jsp");
 		mv.addObject("user");
 		System.out.println(user);

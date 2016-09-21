@@ -117,6 +117,10 @@ public class ResourceController {
 			int resourceId) {
 		ModelAndView mv = new ModelAndView("resource.jsp");
 		Resource r = null;
+		if (userId == 0 || auth != "true") {
+			mv.setViewName("userprofile.jsp");
+			return mv;
+		}
 		try { // exception thrown if resource already has the tag
 			r = dao.addTagToResource(tagName, userId, resourceId);
 		} catch (JpaSystemException cve) {
