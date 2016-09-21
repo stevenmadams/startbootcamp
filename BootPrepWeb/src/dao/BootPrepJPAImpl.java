@@ -1,8 +1,5 @@
 package dao;
 
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +12,6 @@ import javax.persistence.TypedQuery;
 
 import org.hibernate.Hibernate;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
 
 import entities.Resource;
 import entities.ResourceTag;
@@ -90,7 +84,7 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		return null;
 	}
 	
-	@Override
+//	@Override
 //	public void loadUsers() {
 //		List<User> users = null;
 //		users = new ArrayList<>();
