@@ -1,6 +1,7 @@
 package controllers;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -51,7 +52,12 @@ public class UserController {
 		return "";
 	}
 	
-	
+	@ModelAttribute("users")
+	public List<User> initSessionObject() {
+		ArrayList<User> users = new ArrayList<>();
+		return users;
+	}
+
 	
 	@RequestMapping(path="useredit.do")
 	public ModelAndView userEdit(@ModelAttribute("userId")int id) {
@@ -59,7 +65,6 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("useredit.jsp", "user", u);
 		return mv;
 	}
-
 
 	@RequestMapping(path="usersubmitedit.do")
 	public ModelAndView userSubmitEdit(@ModelAttribute("userId")int id, 
@@ -140,13 +145,24 @@ public class UserController {
 		return mv;
 	}
 
+	// Fill table for all users----------------------------------------------
+	@RequestMapping(path = "getuser.do")
+	public ModelAndView getVehicles(@ModelAttribute("user") List<User> user) {
+		ModelAndView mv = new ModelAndView("admin.jsp");
+		System.out.println("in getuser.do");
+		mv.addObject("users", dao.getUser());
+		System.out.println(user.size());
+		mv.setViewName("userslist.jsp");
+		System.out.println(dao.getUser()); // debug statement
+		return mv;
+	}
 	
 	@RequestMapping(path="userListResources.do")
 	public ModelAndView userListResources(@ModelAttribute("userId") Integer id,
 			@ModelAttribute("auth") String auth) {
 		ModelAndView mv = new ModelAndView("userprofile.jsp");
-		List<Resource> resources = dao.getAllResourcesById(id);
 		User u = dao.getUserById(id);
+		List<Resource> resources = dao.getAllResourcesById(id);
 		mv.addObject("resources", resources);
 		mv.addObject("user", u);
 		return mv;

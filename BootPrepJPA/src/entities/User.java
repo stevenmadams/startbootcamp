@@ -38,8 +38,8 @@ public class User {
 		@Temporal(TemporalType.DATE)
 		private Date createDate;
 		@Column(name="user_photo")
-		private String userPhoto;
-		
+		private String userPhoto = "img/defaultuser.png";
+		private Integer privelege = 0;
 		
 		//Maybe we need or can use this?
 		@ManyToMany
@@ -60,7 +60,7 @@ public class User {
 			this.createDate = createDate;
 		}
 		
-		
+
 		// Getters and Setters
 		public int getId() {
 			return id;
@@ -120,6 +120,15 @@ public class User {
 
 		public void setUserPhoto(String userPhoto) {
 			this.userPhoto = userPhoto;
+		}
+		
+
+		public Integer getPrivelege() {
+			return privelege;
+		}
+
+		public void setPrivelege(Integer privelege) {
+			this.privelege = privelege;
 		}
 
 		// To String	

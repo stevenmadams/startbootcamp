@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,8 +11,12 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transaction;
 
 import org.hibernate.Hibernate;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.springframework.beans.factory.FactoryBean;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.Resource;
@@ -45,6 +50,7 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		newUser.setFirstName(user.getFirstName());
 		newUser.setLastName(user.getLastName());
 		newUser.setUsername(user.getUsername());
+		System.out.println(user.getUsername());
 		newUser.setUserPhoto(user.getUserPhoto());
 		newUser.setPassword(user.getPassword());
 		newUser.setEmail(user.getEmail());
@@ -71,17 +77,22 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		EntityManagerFactory emf =
 			Persistence.createEntityManagerFactory("BootPrepJPA");
 		EntityManager em = emf.createEntityManager();
-	
 		em.getTransaction().begin();
-		
 		User user = em.find(User.class, id);
 		em.remove(user);
 		em.getTransaction().commit();
-	
 		em.close();
 		emf.close();
 		System.out.println("at delete");
 		return null;
+	}
+	
+	@Override
+	public void listUsers( ){
+		String queryString =
+			     "SELECT s FROM Staff s WHERE s.lastName='Kong'";
+			List<User> results = em.createQuery(queryString, User.class)
+			           .getResultList();
 	}
 
 	// Return 0 if both valid. 
@@ -317,6 +328,12 @@ System.out.println(results);
 		if (password.equals(user.getPassword())) {
 			return user;
 		}
+		return null;
+	}
+
+	@Override
+	public User getUser() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	

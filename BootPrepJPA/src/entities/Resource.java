@@ -22,7 +22,7 @@ import javax.persistence.OneToMany;
 		private String description;
 		private String url;
 		private String video;
-		private String photo;
+		private String photo = "img/resourcedefault.png";
 		private String snippet;
 		
 	

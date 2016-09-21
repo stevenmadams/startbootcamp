@@ -86,6 +86,9 @@
 								<a class="btn" href="useredit.do?"> <i
 									class="fa fa-pencil-square-o fa-lg"></i> Edit Account
 								</a>
+								<a class="btn" href="userdelete.do?"> <i
+									class="fa fa-trash-o fa-lg"></i> Delete Account
+								</a>
 							</div>
 						</div>
 					</div>
@@ -170,3 +173,5 @@
 	<%@ include file="sitefooter.jsp"%>
 </body>
 </html>
+Contact GitHub API Training Shop Blog About
+© 2016 GitHub, Inc. Terms Privacy Security Status Help
