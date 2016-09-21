@@ -17,12 +17,31 @@
 	<%-- </div> --%>
 
 
-	<hr>
+	<br>
+    <br>
 	<div class="container">
+    <div class="jumbotron">
+      <div class="row">
+      	<span><h1>${resource.name}</h1>
+        <%-- below: If user does not own resource --%>
+        <c:if test="${userId > 0 && auth == 'true' && empty userHasResource}">
+          <a href="resourceadd.do?resourceId=${resource.id}" target="_blank"
+  					class="btn btn-default btn-lg"><i class="fa fa-plus" aria-hidden="true"></i> Resource</a>
+        </c:if>
+            <%-- above: If user does not own resource --%>
+            <c:if test="${userId > 0 && auth == 'true' && userHasResource == 'true'}">
+              <a class="btn btn-default btn-lg" role="button" href="resourceRemove.do?resourceId=${resource.id}&view=resource">
+                <i class="fa fa-times-circle" aria-hidden="true"></i> Remove</a>
+            </c:if>
+            <a href="${resource.url}" target="_blank"
+    					class="btn btn-default btn-lg"><i class="fa fa-external-link"
+    					aria-hidden="true"></i> Resource Site</a> </span>
+        <hr>
+        </div>
 		<div class="row">
 			<div class="col-md-6">
 				<%-- <p>ID: ${resource.id}</p> --%>
-				<h1>${resource.name}</h1>
+
 				<%-- TAGS! --%>
 
 					<%-- when user is GUEST and does not own resource --%>
@@ -96,15 +115,12 @@
 
 					</c:if>
 					<%-- END TAGS! --%>
-          <hr>
+          <br>
 				<blockquote>
-					<p>
+
 						<i class="fa fa-quote-left fa-2x fa-pull-left fa-border"
-							aria-hidden="true"></i>${resource.description}</p>
+							aria-hidden="true"></i>${resource.description}
 				</blockquote>
-				<a href="${resource.url}" target="_blank"
-					class="btn btn-default btn-lg"><i class="fa fa-external-link"
-					aria-hidden="true"></i> View Resource Site</a>
 				<p>Video: ${resource.video}</p>
 			</div>
 			<div class="col-md-6">
@@ -114,8 +130,13 @@
 					<form action="userDataUpdate.do" method="post">
 
 
-						<div class="row">
-							<div class="col-sm-6">
+
+						<div class="form-group">
+							<label for="mynotes">My Resource Notes</label>
+							<textarea class="form-control" id="mynotes" rows="4" name="notes">${userData.notes}</textarea>
+						</div>
+            <div class="row">
+							<div class="col-sm-12">
 								<%-- <p>Rating: ${userData.rating}</p> --%>
 								<fieldset class="rating">
 									<input type="radio" id="star5" name="rating" value="5"
@@ -138,7 +159,7 @@
 
 								</fieldset>
 							</div>
-							<div class="col-sm-6">
+							<div class="col-sm-12">
 								<a
 									href="userDataUpdate.do?resourceId=${resource.id}&completed=${userData.completed}">
 									Completed <span><input type="checkbox" name="completed"
@@ -148,11 +169,7 @@
 								</a>
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="mynotes">My Resource Notes</label>
-							<textarea class="form-control" id="mynotes" rows="4" name="notes">${userData.notes}</textarea>
-						</div>
-
+            <br>
 						<input type="hidden" name="resourceId" value="${resource.id}">
 						<button type="submit" class="btn btn-default">
 							<%-- <i class="fa fa-floppy-o" aria-hidden="true">  --%>
@@ -164,6 +181,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 
 	<%@ include file="sitefooter.jsp"%>
 </body>
