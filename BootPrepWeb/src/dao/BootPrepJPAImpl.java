@@ -336,5 +336,20 @@ System.out.println(results);
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	@Override
+	public List<User> getAllUsers() {
+		String sql = "select u from User u";
+		List<User> users = em.createQuery(sql, User.class)
+						   .getResultList();
+		return users;
+	}
+
+	@Override
+	public void deleteTag() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

@@ -86,6 +86,10 @@ public class AuthenticationController {
 				mv.addObject("auth", "false");
 			}
 		}
+		if (u.getPrivelege() > 0) {
+			List<Resource> allResources = dao.getAllResources();
+			List<User> allUsers = dao.getAllUsers();
+		}
 		mv.addObject("user", u);
 		return mv;
 	}

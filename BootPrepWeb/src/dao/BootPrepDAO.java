@@ -18,6 +18,7 @@ public interface BootPrepDAO {
 	public User createUser(User user);
 	public User deleteUser(int id);
 
+	
 	public User getUser();
 	public void listUsers();
 
@@ -28,7 +29,6 @@ public interface BootPrepDAO {
 	public Resource getResourceById(int id);
 	public void addResourceToUser(int userId, int resourceId);
 	public User removeResourceFromUser(int userId, int resourceId);
-	public List<Resource> getAllResources();
 	public List<Resource> getAllResourcesById(int id);
 	public Resource createResource(Resource r);
 	public List<Integer> getResourceIdsForUser(int id);
@@ -45,4 +45,9 @@ public interface BootPrepDAO {
 	public UserData getUserDataByKey(UserDataKey key);
 	public UserData updateUserData(UserDataKey key, UserData data);
 	public UserData createUserData();
+	
+	//ADMIN
+	public List<User> getAllUsers();
+	public List<Resource> getAllResources();
+	public void deleteTag();
 }
