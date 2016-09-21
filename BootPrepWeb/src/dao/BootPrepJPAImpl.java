@@ -45,7 +45,7 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		newUser.setFirstName(user.getFirstName());
 		newUser.setLastName(user.getLastName());
 		newUser.setUsername(user.getUsername());
-System.out.println(user.getUsername());
+		System.out.println(user.getUsername());
 		newUser.setPassword(user.getPassword());
 		newUser.setEmail(user.getEmail());
 		newUser.setCreateDate(user.getCreateDate());

@@ -51,6 +51,17 @@ public class UserController {
 		return "";
 	}
 	
+	// Fill table for all vehicles----------------------------------------------
+		@RequestMapping(path = "GetUser.do")
+		public ModelAndView getVehicles(@ModelAttribute("user") List<User> user) {
+			ModelAndView mv = new ModelAndView();
+			System.out.println("in GetUser.do");
+			mv.addObject("users", dao.getUser());
+			System.out.println(user.size());
+			mv.setViewName("userslist.jsp");
+			System.out.println(dao.getUser()); // debug statement
+			return mv;
+		}
 	
 	
 	@RequestMapping(path="useredit.do")
