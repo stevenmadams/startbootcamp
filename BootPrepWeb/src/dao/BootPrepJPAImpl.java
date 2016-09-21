@@ -45,7 +45,7 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		newUser.setFirstName(user.getFirstName());
 		newUser.setLastName(user.getLastName());
 		newUser.setUsername(user.getUsername());
-System.out.println(user.getUsername());
+		newUser.setUserPhoto(user.getUserPhoto());
 		newUser.setPassword(user.getPassword());
 		newUser.setEmail(user.getEmail());
 		newUser.setCreateDate(user.getCreateDate());
@@ -89,6 +89,19 @@ System.out.println(user.getUsername());
 	@Override
 	public Resource getResourceById(int id) {
 		return em.find(Resource.class, id);
+	}
+	
+	@Override
+	public double averageRating(int resourceId) {
+		String sql = "SELECT AVG(ud.rating) FROM UserData ud "
+				   + "WHERE ud.resource.id = ?1";
+		Double avg = (Double)em.createQuery(sql)
+						.setParameter(1, resourceId)
+						.getSingleResult();
+		if (avg == null) {
+			avg = 0.0;
+		}
+		return avg;
 	}
 	
 	@Override
