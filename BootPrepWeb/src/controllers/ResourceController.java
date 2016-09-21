@@ -84,12 +84,13 @@ public class ResourceController {
 		Resource r = dao.getResourceById(resourceId);
 		UserDataKey key = new UserDataKey(userId, resourceId);
 		UserData ur = dao.getUserDataByKey(key);
+		List<Integer> rtags = dao.resourceTagUserIds(userId, resourceId);
 		if (ur != null && ur.getUser().getId() == userId) {
 			mv.addObject("userHasResource", true);
 		}
 		mv.addObject("userData", ur);
 		mv.addObject("resource", r);
-		mv.addObject("rTags", r.getResourceTags());
+		mv.addObject("rTags", rtags);
 		return mv;
 	}
 	
@@ -150,7 +151,7 @@ public class ResourceController {
 			r = dao.getResourceById(resourceId);
 			mv.addObject("error", true);
 		}
-		List<ResourceTag> rtags = r.getResourceTags();
+		List<Integer> rtags = dao.resourceTagUserIds(userId, resourceId);
 		mv.addObject("resource", r);
 		mv.addObject("rTags", rtags);
 	}
@@ -162,7 +163,7 @@ public class ResourceController {
 			mv.addObject("error", true);
 			r = dao.getResourceById(resourceId);
 		}
-		List<ResourceTag> rtags = r.getResourceTags();
+		List<Integer> rtags = dao.resourceTagUserIds(userId, resourceId);
 		mv.addObject("resource", r);
 		mv.addObject("rTags", rtags);
 	}
