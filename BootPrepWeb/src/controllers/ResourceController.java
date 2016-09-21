@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dao.BootPrepDAO;
 import entities.Resource;
+import entities.ResourceTag;
 import entities.User;
 import entities.UserData;
 import entities.UserDataKey;
@@ -83,11 +84,13 @@ public class ResourceController {
 		Resource r = dao.getResourceById(resourceId);
 		UserDataKey key = new UserDataKey(userId, resourceId);
 		UserData ur = dao.getUserDataByKey(key);
+		List<Integer> rtags = dao.resourceTagUserIds(userId, resourceId);
 		if (ur != null && ur.getUser().getId() == userId) {
 			mv.addObject("userHasResource", true);
 		}
 		mv.addObject("userData", ur);
 		mv.addObject("resource", r);
+		mv.addObject("rTags", rtags);
 		return mv;
 	}
 	
@@ -136,12 +139,8 @@ public class ResourceController {
 			mv.setViewName("userprofile.jsp");
 			break;
 		}
+		
 		return mv;
-	}
-	@RequestMapping(path="average.do")
-	public ModelAndView average(int resourceId) {
-		dao.averageRating(resourceId);
-		return null;
 	}
 	
 	private void addTag(ModelAndView mv, String tagName, int userId, int resourceId) {
@@ -152,8 +151,9 @@ public class ResourceController {
 			r = dao.getResourceById(resourceId);
 			mv.addObject("error", true);
 		}
+		List<Integer> rtags = dao.resourceTagUserIds(userId, resourceId);
 		mv.addObject("resource", r);
-		mv.addObject("tags", r.getTags());
+		mv.addObject("rTags", rtags);
 	}
 	
 	private void removeTag(ModelAndView mv, int userId, int resourceId, int tagId) {
@@ -163,8 +163,9 @@ public class ResourceController {
 			mv.addObject("error", true);
 			r = dao.getResourceById(resourceId);
 		}
+		List<Integer> rtags = dao.resourceTagUserIds(userId, resourceId);
 		mv.addObject("resource", r);
-		mv.addObject("tags", r.getTags());
+		mv.addObject("rTags", rtags);
 	}
 	
 }
