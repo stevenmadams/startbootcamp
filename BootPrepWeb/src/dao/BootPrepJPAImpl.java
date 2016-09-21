@@ -23,13 +23,16 @@ import entities.UserDataKey;
 
 @Transactional
 public class BootPrepJPAImpl implements BootPrepDAO {
+	
+	private static final int MAX_TAGS = 3;
+	
 	// line added for git
 	@PersistenceContext
 	private EntityManager em;
 
 	
 	
-	// User methods
+	// User methods *********************************************************
 	@Override
 	public User getUserById(int id) {
 		return em.find(User.class, id);
@@ -80,7 +83,7 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 	}
 
 
-	// Resource methods
+	// Resource methods *********************************************************
 	@Override
 	public Resource getResourceById(int id) {
 		return em.find(Resource.class, id);
@@ -150,7 +153,7 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		return ids;
 	}
 	
-	// UserData Methods
+	// UserData Methods  *********************************************************
 	@Override
 	public UserData getUserDataByKey(UserDataKey key) {
 		return em.find(UserData.class, key);
@@ -173,9 +176,62 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		return null;
 	}
 	
+
+	// Tag Methods *********************************************************
+	
+	@Override
+	public Resource addTagToResource(String tagName, int userId, int resourceId) {
+		Resource r = em.find(Resource.class, resourceId);
+		// If user isn't associated to this resource, don't change tags
+		if (!validAddition(resourceId, userId)) {
+			return r;
+		}
+		Tag tag = uniqueTag(tagName);
+		ResourceTag rt = new ResourceTag();
+		rt.setResource(r);
+		rt.setTag(tag);
+		rt.setUser(userId);
+		em.persist(rt);
+		return r;
+	}
+
+	private boolean validAddition(int resourceId, int userId) {
+		String sql = "SELECT rt FROM ResourceTag rt "
+				   + "WHERE user = ?1 AND rt.resource.id = ?2 ";
+		List<ResourceTag> results = em.createQuery(sql, ResourceTag.class)
+				.setParameter(1, userId)
+				.setParameter(2, resourceId)
+				.getResultList();
+		return results.size() < MAX_TAGS;
+	}
+	
+	private List<Tag> allTags() {
+		String sql = "select t from Tag t";
+		List<Tag> tags = em.createQuery(sql, Tag.class).getResultList();
+		return tags;
+	}
+	
+	private Tag uniqueTag(String tagName){
+		String sql = "select t from Tag t where t.name = ?1";
+		Tag tag = null;
+		try {
+			// if tag is found, return it
+			tag = em.createQuery(sql, Tag.class)
+					.setParameter(1, tagName)
+					.getSingleResult();
+		} catch (NoResultException nre) {
+			Tag createTag = new Tag();
+			createTag.setName(tagName);
+			em.persist(createTag);
+			tag = createTag;
+		}
+		return tag;
+	}
 	
 	
-	// Authentication Methods
+	
+	
+	// Authentication Methods *********************************************************
 	@Override
 	public User login(String username, String password) {
 		String sql = "select u from User u where u.username = ?1";
@@ -195,58 +251,6 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 			return user;
 		}
 		return null;
-	}
-
-	@Override
-	public Resource addTagToResource(String tagName, int userId, int resourceId) {
-		Resource r = em.find(Resource.class, resourceId);
-		// If user isn't associated to this resource, don't change tags
-		if (!resourceHasUser(r, userId)) {
-			return r;
-		}
-		Tag tag = uniqueTag(tagName);
-		ResourceTag rt = new ResourceTag();
-		rt.setResource(r);
-		rt.setTag(tag);
-		rt.setUser(userId);
-		em.persist(rt);
-		return r;
-	}
-	
-	private boolean resourceHasUser(Resource r, int userId) {
-		boolean in = false;
-		for (User user : r.getUsers()) {
-			if (user.getId() == userId) {
-				in = true;
-				break;
-			}
-		}
-		return in;
-	}
-	
-	private List<Tag> allTags() {
-		String sql = "select t from Tag t";
-		List<Tag> tags = em.createQuery(sql, Tag.class).getResultList();
-		return tags;
-	}
-	
-	private Tag uniqueTag(String tagName){
-		String sql = "select t from Tag t where t.name = ?1";
-		Tag tag = null;
-		try {
-			// if tag is found, return it
-System.out.println("Running query...");
-			tag = em.createQuery(sql, Tag.class)
-					.setParameter(1, tagName)
-					.getSingleResult();
-System.out.println("got tag..."+tag.getName());
-		} catch (NoResultException nre) {
-			Tag createTag = new Tag();
-			createTag.setName(tagName);
-			em.persist(createTag);
-			tag = createTag;
-		}
-		return tag;
 	}
 	
 }

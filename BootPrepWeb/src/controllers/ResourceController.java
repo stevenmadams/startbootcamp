@@ -121,6 +121,27 @@ public class ResourceController {
 			mv.setViewName("userprofile.jsp");
 			return mv;
 		}
+		
+		switch (action) {
+		case "add":
+			addTag(mv, tagName, userId, resourceId);
+			break;
+		case "remove":
+	
+			break;
+		case "submit":
+			
+			break;
+		default:
+			break;
+		}
+		
+		
+		return mv;
+	}
+	
+	private void addTag(ModelAndView mv, String tagName, int userId, int resourceId) {
+		Resource r = null;
 		try { // exception thrown if resource already has the tag
 			r = dao.addTagToResource(tagName, userId, resourceId);
 		} catch (JpaSystemException cve) {
@@ -129,9 +150,6 @@ public class ResourceController {
 		}
 		mv.addObject("resource", r);
 		mv.addObject("tags", r.getTags());
-System.out.println("here...controller...");
-		
-		return mv;
 	}
 	
 }
