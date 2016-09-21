@@ -71,13 +71,10 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		EntityManagerFactory emf =
 			Persistence.createEntityManagerFactory("BootPrepJPA");
 		EntityManager em = emf.createEntityManager();
-	
 		em.getTransaction().begin();
-		
 		User user = em.find(User.class, id);
 		em.remove(user);
 		em.getTransaction().commit();
-	
 		em.close();
 		emf.close();
 		System.out.println("at delete");

@@ -88,9 +88,18 @@ public class ResourceController {
 	
 	@RequestMapping(path="resourceRemove.do")
 	public ModelAndView removeResourceFromUser(@ModelAttribute("userId") int userId,
-											   @ModelAttribute("auth") String auth,
+									   @ModelAttribute("auth") String auth,
+									   @RequestParam(value="view", required=false) String view,
 											   int resourceId) {
-		ModelAndView mv = new ModelAndView("userprofile.jsp");
+		ModelAndView mv = null;
+		if (view.equals("list")) {
+			listAllResources(userId, "my");
+		} else if (view.equals("resource")) {
+			mv.setViewName("resource.jsp");
+			viewLoader(mv, userId, resourceId);
+		} else {
+			mv.setViewName("userprofile.jsp");
+		}
 		User u = dao.removeResourceFromUser(userId, resourceId);
 		mv.addObject("user", u);
 		mv.addObject("resources", u.getResources());
@@ -101,7 +110,7 @@ public class ResourceController {
 	public ModelAndView goToCreatePage(@ModelAttribute("userId") int userId,
 			   @ModelAttribute("auth") String auth,
 			   String url, String name, String description ) {
-		ModelAndView mv = new ModelAndView("resourcecreate.jsp");
+		ModelAndView mv = new ModelAndView("resourcelist.jsp");
 		Resource r = dao.createResource(new Resource(url, name, description));
 		mv.addObject("newResource", r);
 		return mv;
