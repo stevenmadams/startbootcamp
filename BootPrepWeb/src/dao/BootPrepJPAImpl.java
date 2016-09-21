@@ -233,6 +233,7 @@ System.out.println(results);
 		rt.setTag(tag);
 		rt.setUser(userId);
 		em.persist(rt);
+System.out.println("dao tags list size: " + r.getTags().size());
 		return r;
 	}
 	
@@ -245,6 +246,7 @@ System.out.println(results);
 			r = rt.getResource();
 			em.remove(rt);
 		}
+		r = em.find(Resource.class, resourceId);
 		return r;
 	}
 
