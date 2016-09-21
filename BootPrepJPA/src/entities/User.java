@@ -51,11 +51,12 @@ public class User {
 		
 		public User() {}
 		
-		public User(String firstName, String lastName, String username, String email, Date createDate) {
+		public User(String firstName, String lastName, String username, String email, String userPhoto, Date createDate) {
 			this.firstName= firstName;
 			this.lastName = lastName;
 			this.username = username;
 			this.email = email;
+			this.userPhoto = userPhoto;
 			this.createDate = createDate;
 		}
 		

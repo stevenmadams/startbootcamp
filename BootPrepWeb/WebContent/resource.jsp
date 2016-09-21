@@ -52,11 +52,18 @@
 					<p>
 						<i class="fa fa-tags" aria-hidden="true"></i>
 						<c:forEach var="tag" items="${resource.tags}">
-							<button type="button" class="btn btn-default btn-xs">${tag.name}
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+
+
+
+              <button type="button" class="btn btn-secondary btn-default btn-xs">${tag.name}</button>
 								<c:forEach var="rtag" items="${rTags}">
-									<c:if test="${rtag == tag.id}">X</c:if>
+									<c:if test="${rtag == tag.id}"><button type="button" href"http://localhost:8080/BootPrepWeb/resourceTagEdit.do?resourceId=1&action=remove&tagId=${tag.id}" class="btn btn-secondary btn-default btn-xs">X</button></c:if>
 								</c:forEach>
-							</button>
+
+
+              </div>
 						</c:forEach>
 						<button class="btn btn-primary btn-xs" type="button"
 							data-toggle="collapse" data-target="#collapseExample"
@@ -66,8 +73,11 @@
 					</p>
 					<div class="collapse" id="collapseExample">
 						<div class="well">
-							<form>
-								<p>this is where the stuff will go</p>
+							<form action="resourceTagEdit.do" method="post">
+                <input type="hidden" value="${resource.id}" name="resourceId">
+                  <input type="hidden" value="add" name="action">
+								<input type="text" name="tagName" class="form-control">
+                  <input type="submit" class="btn btn-default" value ="Add Tag"/>
 							</form>
 						</div>
 					</div>

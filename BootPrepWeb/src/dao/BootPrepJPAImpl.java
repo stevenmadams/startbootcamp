@@ -68,6 +68,7 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		current.setUsername(user.getUsername());
 		current.setEmail(user.getEmail());
 		current.setCreateDate(user.getCreateDate());
+		current.setUserPhoto(user.getUserPhoto());
 		return current;
 	}
 	

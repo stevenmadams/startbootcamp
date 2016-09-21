@@ -120,7 +120,7 @@ public class ResourceController {
 			@ModelAttribute("auth") String auth,
 			@RequestParam(value="action", required=false) String action, 
 			@RequestParam(value="tagName", required=false) String tagName,
-			@RequestParam(value="tagId", required=false) int tagId,
+			@RequestParam(value="tagId", required=false) Integer tagId,
 			int resourceId) {
 		ModelAndView mv = new ModelAndView("resource.jsp");
 		Resource r = null;
