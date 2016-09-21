@@ -1,6 +1,7 @@
 package controllers;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -49,6 +50,12 @@ public class UserController {
 			return username;
 		}
 		return "";
+	}
+	
+	@ModelAttribute("users")
+	public List<User> initSessionObject() {
+		ArrayList<User> users = new ArrayList<>();
+		return users;
 	}
 
 	

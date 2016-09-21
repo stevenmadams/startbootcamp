@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,8 +10,11 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transaction;
 
 import org.hibernate.Hibernate;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.Resource;
@@ -85,39 +89,30 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		return null;
 	}
 	
-//	@Override
-//	public void loadUsers() {
-//		List<User> users = null;
-//		users = new ArrayList<>();
-//		User user = null;
-//		try {
-//			Connection conn = DriverManager.getConnection(url, user, pass);
-//			String sqltxt;
-//			sqltxt = "SELECT user SET id = ?, firstName = ? , lastName = ? , username = ? ,password = ? , email = ? , createDate = ? WHERE id= ?";
-//			PreparedStatement stmt = conn.prepareStatement(sqltxt);
-//			ResultSet rs = stmt.executeQuery("select * from user");
-//			while (rs.next()) {
-//				// Integer id, String make, String model, String modelType,
-//				// String numDoor, String vehicleType, String mileage
-//				user = new User(rs.getInt(1), 
-//								rs.getString(2), 
-//								rs.getString(3), 
-//								rs.getString(4), 
-//								rs.getString(5),
-//								rs.getString(6), 
-//								rs.getString(7));
-//				System.out.println(user);
-//				users.add(user);
-//				System.out.println(users);
-//			}
-//			rs.close();
-//			stmt.close();
-//			conn.close();
-//		} catch (SQLException sqle) {
-//			sqle.printStackTrace(System.err);
-//		}
-//
-//	}
+	@Override
+	public void listUsers( ){
+		      Session session = factory.openSession();
+		      Transaction tx = null;
+		      try{
+		         tx = session.beginTransaction();
+		         List users = session.createQuery("FROM User").list; 
+		         for (Iterator iterator = 
+		                           users.iterator(); iterator.hasNext();){
+		            User user = (User) iterator.next(); 
+		            System.out.print("First Name: " + user.getFirstName()); 
+		            System.out.print("  Last Name: " + user.getLastName()); 
+		            System.out.print("  Username: " + user.getUsername()); 
+		            System.out.print("  password: " + user.getPassword()); 
+		            System.out.println("  Email: " + user.getEmail());  
+		         }
+		         tx.commit();
+		      }catch (HibernateException e) {
+		         if (tx!=null) tx.rollback();
+		         e.printStackTrace(); 
+		      }finally {
+		         session.close(); 
+		      }
+		   }
 
 
 	// Resource methods *********************************************************

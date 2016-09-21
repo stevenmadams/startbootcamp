@@ -60,7 +60,7 @@ public class User {
 			this.createDate = createDate;
 		}
 		
-		
+
 		// Getters and Setters
 		public int getId() {
 			return id;
