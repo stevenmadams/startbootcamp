@@ -24,71 +24,79 @@
 				<%-- <p>ID: ${resource.id}</p> --%>
 				<h1>${resource.name}</h1>
 				<%-- TAGS! --%>
-				<%-- when user is GUEST and does not own resource --%>
-				<c:if test="${userId == 0 || auth != 'true'}">
-					<p>
+
+					<%-- when user is GUEST and does not own resource --%>
+					<c:if test="${userId == 0 || auth != 'true'}">
+
 						<i class="fa fa-tags" aria-hidden="true"></i>
 						<c:forEach var="tag" items="${resource.tags}">
 							<button type="button" class="btn btn-default btn-xs">${tag.name}
 							</button>
 						</c:forEach>
-					</p>
-				</c:if>
-				<%-- when user is logged in and does not own resource --%>
-				<c:if
-					test="${userId > 0 && auth == 'true' && empty userHasResource}">
 
-					<p>
+					</c:if>
+					<%-- when user is logged in and does not own resource --%>
+					<c:if
+						test="${userId > 0 && auth == 'true' && empty userHasResource}">
+
+            <div class="row">
 						<i class="fa fa-tags" aria-hidden="true"></i>
 						<c:forEach var="tag" items="${resource.tags}">
 							<button type="button" class="btn btn-default btn-xs">${tag.name}</button>
 						</c:forEach>
-					</p>
+          </div>
 
-				</c:if>
-				<%-- when user is logged in and has resource --%>
-				<c:if
-					test="${userId > 0 && auth == 'true' && userHasResource == 'true'}">
-					<p>
+					</c:if>
+					<%-- when user is logged in and has resource --%>
+					<c:if
+						test="${userId > 0 && auth == 'true' && userHasResource == 'true'}">
+
+            <div class="row">
 						<i class="fa fa-tags" aria-hidden="true"></i>
 						<c:forEach var="tag" items="${resource.tags}">
 
-                <div class="btn-group" role="group" aria-label="Basic example">
+							<div class="btn-group" role="group" aria-label="Basic example">
 
 
 
-              <button type="button" class="btn btn-secondary btn-default btn-xs">${tag.name}</button>
+								<button type="button"
+									class="btn btn-secondary btn-default btn-xs">${tag.name}</button>
 								<c:forEach var="rtag" items="${rTags}">
-									<c:if test="${rtag == tag.id}"><button type="button" href"http://localhost:8080/BootPrepWeb/resourceTagEdit.do?resourceId=1&action=remove&tagId=${tag.id}" class="btn btn-secondary btn-default btn-xs">X</button></c:if>
+									<c:if test="${rtag == tag.id}">
+										<a type="button"
+											href="resourceTagEdit.do?resourceId=${resource.id}&action=remove&tagId=${tag.id}"
+											class="btn btn-secondary btn-danger btn-xs"><i class="fa fa-minus" aria-hidden="true"></i></a>
+									</c:if>
 								</c:forEach>
 
 
-              </div>
+							</div>
 						</c:forEach>
-						<button class="btn btn-primary btn-xs" type="button"
+						<button class="btn btn-success btn-xs" type="button"
 							data-toggle="collapse" data-target="#collapseExample"
 							aria-expanded="false" aria-controls="collapseExample">
-							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+							<i class="fa fa-plus" aria-hidden="true"></i>
 						</button>
-					</p>
-					<div class="collapse" id="collapseExample">
-						<div class="well">
-							<form action="resourceTagEdit.do" method="post">
-                <input type="hidden" value="${resource.id}" name="resourceId">
-                  <input type="hidden" value="add" name="action">
-								<input type="text" name="tagName" class="form-control">
-                  <input type="submit" class="btn btn-default" value ="Add Tag"/>
-							</form>
+          </div>
+
+						<div class="collapse" id="collapseExample">
+							<div class="well">
+								<form action="resourceTagEdit.do" method="post">
+									<input type="hidden" value="${resource.id}" name="resourceId">
+									<input type="hidden" value="add" name="action"> <input
+										type="text" name="tagName" class="form-control"> <input
+										type="submit" class="btn btn-default" value="Add Tag" />
+								</form>
+							</div>
 						</div>
-					</div>
 
 
 
 
 
-
-				</c:if>
-				<%-- END TAGS! --%>
+					</c:if>
+					<%-- END TAGS! --%>
+          <hr>
 				<blockquote>
 					<p>
 						<i class="fa fa-quote-left fa-2x fa-pull-left fa-border"
