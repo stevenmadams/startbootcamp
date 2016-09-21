@@ -168,6 +168,11 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		return ids;
 	}
 	
+	@Override
+	public ResourceTag getResourceTag(int userId, int resourceId, int tagId) {
+		return em.find(ResourceTag.class, new ResourceTagKey(resourceId, tagId, userId));
+	}
+	
 	// UserData Methods  *********************************************************
 	@Override
 	public UserData getUserDataByKey(UserDataKey key) {

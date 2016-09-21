@@ -39,7 +39,7 @@
 				<c:if test="${userId > 0 && auth == 'true' && userHasResource == 'true'}">
 					<form action="userDataUpdate.do" method="post">
 
-
+						
 						<div class="row">
 							<div class="col-sm-6">
 								<%-- <p>Rating: ${userData.rating}</p> --%>

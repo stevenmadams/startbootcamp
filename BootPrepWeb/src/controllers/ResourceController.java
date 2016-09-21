@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dao.BootPrepDAO;
 import entities.Resource;
+import entities.ResourceTag;
 import entities.User;
 import entities.UserData;
 import entities.UserDataKey;
@@ -88,6 +89,7 @@ public class ResourceController {
 		}
 		mv.addObject("userData", ur);
 		mv.addObject("resource", r);
+		mv.addObject("rTags", r.getResourceTags());
 		return mv;
 	}
 	
@@ -136,12 +138,8 @@ public class ResourceController {
 			mv.setViewName("userprofile.jsp");
 			break;
 		}
+		
 		return mv;
-	}
-	@RequestMapping(path="average.do")
-	public ModelAndView average(int resourceId) {
-		dao.averageRating(resourceId);
-		return null;
 	}
 	
 	private void addTag(ModelAndView mv, String tagName, int userId, int resourceId) {
@@ -152,8 +150,9 @@ public class ResourceController {
 			r = dao.getResourceById(resourceId);
 			mv.addObject("error", true);
 		}
+		List<ResourceTag> rtags = r.getResourceTags();
 		mv.addObject("resource", r);
-		mv.addObject("tags", r.getTags());
+		mv.addObject("rTags", rtags);
 	}
 	
 	private void removeTag(ModelAndView mv, int userId, int resourceId, int tagId) {
@@ -163,8 +162,9 @@ public class ResourceController {
 			mv.addObject("error", true);
 			r = dao.getResourceById(resourceId);
 		}
+		List<ResourceTag> rtags = r.getResourceTags();
 		mv.addObject("resource", r);
-		mv.addObject("tags", r.getTags());
+		mv.addObject("rTags", rtags);
 	}
 	
 }
