@@ -42,19 +42,21 @@
 							href="resource.do?resourceId=${resource.id}"> <span
 								class="card-title">
 									<h3>${resource.name}</h3>
-							</span></span> <span class="card-summary">
+							</span></span> <span class="card-summary"><p>
 							<c:if test="${fn:length(resource.description)>=160}">
 							${fn:substring(resource.description,0,160)}...
 							</c:if>
 							<c:if test="${fn:length(resource.description)<160}">
 							${resource.description}
 							</c:if>
-							
-							Tags:
-								<c:forEach var="tag" items="${resource.tags}">
-									${tag.name}
-								</c:forEach>
-							
+						</p>
+							<p>
+							<i class="fa fa-tags" aria-hidden="true"></i>
+							<c:forEach var="tag" items="${resource.tags}">
+								<button type="button" class="btn btn-default btn-xs">${tag.name}
+								</button>
+							</c:forEach>
+						</p>
 							</span> </a> <span
 							class="card-meta">
 
@@ -100,17 +102,20 @@
 						href="resource.do?resourceId=${resource.id}"> <span
 							class="card-title">
 								<h3>${resource.name}</h3>
-						</span></span> <span class="card-summary"><c:if test="${fn:length(resource.description)>=160}">
+						</span></span> <span class="card-summary"><p><c:if test="${fn:length(resource.description)>=160}">
 						${fn:substring(resource.description,0,160)}...
 						</c:if>
 						<c:if test="${fn:length(resource.description)<160}">
 						${resource.description}
 						</c:if>
-								Tags:
-								<c:forEach var="tag" items="${resource.tags}">
-									${tag.name}
-								</c:forEach>
+
 							</p>
+							<p>
+							<i class="fa fa-tags" aria-hidden="true"></i>
+							<c:forEach var="tag" items="${resource.tags}">
+								<button type="button" class="btn btn-default btn-xs">${tag.name}
+								</button>
+							</c:forEach></p>
 						</span> </a> <span
 						class="card-meta">
 								<a class="btn btn-default" role="button" href="userprofile.do">Create an account</a>
