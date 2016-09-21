@@ -27,8 +27,10 @@ public interface BootPrepDAO {
 	public Resource createResource(Resource r);
 	public List<Integer> getResourceIdsForUser(int id);
 	public List<Resource> getAllResourcesNotAdded(int userId);
-	public Resource addTagToResource(String tagName, int userId, int resourceId);
 	
+	// Tags
+	public Resource addTagToResource(String tagName, int userId, int resourceId);
+	public Resource removeTagFromResource(int userId, int resourceId, int tagId);
 	
 	// UserResource
 	public UserData getUserDataByKey(UserDataKey key);

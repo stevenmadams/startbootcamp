@@ -83,6 +83,9 @@ public class ResourceController {
 		Resource r = dao.getResourceById(resourceId);
 		UserDataKey key = new UserDataKey(userId, resourceId);
 		UserData ur = dao.getUserDataByKey(key);
+		if (ur != null && ur.getUser().getId() == userId) {
+			mv.addObject("userHasResource", true);
+		}
 		mv.addObject("userData", ur);
 		mv.addObject("resource", r);
 		return mv;
@@ -113,9 +116,30 @@ public class ResourceController {
 	public ModelAndView addTagToResource(@ModelAttribute("userId") int userId,
 			@ModelAttribute("auth") String auth,
 			@RequestParam(value="action", required=false) String action, 
-			@RequestParam(value="tagName", required=false) String tagName, 
+			@RequestParam(value="tagName", required=false) String tagName,
+			@RequestParam(value="tagId", required=false) int tagId,
 			int resourceId) {
 		ModelAndView mv = new ModelAndView("resource.jsp");
+		Resource r = null;
+		if (userId == 0 || auth != "true") {
+			mv.setViewName("userprofile.jsp");
+			return mv;
+		}
+		switch (action) {
+		case "add":
+			addTag(mv, tagName, userId, resourceId);
+			break;
+		case "remove":
+			removeTag(mv, userId, resourceId, tagId);
+			break;
+		default:
+			mv.setViewName("userprofile.jsp");
+			break;
+		}
+		return mv;
+	}
+	
+	private void addTag(ModelAndView mv, String tagName, int userId, int resourceId) {
 		Resource r = null;
 		try { // exception thrown if resource already has the tag
 			r = dao.addTagToResource(tagName, userId, resourceId);
@@ -125,9 +149,17 @@ public class ResourceController {
 		}
 		mv.addObject("resource", r);
 		mv.addObject("tags", r.getTags());
-System.out.println("here...controller...");
-		
-		return mv;
+	}
+	
+	private void removeTag(ModelAndView mv, int userId, int resourceId, int tagId) {
+		Resource r = null;
+		r = dao.removeTagFromResource(userId, resourceId, tagId);
+		if (r == null) {
+			mv.addObject("error", true);
+			r = dao.getResourceById(resourceId);
+		}
+		mv.addObject("resource", r);
+		mv.addObject("tags", r.getTags());
 	}
 	
 }

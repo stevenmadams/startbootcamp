@@ -49,6 +49,12 @@
 							<c:if test="${fn:length(resource.description)<160}">
 							${resource.description}
 							</c:if>
+							
+							Tags:
+								<c:forEach var="tag" items="${resource.tags}">
+									${tag.name}
+								</c:forEach>
+							
 							</span> </a> <span
 							class="card-meta">
 

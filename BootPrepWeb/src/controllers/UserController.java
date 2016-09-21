@@ -87,13 +87,12 @@ public class UserController {
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
 		user.setUsername(username);
+System.out.println("in controller:" + username);
 		user.setPassword(password);
 		user.setEmail(email);
 		try {
 			user.setCreateDate(DateTimeHelper.stringToDate(createDate));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		} catch (ParseException e) { }
 		User u = dao.createUser(user);
 		ModelAndView mv = new ModelAndView("usercreate.jsp", "user", u);
 		return mv;
@@ -105,7 +104,7 @@ public class UserController {
 		User user = dao.getUserById(id);
 		ModelAndView mv = new ModelAndView("userprofile.jsp", "user", user);
 		System.out.println("in userdelete.do/UserController");
-		deleteUser(id);
+		dao.deleteUser(id);
 		mv.setViewName("userdelete.jsp");
 		mv.addObject("user");
 		System.out.println(user);

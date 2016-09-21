@@ -36,7 +36,7 @@
         </div>
         <div class="form-group">
           <label for="7">DONT USE YET *** Account Photo URL</label>
-          <input type="url" class="form-control" name="username" id="7">
+          <input type="url" class="form-control" name="" id="7">
         </div>
         <div class="form-group">
           <label for="5">E-mail*</label>
