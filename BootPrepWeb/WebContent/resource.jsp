@@ -36,6 +36,9 @@
             <a href="${resource.url}" target="_blank"
     					class="btn btn-default btn-lg"><i class="fa fa-external-link"
     					aria-hidden="true"></i> Resource Site</a> </span>
+
+
+
         <hr>
         </div>
 		<div class="row">
@@ -43,7 +46,7 @@
 				<%-- <p>ID: ${resource.id}</p> --%>
 
 				<%-- TAGS! --%>
-
+        <br>
 					<%-- when user is GUEST and does not own resource --%>
 					<c:if test="${userId == 0 || auth != 'true'}">
 
@@ -116,12 +119,17 @@
 					</c:if>
 					<%-- END TAGS! --%>
           <br>
+            <br>
 				<blockquote>
 
 						<i class="fa fa-quote-left fa-2x fa-pull-left fa-border"
 							aria-hidden="true"></i>${resource.description}
 				</blockquote>
-				<p>Video: ${resource.video}</p>
+
+          <c:if test="${!empty resource.video}">
+      <%@ include file="videoIframe.jsp"%>
+      </c:if>
+
 			</div>
 			<div class="col-md-6">
 				<%-- User Data Area --%>
