@@ -36,7 +36,7 @@
 			</div>
 			<div class="col-md-6">
 				<%-- User Data Area --%>
-				<c:if test="${userId > 0 && auth == 'true'}">
+				<c:if test="${userId > 0 && auth == 'true' && userHasResource == 'true'}">
 					<form action="userDataUpdate.do" method="post">
 
 

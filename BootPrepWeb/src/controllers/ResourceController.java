@@ -83,6 +83,9 @@ public class ResourceController {
 		Resource r = dao.getResourceById(resourceId);
 		UserDataKey key = new UserDataKey(userId, resourceId);
 		UserData ur = dao.getUserDataByKey(key);
+		if (ur != null && ur.getUser().getId() == userId) {
+			mv.addObject("userHasResource", true);
+		}
 		mv.addObject("userData", ur);
 		mv.addObject("resource", r);
 		return mv;
@@ -122,7 +125,6 @@ public class ResourceController {
 			mv.setViewName("userprofile.jsp");
 			return mv;
 		}
-		
 		switch (action) {
 		case "add":
 			addTag(mv, tagName, userId, resourceId);
@@ -134,8 +136,6 @@ public class ResourceController {
 			mv.setViewName("userprofile.jsp");
 			break;
 		}
-		
-		
 		return mv;
 	}
 	
