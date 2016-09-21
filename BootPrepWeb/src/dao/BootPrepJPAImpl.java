@@ -8,10 +8,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
 import org.hibernate.Hibernate;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.Resource;
@@ -49,7 +49,13 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		newUser.setPassword(user.getPassword());
 		newUser.setEmail(user.getEmail());
 		newUser.setCreateDate(user.getCreateDate());
-		em.persist(newUser);
+		try {
+			em.persist(newUser);
+		} catch (PersistenceException pe) {
+			System.out.println("here...");
+			em.clear();
+			return null;
+		}
 	    return user;
         
 	}
