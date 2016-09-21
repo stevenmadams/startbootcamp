@@ -182,8 +182,10 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 	@Override
 	public Resource addTagToResource(String tagName, int userId, int resourceId) {
 		Resource r = em.find(Resource.class, resourceId);
+		User u = em.find(User.class, userId);
 		// If user isn't associated to this resource, don't change tags
-		if (!validAddition(resourceId, userId)) {
+		// also, if user has already added MAX_TAGS, don't add
+		if (!validAddition(r, u)) {
 			return r;
 		}
 		Tag tag = uniqueTag(tagName);
@@ -195,12 +197,15 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		return r;
 	}
 
-	private boolean validAddition(int resourceId, int userId) {
+	private boolean validAddition(Resource r, User u) {
+		if (!r.getUsers().contains(u)) {
+			return false;
+		}
 		String sql = "SELECT rt FROM ResourceTag rt "
 				   + "WHERE user = ?1 AND rt.resource.id = ?2 ";
 		List<ResourceTag> results = em.createQuery(sql, ResourceTag.class)
-				.setParameter(1, userId)
-				.setParameter(2, resourceId)
+				.setParameter(1, u.getId())
+				.setParameter(2, r.getId())
 				.getResultList();
 		return results.size() < MAX_TAGS;
 	}
