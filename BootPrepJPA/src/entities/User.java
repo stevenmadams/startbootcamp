@@ -60,6 +60,10 @@ public class User {
 			this.createDate = createDate;
 		}
 		
+		public String setDefaultPhoto() {
+			userPhoto = "img/defaultuser.png";
+			return userPhoto;
+		}
 
 		// Getters and Setters
 		public int getId() {
