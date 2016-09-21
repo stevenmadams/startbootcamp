@@ -78,7 +78,7 @@ public class AuthenticationController {
 //				int countdown = u.getCreateDate().compareTo(today);
 //				mv.addObject("date", countdown );
 			} else {
-				mv.addObject("error", true);
+				mv.addObject("error", "Invalid username or password.");
 				mv.addObject("userId", 0);
 				mv.addObject("auth", "false");
 			}
