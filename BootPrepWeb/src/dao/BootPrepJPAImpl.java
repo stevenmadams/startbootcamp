@@ -1,5 +1,8 @@
 package dao;
 
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +14,10 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.hibernate.Hibernate;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
 
 import entities.Resource;
 import entities.ResourceTag;
@@ -84,6 +89,40 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		System.out.println("at delete");
 		return null;
 	}
+	
+	@Override
+//	public void loadUsers() {
+//		List<User> users = null;
+//		users = new ArrayList<>();
+//		User user = null;
+//		try {
+//			Connection conn = DriverManager.getConnection(url, user, pass);
+//			String sqltxt;
+//			sqltxt = "SELECT user SET id = ?, firstName = ? , lastName = ? , username = ? ,password = ? , email = ? , createDate = ? WHERE id= ?";
+//			PreparedStatement stmt = conn.prepareStatement(sqltxt);
+//			ResultSet rs = stmt.executeQuery("select * from user");
+//			while (rs.next()) {
+//				// Integer id, String make, String model, String modelType,
+//				// String numDoor, String vehicleType, String mileage
+//				user = new User(rs.getInt(1), 
+//								rs.getString(2), 
+//								rs.getString(3), 
+//								rs.getString(4), 
+//								rs.getString(5),
+//								rs.getString(6), 
+//								rs.getString(7));
+//				System.out.println(user);
+//				users.add(user);
+//				System.out.println(users);
+//			}
+//			rs.close();
+//			stmt.close();
+//			conn.close();
+//		} catch (SQLException sqle) {
+//			sqle.printStackTrace(System.err);
+//		}
+//
+//	}
 
 
 	// Resource methods *********************************************************

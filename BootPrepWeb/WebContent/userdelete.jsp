@@ -17,16 +17,7 @@
       <h3 class="panel-title">Delete account</h3>
     </div>
     <div class="panel-body">
-      <form method="post" action="userdelete.do">
-        <div class="form-group">
-          <label for="3">Username*</label>
-          <input type="text" class="form-control" name="username" required id="3">
-        </div>
-        <div class="form-group">
-          <label for="4">Password*</label>
-          <input type="password" class="form-control" name="password" required id="4">
-        </div>
-            <input type="submit" class="btn btn-default" value ="DELETE ACCOUNT"/>
+   <p>User account deleted successfully. </p>
       </form>
 
     </div>

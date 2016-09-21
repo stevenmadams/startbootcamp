@@ -50,19 +50,7 @@ public class UserController {
 		}
 		return "";
 	}
-	
-	// Fill table for all vehicles----------------------------------------------
-		@RequestMapping(path = "GetUser.do")
-		public ModelAndView getVehicles(@ModelAttribute("user") List<User> user) {
-			ModelAndView mv = new ModelAndView();
-			System.out.println("in GetUser.do");
-			mv.addObject("users", dao.getUser());
-			System.out.println(user.size());
-			mv.setViewName("userslist.jsp");
-			System.out.println(dao.getUser()); // debug statement
-			return mv;
-		}
-	
+
 	
 	@RequestMapping(path="useredit.do")
 	public ModelAndView userEdit(@ModelAttribute("userId")int id) {
@@ -70,7 +58,6 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("useredit.jsp", "user", u);
 		return mv;
 	}
-
 
 	@RequestMapping(path="usersubmitedit.do")
 	public ModelAndView userSubmitEdit(@ModelAttribute("userId")int id, 
@@ -122,6 +109,17 @@ public class UserController {
 		return mv;
 	}
 
+	// Fill table for all users----------------------------------------------
+	@RequestMapping(path = "getuser.do")
+	public ModelAndView getVehicles(@ModelAttribute("user") List<User> user) {
+		ModelAndView mv = new ModelAndView("admin.jsp");
+		System.out.println("in getuser.do");
+		mv.addObject("users", dao.getUser());
+		System.out.println(user.size());
+		mv.setViewName("userslist.jsp");
+		System.out.println(dao.getUser()); // debug statement
+		return mv;
+	}
 	
 	@RequestMapping(path="userListResources.do")
 	public ModelAndView userListResources(@ModelAttribute("userId") Integer id,
