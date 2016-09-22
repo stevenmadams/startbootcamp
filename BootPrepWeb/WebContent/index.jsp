@@ -42,7 +42,7 @@
             <div class="carousel-caption ">
               <h1 style="font-size: 3em;">Helpful Resources</h1>
               <p>&#60;BOOT/PREP&#62; is your source for curated articles that will help prepare you for coding bootcamp!</p>
-              <p><a class="btn btn-lg btn-primary" href="resourcelist.do" role="button">Start Learning!</a></p>
+              <p><a class="btn btn-lg btn-primary" href="resourcelist.do" role="button"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Start Learning!</a></p>
             </div>
           </div>
         </div>
@@ -53,7 +53,7 @@
             <div class="carousel-caption">
               <h1 style="font-size: 3em;">Keep track of your progress...</h1>
               <p>With a &#60;BOOT/PREP&#62; account, you can add notes, rate articles, and add your own custom resources.</p>
-              <p><a class="btn btn-lg btn-primary" href="userprofile.jsp" role="button">Sign Up Today!</a></p>
+              <p><a class="btn btn-lg btn-primary" href="userprofile.jsp" role="button"><i class="fa fa-pencil" aria-hidden="true"></i> Sign Up Today!</a></p>
             </div>
           </div>
         </div>
