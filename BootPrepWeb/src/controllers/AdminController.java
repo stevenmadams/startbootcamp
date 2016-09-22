@@ -105,13 +105,16 @@ public class AdminController {
 		}
 		
 		@RequestMapping(path="adminsubmitedit.do")
-        public ModelAndView userSubmitEdit(int id, 
+        public ModelAndView userSubmitEdit(@ModelAttribute("userId") int myId,
+										   @ModelAttribute("auth") String auth,
+        		int id, 
                 String firstName, 
                 String lastName, 
                 String username,
                 String password,
                 String email, 
                 String userPhoto,
+                Integer privelege,
                 String createDate) {
             Date date = null;
             try {
@@ -122,8 +125,10 @@ public class AdminController {
 
             User input = new User(firstName, lastName, username, email, userPhoto, date);
             input.setPassword(password);
+            input.setPrivelege(privelege);
             User u = dao.updateUser(input, id);
             ModelAndView mv = new ModelAndView("userprofile.jsp", "user", u);
+            reloadView(mv, myId, auth);
             return mv;
         }
 	

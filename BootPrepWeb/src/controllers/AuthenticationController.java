@@ -64,14 +64,14 @@ public class AuthenticationController {
 			@RequestParam(value="password", required=false) String password) {
 		User u = null;
 		ModelAndView mv = new ModelAndView("userprofile.jsp");
-
 		if (id > 0 && auth.equals("true")) {
 			u = dao.getUserById(id);
 			List<Resource> resources = dao.getAllResourcesById(u.getId());
 			mv.addObject("resources", resources);
+		} else {
+			u = userLogin(mv, u, username, password);
+			adminCheck(mv, u);
 		}
-		u = userLogin(mv, u, username, password);
-		adminCheck(mv, u);
 		mv.addObject("user", u);
 		return mv;
 	}
