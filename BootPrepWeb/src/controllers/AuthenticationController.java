@@ -101,7 +101,6 @@ public class AuthenticationController {
 				mv.addObject("auth", "false");
 			}
 		} else { // username or password is null
-			mv.addObject("error", "Must enter a username and password.");
 			mv.addObject("userId", 0);
 			mv.addObject("auth", "false");
 		}

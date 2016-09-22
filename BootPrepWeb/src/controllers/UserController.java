@@ -75,18 +75,14 @@ public class UserController {
 			String email, 
 			String userPhoto,
 			String createDate) {
-//		Date date = null;
-//		try {
-//			date = DateTimeHelper.stringToDate(createDate);
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
 		ModelAndView mv = new ModelAndView("userprofile.jsp");
 		User input = validInputs(firstName, lastName, username, email, createDate, userPhoto, password);
 		User u = null;
 		if (input == null) {
 			u = dao.getUserById(id);
 			mv.setViewName("useredit.jsp");
+			mv.addObject( "error", "username/password must be minimum "
+					+ "of 3/8 characters respectively.");
 			mv.addObject("user", u);
 			return mv;
 		}
@@ -102,8 +98,8 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("userprofile.jsp");
 		if (user == null) {
 			mv.setViewName("usercreate.jsp");
-			mv.addObject( "error", "username must be 4 characters minimum, "
-						+ "password must be 8 characters minimum.");
+			mv.addObject( "error", "username/password must be minimum "
+					+ "of 3/8 characters respectively.");
 			return mv;
 		}
 		// Create a user object
@@ -142,7 +138,7 @@ public class UserController {
 			}
 		}
 		if (password.length() < 8) return null;
-		if (username.length() < 4) return null;
+		if (username.length() < 3) return null;
 		user.setFirstName(firstName.trim());
 		user.setLastName(lastName.trim());
 		user.setUsername(username.trim());

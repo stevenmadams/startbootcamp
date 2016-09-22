@@ -65,13 +65,15 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 	@Override
 	public User updateUser(User user, int id) {
 		User current = em.find(User.class, id);
-		current.setFirstName(user.getFirstName());
-		current.setLastName(user.getLastName());
-		current.setUsername(user.getUsername());
-		current.setPassword(user.getPassword());
-		current.setEmail(user.getEmail());
-		current.setCreateDate(user.getCreateDate());
-		current.setUserPhoto(user.getUserPhoto());
+		if (current != null) {
+			current.setFirstName(user.getFirstName());
+			current.setLastName(user.getLastName());
+			current.setUsername(user.getUsername());
+			current.setPassword(user.getPassword());
+			current.setEmail(user.getEmail());
+			current.setCreateDate(user.getCreateDate());
+			current.setUserPhoto(user.getUserPhoto());
+		}
 		return current;
 	}
 	
@@ -152,15 +154,20 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 	public void addResourceToUser(int userId, int resourceId) {
 		User u = em.find(User.class, userId);
 		Resource r = em.find(Resource.class, resourceId);
-		u.addResource(r);
+		if (u != null) {
+			u.addResource(r);
+		}
 	}
 
 	@Override
 	public List<Resource> getAllResourcesById(int id) {
 		User u = em.find(User.class, id);
 		// Had to add the following due to LazyInitializationException
-		Hibernate.initialize(u.getResources());
-		return u.getResources();
+		if (u != null) {
+			Hibernate.initialize(u.getResources());
+			return u.getResources();
+		}
+		return getAllResources();
 	}
 	
 	@Override
@@ -181,7 +188,9 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 	public User removeResourceFromUser(int userId, int resourceId) {
 		User u = em.find(User.class, userId);
 		Resource r = em.find(Resource.class, resourceId);
+		if (u!=null && r != null) {
 		u.removeResource(r);
+		}
 		return u;
 	}
 
