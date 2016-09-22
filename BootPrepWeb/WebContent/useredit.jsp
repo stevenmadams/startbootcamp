@@ -38,6 +38,7 @@
 	      <h3 class="panel-title">Update account</h3>
 	    </div>
 	    <div class="panel-body">
+				<p class="bg-danger">${error}</p>
 	      <form method="post" action="usersubmitedit.do">
 	        <div class="form-group">
 	          <label for="1">First Name*</label>

@@ -67,9 +67,65 @@
         <span class="sr-only">Next</span>
       </a>
     </div><!-- /.carousel -->
+<br>
+    <div class="container">
+      <div class="jumbotron">
 
-<a href="userprofile.jsp?id=${userId}">ACCOUNT</a>
-<a href="resourcelist.do">List Resources</a>
+
+				<div class="row">
+					<div class="col-md-6">
+            <h3>What is &#60;BOOT/PREP&#62;?</h3>
+            <p>&#60;BOOT/PREP&#62; is a computer coding bootcamp preparation tool.</p>
+            <p>Our account feature allows you to take notes, rate, tag, and add new resources to your own personal digital library.</p>
+            <p>As a guest, you can browse our curated library of relevant bootcamp resources.</p>
+
+            </p>
+					</div>
+
+					<div class="col-md-6">
+
+            <img src="img/codepic.jpeg" class="img-circle img-responsive img-home logohalf center-block">
+							</div>
+
+            </div>
+            <div class="row">
+              <hr>
+  						  <img class="img-responsive logohalf center-block" src="img/biglogo.png">
+                  <hr>
+  					</div>
+            <div class="row">
+              <div class="col-md-6">
+
+                								<h3>Create an account...</h3>
+
+                								<p>Features:</p>
+                                <ul>
+                									<li>Bookmark resources to your profile</li>
+                									<li>Add notes and ratings to your resources</li>
+                									<li>Keep track of your progress</li>
+                                </ul>
+                                  <br>
+                							<p><a class="btn btn-lg btn-primary" href="userprofile.jsp" role="button"><i class="fa fa-pencil" aria-hidden="true"></i> Sign Up Today!</a></p>
+              </div>
+              <div class="col-md-6">
+                <h3>As a guest...</h3>
+                <p>View resources:</p>
+                <ul>
+                  <li>Access to resource links</li>
+                  <li>View resource videos</li>
+                  <li>Explore a list of all resources</li>
+                </ul>
+                  <br>
+                <p><a class="btn btn-lg btn-primary" href="resourcelist.do" role="button"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Start Learning!</a></p>
+              </div>
+						</div>
+
+
+					</div>
+				</div>
+
+
+
 <%@ include file="sitefooter.jsp" %>
 </body>
 </html>
