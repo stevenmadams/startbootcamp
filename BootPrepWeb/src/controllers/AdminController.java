@@ -5,8 +5,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import dao.BootPrepDAO;
+import entities.User;
 
 @Controller
 public class AdminController {
@@ -45,6 +49,40 @@ public class AdminController {
 			return "";
 		}
 		
+		@RequestMapping(path="admin.do")
+		public ModelAndView adminEdit(@ModelAttribute("userId") int myId,
+				@ModelAttribute("auth") String auth,
+				@RequestParam(value="targetUserId", required=false) Integer targetUserId,
+				@RequestParam("action") String action,
+				@RequestParam(value="tagId", required=false) Integer tagId,
+				@RequestParam(value="resourceId", required=false) Integer resourceId) {
+			ModelAndView mv = new ModelAndView("userprofile.jsp");
+			switch (action) {
+			case "deleteTagDb":
+				dao.deleteTagFromDb(tagId);
+				break;
+			case "deleteResource":
+				System.out.println(resourceId + "...In admin.do");
+				dao.deleteResource(resourceId);
+				break;
+			case "deleteTag":
+				dao.deleteTagFromResource(resourceId, tagId);
+				break;
+			case "deleteUser":
+				dao.deleteUser(targetUserId);
+				break;
+			case "addAdmin":
+				dao.makeAdmin(targetUserId);
+				break;
+			case "removeAdmin":
+				dao.removeAdmin(targetUserId);
+				break;
+			default:
+				break;
+			}
+			
+			return mv;
+		}
 		
 	
 	

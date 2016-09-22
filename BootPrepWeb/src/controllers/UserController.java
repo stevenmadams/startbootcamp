@@ -134,15 +134,11 @@ public class UserController {
 	
 	// Delete a user object
 	@RequestMapping(path = "userdelete.do")
-	public ModelAndView deleteUser(@ModelAttribute("userId") Integer id) {
+	public String deleteUser(@ModelAttribute("userId") Integer id) {
 		User user = dao.getUserById(id);
 		ModelAndView mv = new ModelAndView("userprofile.jsp", "user", user);
-		System.out.println("in userdelete.do/UserController");
 		dao.deleteUser(id);
-		mv.setViewName("userdelete.jsp");
-		mv.addObject("user");
-		System.out.println(user);
-		return mv;
+		return "redirect:/logout.do";
 	}
 
 	// Fill table for all users----------------------------------------------

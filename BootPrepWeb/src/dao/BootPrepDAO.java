@@ -4,6 +4,7 @@ import java.util.List;
 
 import entities.Resource;
 import entities.ResourceTag;
+import entities.Tag;
 import entities.User;
 import entities.UserData;
 import entities.UserDataKey;
@@ -49,5 +50,10 @@ public interface BootPrepDAO {
 	//ADMIN
 	public List<User> getAllUsers();
 	public List<Resource> getAllResources();
-	public void deleteTag();
+	public User makeAdmin(int userId);
+	public User removeAdmin(int userId);
+	public Tag deleteTagFromResource(int resourceId, int tagId);
+	public Tag deleteTagFromDb(int tagId);
+	public Resource deleteResource(int resourceId);
+	public List<Tag> getAllTags();
 }

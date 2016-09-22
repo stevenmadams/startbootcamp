@@ -173,5 +173,3 @@
 	<%@ include file="sitefooter.jsp"%>
 </body>
 </html>
-Contact GitHub API Training Shop Blog About
-© 2016 GitHub, Inc. Terms Privacy Security Status Help

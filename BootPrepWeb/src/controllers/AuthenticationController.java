@@ -1,7 +1,5 @@
 package controllers;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dao.BootPrepDAO;
 import entities.Resource;
+import entities.Tag;
 import entities.User;
 
 @Controller
@@ -71,7 +70,22 @@ public class AuthenticationController {
 			List<Resource> resources = dao.getAllResourcesById(u.getId());
 			mv.addObject("resources", resources);
 		}
-
+		userLogin(mv, u, username, password);
+		adminCheck(mv, u);
+		mv.addObject("user", u);
+		return mv;
+	}
+	
+	@RequestMapping(path="logout.do")
+	public String logout(SessionStatus status, Model model) {
+		model.addAttribute("auth", "false");
+		model.addAttribute("userId", 0);
+		model.addAttribute("username", "");
+		status.setComplete();
+		return "index.jsp";
+	}
+	
+	private void userLogin(ModelAndView mv, User u, String username, String password) {
 		if (username != null && password != null) {
 			u = dao.login(username, password);
 			if (u != null) {
@@ -86,21 +100,17 @@ public class AuthenticationController {
 				mv.addObject("auth", "false");
 			}
 		}
-		if (u.getPrivelege() > 0) {
-			List<Resource> allResources = dao.getAllResources();
-			List<User> allUsers = dao.getAllUsers();
-		}
-		mv.addObject("user", u);
-		return mv;
 	}
 	
-	@RequestMapping(path="logout.do")
-	public String logout(SessionStatus status, Model model) {
-		model.addAttribute("auth", "false");
-		model.addAttribute("userId", 0);
-		model.addAttribute("username", "");
-		status.setComplete();
-		return "index.jsp";
+	private void adminCheck(ModelAndView mv, User u) {
+		if (u != null && u.getPrivelege() > 0) {
+			List<Resource> allResources = dao.getAllResources();
+			List<User> allUsers = dao.getAllUsers();
+			List<Tag> allTags = dao.getAllTags();
+			mv.addObject("allResources", allResources);
+			mv.addObject("allUsers", allUsers);
+			mv.addObject("allTags", allTags);
+		}
 	}
 	
 }
