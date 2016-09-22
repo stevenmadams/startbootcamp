@@ -26,13 +26,20 @@
 					<c:if
 						test="${userId > 0 && auth == 'true' && empty userHasResource}">
 						<a href="resourceadd.do?resourceId=${resource.id}" target="_blank"
-							class="btn btn-default btn-lg"><i class="fa fa-plus"
-							aria-hidden="true"></i> Resource</a>
+							class="btn btn-default btn-lg">
+
+              <i class="fa fa-folder-open text-success"></i> ADD</a>
 					</c:if> <%-- above: If user does not own resource --%> <c:if
 						test="${userId > 0 && auth == 'true' && userHasResource == 'true'}">
-						<a class="btn btn-default btn-lg" role="button"
+						<a class="btn btn-default" role="button"
 							href="resourceRemove.do?resourceId=${resource.id}&view=resource">
-							<i class="fa fa-times-circle" aria-hidden="true"></i> Remove
+
+                <i class="fa fa-folder-open text-danger"></i> REMOVE
+
+
+
+
+
 						</a>
 					</c:if> <a href="${resource.url}" target="_blank"
 					class="btn btn-default btn-lg"><i class="fa fa-external-link"

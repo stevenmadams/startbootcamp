@@ -35,7 +35,7 @@
           <input type="password" class="form-control" name="password" required id="4">
         </div>
         <div class="form-group">
-          <label for="7">DONT USE YET *** Account Photo URL</label>
+          <label for="7">Account Photo (URL)</label>
           <input type="url" class="form-control" name="userPhoto" id="7">
         </div>
         <div class="form-group">
