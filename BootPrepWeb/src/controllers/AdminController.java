@@ -84,14 +84,18 @@ public class AdminController {
 			default:
 				break;
 			}
-			reloadView(mv);
+			reloadView(mv, myId, auth);
 			return mv;
 		}
 		
-		private void reloadView(ModelAndView mv) {
+		private void reloadView(ModelAndView mv, int id, String auth) {
 			List<Resource> allResources = dao.getAllResources();
 			List<User> allUsers = dao.getAllUsers();
 			List<Tag> allTags = dao.getAllTags();
+			User admin = dao.getUserById(id);
+			mv.addObject("userId", id);
+			mv.addObject("auth", true);
+			mv.addObject("user", admin);
 			mv.addObject("allResources", allResources);
 			mv.addObject("allUsers", allUsers);
 			mv.addObject("allTags", allTags);
