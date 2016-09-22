@@ -197,10 +197,8 @@
 							</div>
 							<br> <input type="hidden" name="resourceId"
 								value="${resource.id}">
-							<a type="submit" class="btn btn-default">
-								<i class="fa fa-floppy-o" aria-hidden="true"> </i>
-								Save
-							</a>
+							<input type="submit" class="btn btn-default" value="SAVE">
+
 						</form>
 
 					</c:if>
