@@ -31,6 +31,8 @@ import entities.UserDataKey;
 public class BootPrepJPAImpl implements BootPrepDAO {
 	
 	private static final int MAX_TAGS = 3;
+	private static final int ADMIN_PRIVELEGE_LEVEL = 1;
+	private static final int NON_ADMIN_LEVEL = 0;
 	
 	// line added for git
 	@PersistenceContext
@@ -338,7 +340,7 @@ System.out.println(results);
 		return null;
 	}
 
-
+	// ADMIN METHODS
 	@Override
 	public List<User> getAllUsers() {
 		String sql = "select u from User u";
@@ -347,10 +349,56 @@ System.out.println(results);
 		return users;
 	}
 
-	@Override
-	public void deleteTag() {
-		// TODO Auto-generated method stub
-		
+	public Tag deleteTagFromResource(int resourceId, int tagId) { 
+		String sql = "SELECT rt FROM ResourceTag rt "
+				   + "WHERE rt.tag.id = ?1 AND rt.resource.id = ?2";
+		ResourceTag rt = em.createQuery(sql, ResourceTag.class)
+						   .setParameter(1, tagId)
+						   .setParameter(2, resourceId)
+						   .getSingleResult();
+		em.remove(rt);
+		return rt.getTag();
+	}
+	
+	public User makeAdmin(int userId) {
+		User u = em.find(User.class, userId);
+		u.setPrivelege(ADMIN_PRIVELEGE_LEVEL);
+		return u;
+	}
+	
+	public User removeAdmin(int userId) {
+		User u = em.find(User.class, userId);
+		u.setPrivelege(NON_ADMIN_LEVEL);
+		return null;
+	}
+	
+	public Tag deleteTagFromDb(int tagId) {
+		String sql = "SELECT rt FROM ResourceTag rt "
+				   + "WHERE rt.tag.id = ?1";
+		Tag t = em.find(Tag.class, tagId);
+		List<ResourceTag> rts = em.createQuery(sql, ResourceTag.class)
+							   .setParameter(1, tagId)
+							   .getResultList();
+		// Remove each ResourceTag association first.
+		for (ResourceTag rt : rts) {
+			em.remove(rt);
+		}
+		// Finally can remove the Tag iteslf from DB
+		em.remove(t);
+		return t;
+	}
+	
+	public Resource deleteResource(int resourceId) {
+		Resource r = em.find(Resource.class, resourceId);
+		em.remove(r);
+		return r;
+	}
+	
+	public List<Tag> getAllTags() {
+		String sql = "SELECT t FROM Tag t";
+		List<Tag> tags = em.createQuery(sql, Tag.class)
+						   .getResultList();
+		return tags;
 	}
 	
 }

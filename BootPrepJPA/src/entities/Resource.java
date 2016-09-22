@@ -3,6 +3,7 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
 
 @Entity
 	public class Resource {
@@ -32,7 +34,8 @@ import javax.persistence.OneToMany;
 				inverseJoinColumns=@JoinColumn(name="tag_id"))
 		private List<Tag> tags;
 		
-		@OneToMany(mappedBy="resource")
+		@OneToMany(mappedBy="resource",
+				cascade={CascadeType.REMOVE})
 		private List<UserData> userDatas;
 		
 		@ManyToMany(mappedBy="resources")
@@ -48,6 +51,13 @@ import javax.persistence.OneToMany;
 			this.name = name;
 			this.description = description;
 
+		}
+		public Resource(String url, String name, String description, String video, String photo) {
+			this.url = url;
+			this.name = name;
+			this.description = description;
+			this.video = video;
+			this.photo = photo;
 		}
 		
 		// Methods

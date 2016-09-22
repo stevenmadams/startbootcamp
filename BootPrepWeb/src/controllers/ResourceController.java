@@ -102,9 +102,9 @@ public class ResourceController {
 	@RequestMapping(path="resourceCreate.do")
 	public ModelAndView goToCreatePage(@ModelAttribute("userId") int userId,
 			   @ModelAttribute("auth") String auth,
-			   String url, String name, String description ) {
+			   String url, String name, String description, String video, String photo ) {
 		ModelAndView mv = new ModelAndView("resourcelist.jsp");
-		Resource r = dao.createResource(new Resource(url, name, description));
+		Resource r = dao.createResource(new Resource(url, name, description, video, photo));
 		mv.addObject("newResource", r);
 		return mv;
 	}
