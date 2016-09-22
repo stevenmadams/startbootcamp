@@ -18,6 +18,7 @@
       <h3 class="panel-title">Create Resource</h3>
     </div>
     <div class="panel-body">
+      <p class="bg-danger">${error}</p>
       <form method="post" action="resourceCreate.do">
         <div class="form-group">
           <label for="1">Resource Name*</label>

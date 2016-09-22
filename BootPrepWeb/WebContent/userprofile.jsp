@@ -28,7 +28,7 @@
 								<h3 class="panel-title">Log-in to your account...</h3>
 							</div>
 							<div class="panel-body">
-
+								<p class="bg-danger">${error}</p>
 								<form method="POST" action="userprofile.do">
 
 
@@ -45,7 +45,7 @@
 
 
 									<input class="btn btn-default" type="submit" value="LOG IN" />
-									<p class="bg-danger">${error}</p>
+
 								</form>
 							</div>
 						</div>
@@ -216,8 +216,6 @@ My Resources</h3>
 													</div>
 													<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
 														<div class="panel-body">
-
-												LIST OF USERS
 													<c:forEach var="user" items="${allUsers}">
 													<div class="row">
 														<div class="col-md-1">
@@ -298,8 +296,8 @@ My Resources</h3>
 													</div>
 													<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
 														<div class="panel-body">
-
-												LIST OF TAGGGGGS
+															REMOVE TAGS FROM DATABASE:
+															<hr>
 												<c:forEach var="tag" items="${allTags}">
 
 													<div class="btn-group" role="group" aria-label="Basic example">
