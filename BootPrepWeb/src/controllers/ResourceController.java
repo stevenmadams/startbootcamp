@@ -106,9 +106,42 @@ public class ResourceController {
 			   @ModelAttribute("auth") String auth,
 			   String url, String name, String description, String video, String photo ) {
 		ModelAndView mv = new ModelAndView("resourcelist.jsp");
-		Resource r = dao.createResource(new Resource(url, name, description, video, photo));
-		mv.addObject("newResource", r);
-		return mv;
+		Resource input = validResource(url, name, description, video, photo);
+		if (input == null) {
+			mv.addObject("error", "Resource name can't be blank. Video must be a YouTube link.");
+			mv.setViewName("resourcecreate.jsp");
+			return mv;
+		}
+		Resource r = dao.createResource(input);
+		return listAllResources(userId, "add");
+	}
+	
+	private Resource validResource(String url, String name, String description, String video, String photo) {
+		video = urlParse(video);
+		if (name != null && name.trim().equals("")) {
+			return null;
+		}
+		if (url != null && url.trim().equals("")) {
+			return null;
+		}
+		return new Resource(url, name, description, video, photo);
+	}
+	
+	private String urlParse(String video) {
+		String formatted = "";
+		if (!video.contains("youtube.com")) {
+			return formatted;
+		} else if (video.contains("youtube.com") && video.contains("watch\\?v=")) {
+	System.out.println("HERE..." + video);
+			String[] split = video.split("watch\\?v=");
+			for (String string : split) {
+				System.out.println(string);
+			}
+			formatted = split[0]+"embed/"+split[1];
+		} else {
+			return video;
+		}
+		return formatted;
 	}
 	
 	@RequestMapping(path="resourceTagEdit.do")
