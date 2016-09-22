@@ -31,7 +31,7 @@
             <img class="first-slide hidden-sm hidden-md hidden-lg" src="img/bannerphoto3xs.jpg" alt="First slide">
           <div class="container">
             <div class="carousel-caption ">
-
+              <img class="img-responsive logoshadow" src="img/biglogo.png">
             </div>
           </div>
         </div>
@@ -42,7 +42,7 @@
             <div class="carousel-caption ">
               <h1 style="font-size: 3em;">Helpful Resources</h1>
               <p>&#60;BOOT/PREP&#62; is your source for curated articles that will help prepare you for coding bootcamp!</p>
-              <p><a class="btn btn-lg btn-primary" href="resourcelist.jsp" role="button">Start Learning!</a></p>
+              <p><a class="btn btn-lg btn-primary" href="resourcelist.do" role="button">Start Learning!</a></p>
             </div>
           </div>
         </div>

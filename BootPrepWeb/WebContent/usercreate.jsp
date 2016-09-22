@@ -47,6 +47,7 @@
           <input type="date" class="form-control" name="createDate" id="6">
         </div>
             <input type="submit" class="btn btn-default" value ="CREATE ACCOUNT"/>
+            <p class="bg-danger">${error}</p>
       </form>
 
     </div>

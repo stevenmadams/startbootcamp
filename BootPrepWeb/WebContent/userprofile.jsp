@@ -18,6 +18,9 @@
 			<c:when test="${userId == 0 || auth != 'true'}">
 				<div class="jumbotron">
 
+					<div class="row">
+						  <img class="img-responsive logohalf center-block" src="img/biglogo.png">
+					</div>
 				<div class="row">
 					<div class="col-md-6">
 						<div class="panel panel-default">
@@ -42,6 +45,7 @@
 
 
 									<input class="btn btn-default" type="submit" value="LOG IN" />
+									<p class="bg-danger">${error}</p>
 								</form>
 							</div>
 						</div>
@@ -84,8 +88,8 @@
 
 
 									<div class="text-center">
-								<h1 class="uncapitalize">${user.username}</h1>
-								<p>${user.firstName}${user.lastName}</p>
+								<h1 class="uncapitalize"><i class="fa fa-user" aria-hidden="true"></i> ${user.username}</h1>
+								<p>${user.firstName} ${user.lastName}</p>
 								<p>Start date: ${user.createDate}</p>
 								<p>Todays date: ${datetime-local}</p>
 
@@ -96,7 +100,7 @@
 								<div class="collapse" id="deletepanel">
 										<div class="well text-center">
 											<form action="userdelete.do?" method="post">
-												<input type="checkbox" required="require"> Are you sure?<br>
+												<input type="checkbox" required="require"> Are you sure? <br>
 												<input class="btn btn-danger" type="submit" value="DELETE ACCOUNT">
 											</form>
 											</div>
@@ -112,19 +116,20 @@
 
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<h3>Dashboard</h3>
+							<h3><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</h3>
 							<hr>
 								<div class="row text-center">
 
 									<a class="btn btn-default" role="button" href="useredit.do?"> <i class="fa fa-pencil-square-o fa-lg"></i> Edit Account</a>
-									<a class="btn btn-default" role="button" href="resourcelist.do?view=add">Add a Resource</a>
-									<a class="btn btn-default" role="button" href="resourcecreate.jsp">Create New Resource</a>
+									<a class="btn btn-default" role="button" href="resourcelist.do?view=add"><i class="fa fa-plus fa-lg" aria-hidden="true"></i> Add Resource</a>
+									<a class="btn btn-default" role="button" href="resourcecreate.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i> New Resource</a>
 					</div>
 					</div>
 				</div>
 							<div class="panel panel-default">
 								<div class="panel-body">
-						<h3>My Resources</h3>
+						<h3><i class="fa fa-folder-open" aria-hidden="true"></i>
+My Resources</h3>
 						<hr>
 							<c:forEach var="resource" items="${resources}">
 								<div class="row">
@@ -154,7 +159,7 @@
 						<div class="col-md-12">
 							<div class="panel panel-default">
 								<div class="panel-body">
-									<h3>Admin Dashboard</h3>
+									<h3><i class="fa fa-tasks" aria-hidden="true"></i> Admin Dashboard</h3>
 									<div class="visible-xs">
 										<p class="bg-danger">ADMIN DASHBOARD only available on larger devices!</p>
 									</div>
@@ -215,12 +220,20 @@
 												LIST OF USERS
 													<c:forEach var="user" items="${allUsers}">
 													<div class="row">
-														USER: ID = ${user.id} | NAME = ${user.lastName},${user.firstName} | USERNAME: ${user.username} | PRIVELEGE ${user.privelege} |
+														<div class="col-md-1">
+														<img src="${user.userPhoto}" alt="photo of ${user.username}" class="img-circle img-responsive thumb">
+														</div>
+															<div class="col-md-8">
+															 USER: ID = ${user.id} | NAME = ${user.lastName},${user.firstName} | USERNAME: ${user.username} | PRIVELEGE ${user.privelege}
+														 </div>
+														 <div class="col-md-3">
 														<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#edituserpanel${user.id}" aria-expanded="false" aria-controls="edituserpanel${user.id}"><i class="fa fa-edit" aria-hidden="true"></i></button>
 														<%-- <a type="button" class="btn btn-primary" href="#edituserpanel${user.id}" aria-expanded="false" aria-controls="edituserpanel${user.id}" title="EDIT USER" ><i class="fa fa-edit" aria-hidden="true"></i></a> --%>
 														<a type="button" class="btn btn-success" href="admin.do?action=addAdmin&targetUserId=${user.id}" title="ADMINIFY" ><i class="fa fa-users" aria-hidden="true"></i></a>
 														<a type="button" class="btn btn-warning" href="admin.do?action=removeAdmin&targetUserId=${user.id}"title="UNADMINIFY"><i class="fa fa-user" aria-hidden="true"></i></a>
 														<a type="button" class="btn btn-danger" href="admin.do?action=deleteUser&targetUserId=${user.id}" title="REMOVE USER"><i class="fa fa-ban" aria-hidden="true"></i></a>
+													</div>
+												</div>
 														<div class="collapse" id="edituserpanel${user.id}">
 															<div class="well">
 																<div class="row">
@@ -248,7 +261,7 @@
 																						</div>
 																						<div class="col-md-1">
 																							 Priv:
-																							 <input type= "number" class="form-control" name="privelege" value="${user.privelege}" size="3" required="require"/>
+																							 <input type= "number" class="form-control" name="privelege" value="${user.privelege}" size="3" required="require" min="0" max="1"/>
 																						 </div>
 																						<div class="col-md-4">
 																							 Photo :
@@ -266,7 +279,7 @@
 																		</div>
 																	</div>
   														</div>
-													</div>
+
 														<hr>
 
 

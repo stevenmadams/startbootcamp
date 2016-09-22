@@ -26,8 +26,9 @@
 		<c:when test="${userId > 0 && auth == 'true'}">
 <div class="row">
 	<div class="text-center">
-			<a class="btn btn-default" role="button" href="resourcelist.do?view=add">Add resources</a>
-			<a class="btn btn-default" role="button" href="resourcelist.do?view=my">My resources</a>
+		<a class="btn btn-default" role="button" href="resourcecreate.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i> New Resource</a>
+		<a class="btn btn-default" role="button" href="resourcelist.do?view=add"><i class="fa fa-plus fa-lg" aria-hidden="true"></i> Add Resources</a>
+			<a class="btn btn-default" role="button" href="resourcelist.do?view=my"><i class="fa fa-folder-open fa-lg" aria-hidden="true"></i>My resources</a>
 			</div>
 			</div>
 

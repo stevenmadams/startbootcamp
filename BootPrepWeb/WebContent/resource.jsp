@@ -72,8 +72,9 @@
 					<%-- when user is logged in and has resource --%>
 					<c:if
 						test="${userId > 0 && auth == 'true' && userHasResource == 'true'}">
-
+            <p class="bg-danger">${error}</p>
             <div class="row">
+
 						<i class="fa fa-tags" aria-hidden="true"></i>
 						<c:forEach var="tag" items="${resource.tags}">
 
@@ -104,6 +105,7 @@
 						<div class="collapse" id="collapseExample">
 							<div class="well">
 								<form action="resourceTagEdit.do" method="post">
+
 									<input type="hidden" value="${resource.id}" name="resourceId">
 									<input type="hidden" value="add" name="action"> <input
 										type="text" name="tagName" class="form-control" maxlength="15"> <input

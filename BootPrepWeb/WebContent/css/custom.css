@@ -438,8 +438,21 @@ CAROUSEL CHANGES*/
   overflow-x: hidden;
 }
 
+.thumb{
+  height: 30px;
+  width: 30px;
+  overflow-x: hidden;
+}
+
+.logoshadow{
+  -webkit-filter: drop-shadow(5px 5px 5px #ffffff);
+   filter:         drop-shadow(5px 10px 15px #ffffff);
+}
+.logohalf{
+  width: 50%;
+  height: 50%;
+}
+
 
 .embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; }
-.embed-container iframe,
-.embed-container object,
-.embed-container embed { position: absolute; top: 0; left: 0; width: auto; height: auto; }
+.embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: auto; height: auto; }
