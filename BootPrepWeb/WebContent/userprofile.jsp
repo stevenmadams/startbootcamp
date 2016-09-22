@@ -16,7 +16,7 @@
 		<c:choose>
 			<%-- IF USER ID = NULL --%>
 			<c:when test="${userId == 0 || auth != 'true'}">
-
+				<div class="jumbotron">
 
 				<div class="row">
 					<div class="col-md-6">
@@ -69,6 +69,8 @@
 
 
 					</div>
+				</div>
+			</div>
 			</c:when>
 			<%-- IF USER ID != NULL --%>
 			<c:when test="${userId > 0 && auth == 'true'}">
@@ -76,9 +78,12 @@
 				<div class="col-md-6">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<div class="text-center">
 
-								<img src="${user.userPhoto}" alt="photo of ${user.username}" class="img-circle img-responsive img-profile">
+
+								<img src="${user.userPhoto}" alt="photo of ${user.username}" class="img-circle img-responsive img-profile center-block">
+
+
+									<div class="text-center">
 								<h1 class="uncapitalize">${user.username}</h1>
 								<p>${user.firstName}${user.lastName}</p>
 								<p>Start date: ${user.createDate}</p>
@@ -96,50 +101,115 @@
 				</div>
 
 				<div class="col-md-6">
-					<a href="useredit.do?">EDIT ACCOUNT</a> <a
-						href="userListResources.do">List My Study Materials</a> <a
-						href="resourcecreate.jsp">Create a new Study Resource</a>
-						<c:forEach var="resource" items="${resources}">
-							<div class="row">
 
-								<div class="col-xs-10">
-									<a href="resource.do?resourceId=${resource.id}">${resource.name}</a>
-								</div>
-								<div class="col-xs-2">
-									<a href="resourceRemove.do?resourceId=${resource.id}"><i
-										class="fa fa-times-circle" aria-hidden="true"></i></a>
-								</div>
-								<hr>
-							</div>
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<h3>Dashboard</h3>
+							<hr>
+								<div class="row">
+									<a class="btn btn-default" role="button" href="useredit.do?">Edit Account</a>
+									<a class="btn btn-default" role="button" href="resourcelist.do?view=add">Add a Resource</a>
+									<a class="btn btn-default" role="button" href="resourcecreate.jsp">Create New Resource</a>
+					</div>
+					</div>
+				</div>
+							<div class="panel panel-default">
+								<div class="panel-body">
+						<h3>My Resources</h3>
+						<hr>
+							<c:forEach var="resource" items="${resources}">
+								<div class="row">
 
-						</c:forEach>
+									<div class="col-xs-10">
+										<a href="resource.do?resourceId=${resource.id}">${resource.name}</a>
+									</div>
+									<div class="col-xs-2">
+										<a href="resourceRemove.do?resourceId=${resource.id}&view=profile"><i
+											class="fa fa-times-circle" aria-hidden="true"></i></a>
+									</div>
+
+								</div>
+								<br>
+							</c:forEach>
+
+
+
+					</div>
+				</div>
+
 				</div>
 			</c:when>
 		</c:choose>
 
 		<c:choose>
-			<c:when test="${! empty resources}">
+			<c:when test="${user.privelege > 0}">
+
 				<div class="col-md-12">
-					<h1 class="text-center">My Resources</h1>
-					<hr>
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<div action="userListResources.do" method="GET">
-								<c:forEach var="resource" items="${resources}">
-									<div class="row">
+							<h3>Admin Dashboard</h3>
+							<div class="visible-xs">
+								<p class="bg-danger">ADMIN DASHBOARD only available on larger devices!</p>
+							</div>
+								<%-- collapses --%>
+								<div class="panel-group  hidden-xs" id="accordion" role="tablist" aria-multiselectable="true">
+									  <div class="panel panel-default">
+									    <div class="panel-heading" role="tab" id="headingOne">
+									      <h4 class="panel-title">
+									        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+									          REMOVE RESOURCES
+									        </a>
+									      </h4>
+									    </div>
+									    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+									      <div class="panel-body">
+									        FOR EACH RESOURCE
+									      </div>
+									    </div>
+									  </div>
+									  <div class="panel panel-default">
+									    <div class="panel-heading" role="tab" id="headingTwo">
+									      <h4 class="panel-title">
+									        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+									          EDIT/REMOVE USER
+									        </a>
+									      </h4>
+									    </div>
+									    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+									      <div class="panel-body">
+									        TG’s form
+									      </div>
+									    </div>
+									  </div>
+									  <div class="panel panel-default">
+									    <div class="panel-heading" role="tab" id="headingThree">
+									      <h4 class="panel-title">
+									        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+									          List All Users
+									        </a>
+									      </h4>
+									    </div>
+									    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+									      <div class="panel-body">
 
-										<div class="col-xs-10">
-											<a href="resource.do?resourceId=${resource.id}">${resource.name}</a>
-										</div>
-										<div class="col-xs-2">
-											<a href="resourceRemove.do?resourceId=${resource.id}&view=profile"><i
-												class="fa fa-times-circle" aria-hidden="true"></i></a>
-										</div>
-										<hr>
+										LIST OF USERS
+											<c:forEach var="resource" items="${resources}">
+											<div class="row">
+												<div class="col-xs-10">
+													<a href="resource.do?resourceId=${resource.id}">${resource.name}</a>
+												</div>
+												<div class="col-xs-2">
+													<a href="resourceRemove.do?resourceId=${resource.id}&view=profile"><iclass="fa fa-times-circle" aria-hidden="true"></i></a>
+												</div>
+												<hr>
+											</div>
+
+										</c:forEach>
+
+									      </div>
+									    </div>
+									  </div>
 									</div>
-
-								</c:forEach>
-								</table>
 							</div>
 						</div>
 					</div>
@@ -173,3 +243,5 @@
 	<%@ include file="sitefooter.jsp"%>
 </body>
 </html>
+
+

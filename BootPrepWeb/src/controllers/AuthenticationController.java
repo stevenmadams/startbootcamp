@@ -100,9 +100,11 @@ public class AuthenticationController {
 				mv.addObject("auth", "false");
 			}
 		}
+
 	}
 	
 	private void adminCheck(ModelAndView mv, User u) {
+
 		if (u != null && u.getPrivelege() > 0) {
 			List<Resource> allResources = dao.getAllResources();
 			List<User> allUsers = dao.getAllUsers();
