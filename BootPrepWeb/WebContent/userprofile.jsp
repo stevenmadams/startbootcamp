@@ -339,27 +339,6 @@ My Resources</h3>
 
 
 	</div>
-	</div>
-
-
-
-	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <%@ include file="sitefooter.jsp"%>
