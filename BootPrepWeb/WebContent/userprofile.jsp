@@ -157,12 +157,12 @@
 									  <div class="panel panel-default">
 									    <div class="panel-heading" role="tab" id="headingOne">
 									      <h4 class="panel-title">
-									        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+									        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
 									          REMOVE RESOURCES
 									        </a>
 									      </h4>
 									    </div>
-									    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+									    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 									      <div class="panel-body">
 													<c:forEach var="resource" items="${allResources}">
 													<div class="row">
@@ -184,7 +184,7 @@
 
 															</div>
 
-														</c:forEach> | DELETE = 
+														</c:forEach> | DELETE =
 
 														<a href="admin.do?resourceId=${resource.id}&action=deleteResource"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
 
