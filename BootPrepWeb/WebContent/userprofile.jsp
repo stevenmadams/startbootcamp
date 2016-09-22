@@ -246,13 +246,11 @@
 									    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
 									      <div class="panel-body">
 
-										LIST OF USERS
+										LIST OF TAGGGGGS
 											<c:forEach var="user" items="${allUsers}">
 											<div class="row">
 												USER: ID = ${user.id} | NAME = ${user.lastName},${user.firstName} | USERNAME: ${user.username} | PRIVELEGE ${user.privelege} |
-													<a type="button" class="btn-xs btn-success" href="admin.do?action=addAdmin&targetUserId=${user.id}" title="ADMINIFY" ><i class="fa fa-users" aria-hidden="true"></i></a>
-													<a type="button" class="btn-xs btn-warning" href="admin.do?action=removeAdmin&targetUserId=${user.id}"title="UNADMINIFY"><i class="fa fa-user" aria-hidden="true"></i></a>
-													<a type="button" class="btn-xs btn-danger" href="admin.do?action=deleteUser&targetUserId=${user.id}" title="REMOVE USER"><i class="fa fa-ban" aria-hidden="true"></i></a>
+												<%-- TAG EDITOR --%>
 												<hr>
 											</div>
 
