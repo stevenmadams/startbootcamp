@@ -459,7 +459,7 @@ CAROUSEL CHANGES*/
   height: 50%;
 }
 
-.footer {
+footer {
     position: static;
     bottom: 0;
     width: 100%;
@@ -471,6 +471,7 @@ CAROUSEL CHANGES*/
   padding-left: 5%;
   margin: 20px 0;
 }
+
 
 .embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; }
 .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: auto; height: auto; }
