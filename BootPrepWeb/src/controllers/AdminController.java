@@ -105,7 +105,7 @@ public class AdminController {
 		}
 		
 		@RequestMapping(path="adminsubmitedit.do")
-        public ModelAndView userSubmitEdit(int userId, 
+        public ModelAndView userSubmitEdit(int id, 
                 String firstName, 
                 String lastName, 
                 String username,
@@ -121,7 +121,7 @@ public class AdminController {
             }
             User input = new User(firstName, lastName, username, email, userPhoto, date);
             input.setPassword(password);
-            User u = dao.updateUser(input, userId);
+            User u = dao.updateUser(input, id);
             ModelAndView mv = new ModelAndView("userprofile.jsp", "user", u);
             return mv;
         }
