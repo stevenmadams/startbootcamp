@@ -1,5 +1,7 @@
 package controllers;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -15,6 +17,7 @@ import dao.BootPrepDAO;
 import entities.Resource;
 import entities.Tag;
 import entities.User;
+import helpers.DateTimeHelper;
 
 @Controller
 public class AdminController {
@@ -100,5 +103,24 @@ public class AdminController {
 			mv.addObject("allUsers", allUsers);
 			mv.addObject("allTags", allTags);
 		}
+		
+		@RequestMapping(path="adminsubmitedit.do")
+        public ModelAndView userSubmitEdit(int userId, 
+                String firstName, 
+                String lastName, 
+                String username,
+                String email, 
+                String userPhoto,
+                String createDate) {
+            Date date = null;
+            try {
+                date = DateTimeHelper.stringToDate(createDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            User u = dao.updateUser(new User(firstName, lastName, username, email, userPhoto, date),userId);
+            ModelAndView mv = new ModelAndView("userprofile.jsp", "user", u);
+            return mv;
+        }
 	
 }

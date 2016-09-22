@@ -88,22 +88,25 @@ public class UserController {
 	@RequestMapping(path = "usercreate.do")
 	public ModelAndView UserCreate(String firstName, String lastName, String username, String email,
 			String createDate, String password, String userPhoto) {
-		User user = new User();
-		User u = null;
-		int code = 0;
+		User user = validInputs(firstName, lastName, username, email, createDate, userPhoto, password);
 		ModelAndView mv = new ModelAndView("userprofile.jsp");
+		if (user == null) {
+			mv.setViewName("usercreate.jsp");
+			mv.addObject( "error", "username must be 4 characters minimum, "
+						+ "password must be 8 characters minimum.");
+			return mv;
+		}
 		// Create a user object
-		user.setFirstName(firstName);
-		user.setLastName(lastName);
-		user.setUsername(username);
-		user.setUserPhoto(userPhoto);
-		user.setPassword(password);
-		user.setEmail(email);
-		try {
-			user.setCreateDate(DateTimeHelper.stringToDate(createDate));
-		} catch (ParseException e) { }
-		if ((code = dao.validUsernameAndEmail(user)) == 0) {
-			u = dao.createUser(user);
+		User u = createUser(mv, user);
+		mv.addObject("user", u);
+		return mv;
+	}
+	
+	private User createUser(ModelAndView mv, User input) {
+		int code = 0;
+		User u = null;
+		if ((code = dao.validUsernameAndEmail(input)) == 0) {
+			u = dao.createUser(input);
 			u = dao.login(u.getUsername(), u.getPassword());
 			if (u != null) {
 				mv.addObject("userId", u.getId());
@@ -115,8 +118,35 @@ public class UserController {
 		} else {
 			mv.addObject("error", setError(code));
 		}
-		mv.addObject("user", u);
-		return mv;
+		return u;
+	}
+	
+	private User validInputs(String firstName, String lastName, String username, 
+			String email, String createDate, String userPhoto, String password) {
+		User user = new User();
+		String[] inputs = {firstName, lastName, username, email, password};
+		for (String input : inputs) {
+			if (input != null && emptyString(input)) {
+				System.out.println("******************In if: "+input);
+				return null;
+			}
+		}
+		if (password.length() < 8) return null;
+		if (username.length() < 4) return null;
+		user.setFirstName(firstName.trim());
+		user.setLastName(lastName.trim());
+		user.setUsername(username.trim());
+		user.setUserPhoto(userPhoto);
+		user.setPassword(password);
+		user.setEmail(email);
+		try {
+			user.setCreateDate(DateTimeHelper.stringToDate(createDate));
+		} catch (ParseException e) { }
+		return user;
+	}
+	
+	private boolean emptyString(String input) {
+		return input.trim().equals("");
 	}
 	
 	private String setError(int code) {
