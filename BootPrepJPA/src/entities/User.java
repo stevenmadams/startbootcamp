@@ -38,7 +38,7 @@ public class User {
 		@Temporal(TemporalType.DATE)
 		private Date createDate;
 		@Column(name="user_photo")
-		private String userPhoto = "img/defaultuser.png";
+		private String userPhoto = "http://localhost:8080/BootPrepWeb/img/defaultuser.png";
 		private Integer privelege = 0;
 		
 		//Maybe we need or can use this?
@@ -61,7 +61,7 @@ public class User {
 		}
 		
 		public String setDefaultPhoto() {
-			userPhoto = "img/defaultuser.png";
+			userPhoto = "http://localhost:8080/BootPrepWeb/img/defaultuser.png";
 			return userPhoto;
 		}
 

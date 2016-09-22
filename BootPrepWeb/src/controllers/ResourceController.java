@@ -97,7 +97,7 @@ public class ResourceController {
 			mv.setViewName("userprofile.jsp");
 		}
 		mv.addObject("user", u);
-		mv.addObject("resources", u.getResources());
+		if (u != null ) mv.addObject("resources", u.getResources());
 		return mv;
 	}
 	
