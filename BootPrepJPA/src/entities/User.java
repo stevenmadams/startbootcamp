@@ -39,7 +39,7 @@ public class User {
 		private Date createDate;
 		@Column(name="user_photo")
 		private String userPhoto = "http://localhost:8080/BootPrepWeb/img/defaultuser.png";
-		private Integer privelege = 0;
+		private Integer privilege = 0;
 		
 		//Maybe we need or can use this?
 		@ManyToMany
@@ -127,12 +127,12 @@ public class User {
 		}
 		
 
-		public Integer getPrivelege() {
-			return privelege;
+		public Integer getPrivilege() {
+			return privilege;
 		}
 
-		public void setPrivelege(Integer privelege) {
-			this.privelege = privelege;
+		public void setPrivilege(Integer privilege) {
+			this.privilege = privilege;
 		}
 
 		// To String	
