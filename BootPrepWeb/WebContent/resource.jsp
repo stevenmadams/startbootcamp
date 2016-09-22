@@ -126,7 +126,7 @@
 							aria-hidden="true"></i>${resource.description}
 				</blockquote>
 
-          <c:if test="${resource.video = !empty}">
+          <c:if test="${!empty resource.video}">
       <%@ include file="videoIframe.jsp"%>
 
         <div class='embed-container'><iframe src='${resource.video}' frameborder='0' allowfullscreen></iframe></div>

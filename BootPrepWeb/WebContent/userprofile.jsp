@@ -142,6 +142,7 @@
 		</c:choose>
 
 		<c:choose>
+<%-- <<<<<<<<<<<<<<<<<<<<<<<<<<<ADMIN AREA!!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>> --%>
 			<c:when test="${user.privelege > 0}">
 
 				<div class="col-md-12">
@@ -163,7 +164,34 @@
 									    </div>
 									    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 									      <div class="panel-body">
-									        FOR EACH RESOURCE
+													<c:forEach var="resource" items="${allResources}">
+													<div class="row">
+														RESOURCE: ID = ${resource.id} | NAME = ${resource.name} | TAGS =
+														<c:forEach var="tag" items="${resource.tags}">
+
+															<div class="btn-group" role="group" aria-label="Basic example">
+
+																<button type="button"
+																	class="btn btn-secondary btn-default btn-xs">${tag.name}</button>
+
+
+																		<a type="button"
+																			href="admin.do?action=deleteTag&tagId=${tag.id}&resourceId=${resource.id}"
+																			class="btn btn-secondary btn-danger btn-xs"><i class="fa fa-minus" aria-hidden="true"></i></a>
+
+
+
+
+															</div>
+
+														</c:forEach> | DELETE = 
+
+														<a href="admin.do?resourceId=${resource.id}&action=deleteResource"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+
+														<hr>
+													</div>
+
+												</c:forEach>
 									      </div>
 									    </div>
 									  </div>
@@ -243,5 +271,3 @@
 	<%@ include file="sitefooter.jsp"%>
 </body>
 </html>
-
-
