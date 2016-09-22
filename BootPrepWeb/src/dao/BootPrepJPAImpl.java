@@ -254,7 +254,8 @@ System.out.println(results);
 		User u = em.find(User.class, userId);
 		// If user isn't associated to this resource, don't change tags
 		// also, if user has already added MAX_TAGS, don't add
-		if (!validAddition(r, u)) {
+		// And if tag is empty string, don't add.
+		if (!validAddition(r, u, tagName)) {
 			return r;
 		}
 		Tag tag = uniqueTag(tagName);
@@ -279,8 +280,8 @@ System.out.println(results);
 		return r;
 	}
 
-	private boolean validAddition(Resource r, User u) {
-		if (!r.getUsers().contains(u)) {
+	private boolean validAddition(Resource r, User u, String tagName) {
+		if (!r.getUsers().contains(u) || tagName.trim().equals("")) {
 			return false;
 		}
 		String sql = "SELECT rt FROM ResourceTag rt "
