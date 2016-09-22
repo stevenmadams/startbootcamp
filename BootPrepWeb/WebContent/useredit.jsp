@@ -49,7 +49,7 @@
 	        </div>
 	        <div class="form-group">
 	          <label for="3">Username*</label>
-	          <input type="text" class="form-control" name="username" value="${user.username}" required id="3">
+	          <input type="text" class="form-control" name="username" value="${user.username}" required readonly id="3">
 	        </div>
 	        <div class="form-group">
 	          <label for="4">Password*</label>
@@ -61,7 +61,7 @@
 	        </div>
 	        <div class="form-group">
 	          <label for="5">E-mail*</label>
-	          <input type="email" class="form-control" name="email" value="${user.email}" required id="5">
+	          <input type="email" class="form-control" name="email" value="${user.email}" readonly required id="5">
 	        </div>
 	        <div class="form-group">
 	          <label for="6">Bootcamp Start Date (optional)</label>

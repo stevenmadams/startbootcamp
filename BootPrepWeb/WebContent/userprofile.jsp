@@ -88,12 +88,20 @@
 								<p>${user.firstName}${user.lastName}</p>
 								<p>Start date: ${user.createDate}</p>
 								<p>Todays date: ${datetime-local}</p>
-								<a class="btn" href="useredit.do?"> <i
-									class="fa fa-pencil-square-o fa-lg"></i> Edit Account
+
+
+								<a class="btn btn-default" role="button" data-toggle="collapse" href="#deletepanel" aria-expanded="false" aria-controls="deletepanel">
+  							<i class="fa fa-trash-o fa-lg"></i> Delete Account
 								</a>
-								<a class="btn" href="userdelete.do?"> <i
-									class="fa fa-trash-o fa-lg"></i> Delete Account
-								</a>
+								<div class="collapse" id="deletepanel">
+										<div class="well text-center">
+											<form action="userdelete.do?" method="post">
+												<input type="checkbox" required="require"> Are you sure?<br>
+												<input class="btn btn-danger" type="submit" value="DELETE ACCOUNT">
+											</form>
+											</div>
+										</div>
+
 							</div>
 						</div>
 					</div>
@@ -106,8 +114,9 @@
 						<div class="panel-body">
 							<h3>Dashboard</h3>
 							<hr>
-								<div class="row">
-									<a class="btn btn-default" role="button" href="useredit.do?">Edit Account</a>
+								<div class="row text-center">
+
+									<a class="btn btn-default" role="button" href="useredit.do?"> <i class="fa fa-pencil-square-o fa-lg"></i> Edit Account</a>
 									<a class="btn btn-default" role="button" href="resourcelist.do?view=add">Add a Resource</a>
 									<a class="btn btn-default" role="button" href="resourcecreate.jsp">Create New Resource</a>
 					</div>
@@ -138,133 +147,163 @@
 				</div>
 
 				</div>
-			</c:when>
-		</c:choose>
+				<c:choose>
+		<%-- <<<<<<<<<<<<<<<<<<<<<<<<<<<ADMIN AREA!!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>> --%>
+					<c:when test="${user.privelege > 0}">
 
-		<c:choose>
-<%-- <<<<<<<<<<<<<<<<<<<<<<<<<<<ADMIN AREA!!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>> --%>
-			<c:when test="${user.privelege > 0}">
+						<div class="col-md-12">
+							<div class="panel panel-default">
+								<div class="panel-body">
+									<h3>Admin Dashboard</h3>
+									<div class="visible-xs">
+										<p class="bg-danger">ADMIN DASHBOARD only available on larger devices!</p>
+									</div>
+										<%-- collapses --%>
+										<div class="panel-group  hidden-xs" id="accordion" role="tablist" aria-multiselectable="true">
+												<div class="panel panel-default">
+													<div class="panel-heading" role="tab" id="headingOne">
+														<h4 class="panel-title">
+															<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+																REMOVE RESOURCES
+															</a>
+														</h4>
+													</div>
+													<div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+														<div class="panel-body">
+															<c:forEach var="resource" items="${allResources}">
+															<div class="row">
+																RESOURCE: ID = ${resource.id} | NAME = ${resource.name} | TAGS =
+																<c:forEach var="tag" items="${resource.tags}">
 
-				<div class="col-md-12">
-					<div class="panel panel-default">
-						<div class="panel-body">
-							<h3>Admin Dashboard</h3>
-							<div class="visible-xs">
-								<p class="bg-danger">ADMIN DASHBOARD only available on larger devices!</p>
-							</div>
-								<%-- collapses --%>
-								<div class="panel-group  hidden-xs" id="accordion" role="tablist" aria-multiselectable="true">
-									  <div class="panel panel-default">
-									    <div class="panel-heading" role="tab" id="headingOne">
-									      <h4 class="panel-title">
-									        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-									          REMOVE RESOURCES
-									        </a>
-									      </h4>
-									    </div>
-									    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-									      <div class="panel-body">
-													<c:forEach var="resource" items="${allResources}">
-													<div class="row">
-														RESOURCE: ID = ${resource.id} | NAME = ${resource.name} | TAGS =
-														<c:forEach var="tag" items="${resource.tags}">
+																	<div class="btn-group" role="group" aria-label="Basic example">
 
-															<div class="btn-group" role="group" aria-label="Basic example">
-
-																<button type="button"
-																	class="btn btn-secondary btn-default btn-xs">${tag.name}</button>
+																		<button type="button"
+																			class="btn btn-secondary btn-default btn-xs">${tag.name}</button>
 
 
-																		<a type="button"
-																			href="admin.do?action=deleteTag&tagId=${tag.id}&resourceId=${resource.id}"
-																			class="btn btn-secondary btn-danger btn-xs"><i class="fa fa-minus" aria-hidden="true"></i></a>
+																				<a type="button"
+																					href="admin.do?action=deleteTag&tagId=${tag.id}&resourceId=${resource.id}"
+																					class="btn btn-secondary btn-danger btn-xs"><i class="fa fa-minus" aria-hidden="true"></i></a>
 
 
 
 
+																	</div>
+
+																</c:forEach> | DELETE =
+
+																<a href="admin.do?resourceId=${resource.id}&action=deleteResource"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+
+																<hr>
 															</div>
 
-														</c:forEach> | DELETE =
+														</c:forEach>
+														</div>
+													</div>
+												</div>
+												<div class="panel panel-default">
+													<div class="panel-heading" role="tab" id="headingThree">
+														<h4 class="panel-title">
+															<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+																ALL USERS
+															</a>
+														</h4>
+													</div>
+													<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+														<div class="panel-body">
 
-														<a href="admin.do?resourceId=${resource.id}&action=deleteResource"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
-
+												LIST OF USERS
+													<c:forEach var="user" items="${allUsers}">
+													<div class="row">
+														USER: ID = ${user.id} | NAME = ${user.lastName},${user.firstName} | USERNAME: ${user.username} | PRIVELEGE ${user.privelege} |
+														<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#edituserpanel${user.id}" aria-expanded="false" aria-controls="edituserpanel${user.id}"><i class="fa fa-edit" aria-hidden="true"></i></button>
+														<%-- <a type="button" class="btn btn-primary" href="#edituserpanel${user.id}" aria-expanded="false" aria-controls="edituserpanel${user.id}" title="EDIT USER" ><i class="fa fa-edit" aria-hidden="true"></i></a> --%>
+														<a type="button" class="btn btn-success" href="admin.do?action=addAdmin&targetUserId=${user.id}" title="ADMINIFY" ><i class="fa fa-users" aria-hidden="true"></i></a>
+														<a type="button" class="btn btn-warning" href="admin.do?action=removeAdmin&targetUserId=${user.id}"title="UNADMINIFY"><i class="fa fa-user" aria-hidden="true"></i></a>
+														<a type="button" class="btn btn-danger" href="admin.do?action=deleteUser&targetUserId=${user.id}" title="REMOVE USER"><i class="fa fa-ban" aria-hidden="true"></i></a>
+														<div class="collapse" id="edituserpanel${user.id}">
+															<div class="well">
+																<div class="row">
+																					 <form method="POST" action="adminsubmitedit.do">
+																							First Name :
+																							<input type= "text" class="form-control" name="firstName" value="${user.firstName}" required="require" />
+																							Last Name :
+																							<input type= "text" class="form-control" name="lastName" value="${user.lastName}" required="require"/>
+																							User Name :
+																							<input type= "text" class="form-control" name="username" value="${user.username}" required="require"/>
+																							Password :
+																							<input type= "password" class="form-control" name="password" value="${user.password}" required="require"/>
+																							Email :
+																							<input type= "email" class="form-control" name="email" value="${user.email}" required="require" />
+																							 Privelege :
+																							 <input type= "number" class="form-control" name="privelege" value="${user.privelege}" size="3" required="require"/>
+																							 Photo :
+																							 <input type= "url" class="form-control" name="userPhoto" value="${user.userPhoto}" />
+																							 Date :
+																							 <input type= "date" class="form-control" name="createDate" value="${user.createDate}" />
+																							 <input class="btn" type="submit" name="Submit"/>
+																			</form>
+																		</div>
+																	</div>
+  														</div>
+													</div>
 														<hr>
+
+
+												</c:forEach>
+
+														</div>
+													</div>
+												</div>
+												<div class="panel panel-default">
+													<div class="panel-heading" role="tab" id="headingFour">
+														<h4 class="panel-title">
+															<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+																TAG EDITOR
+															</a>
+														</h4>
+													</div>
+													<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+														<div class="panel-body">
+
+												LIST OF TAGGGGGS
+												<c:forEach var="tag" items="${allTags}">
+
+													<div class="btn-group" role="group" aria-label="Basic example">
+
+														<button type="button"
+															class="btn btn-secondary btn-default btn-xs">${tag.name}</button>
+
+
+																<a type="button"
+																	href="admin.do?action=deleteTagDb&tagId=${tag.id}"
+																	class="btn btn-secondary btn-danger btn-xs"><i class="fa fa-minus" aria-hidden="true"></i></a>
+
+
+
+
 													</div>
 
 												</c:forEach>
-									      </div>
-									    </div>
-									  </div>
-									  <div class="panel panel-default">
-									    <div class="panel-heading" role="tab" id="headingTwo">
-									      <h4 class="panel-title">
-									        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-									          SINGLE EDIT/REMOVE USER
-									        </a>
-									      </h4>
-									    </div>
-									    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-									      <div class="panel-body">
-	------------------------------------------TOLAND THIS IS WHERE YOUR FORM GOES!!!!!!--------------------------------------------------------
-									      </div>
-									    </div>
-									  </div>
-									  <div class="panel panel-default">
-									    <div class="panel-heading" role="tab" id="headingThree">
-									      <h4 class="panel-title">
-									        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-									          ALL USERS
-									        </a>
-									      </h4>
-									    </div>
-									    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-									      <div class="panel-body">
 
-										LIST OF USERS
-											<c:forEach var="user" items="${allUsers}">
-											<div class="row">
-												USER: ID = ${user.id} | NAME = ${user.lastName},${user.firstName} | USERNAME: ${user.username} | PRIVELEGE ${user.privelege} |
-												<a type="button" class="btn btn-success" href="admin.do?action=addAdmin&targetUserId=${user.id}" title="ADMINIFY" ><i class="fa fa-users" aria-hidden="true"></i></a>
-												<a type="button" class="btn btn-warning" href="admin.do?action=removeAdmin&targetUserId=${user.id}"title="UNADMINIFY"><i class="fa fa-user" aria-hidden="true"></i></a>
-												<a type="button" class="btn btn-danger" href="admin.do?action=deleteUser&targetUserId=${user.id}" title="REMOVE USER"><i class="fa fa-ban" aria-hidden="true"></i></a>
-												<hr>
+														</div>
+													</div>
+												</div>
 											</div>
-
-										</c:forEach>
-
-									      </div>
-									    </div>
-									  </div>
-										<div class="panel panel-default">
-									    <div class="panel-heading" role="tab" id="headingFour">
-									      <h4 class="panel-title">
-									        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-									          TAG EDITOR
-									        </a>
-									      </h4>
-									    </div>
-									    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-									      <div class="panel-body">
-
-										LIST OF TAGGGGGS
-											<c:forEach var="user" items="${allUsers}">
-											<div class="row">
-												USER: ID = ${user.id} | NAME = ${user.lastName},${user.firstName} | USERNAME: ${user.username} | PRIVELEGE ${user.privelege} |
-												<%-- TAG EDITOR --%>
-												<hr>
-											</div>
-
-										</c:forEach>
-
-									      </div>
-									    </div>
-									  </div>
 									</div>
+								</div>
 							</div>
-						</div>
-					</div>
+					</c:when>
+				</c:choose>
+
+
+
+
+
+
 			</c:when>
 		</c:choose>
+
 
 	</div>
 	</div>
