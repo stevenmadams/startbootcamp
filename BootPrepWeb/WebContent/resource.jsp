@@ -106,7 +106,7 @@
 								<form action="resourceTagEdit.do" method="post">
 									<input type="hidden" value="${resource.id}" name="resourceId">
 									<input type="hidden" value="add" name="action"> <input
-										type="text" name="tagName" class="form-control"> <input
+										type="text" name="tagName" class="form-control" maxlength="15"> <input
 										type="submit" class="btn btn-default" value="Add Tag" />
 								</form>
 							</div>

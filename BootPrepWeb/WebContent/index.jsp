@@ -23,9 +23,19 @@
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item active">
+          <img class="first-slide hidden-xs" src="img/bannerphoto3.jpg" alt="First slide">
+            <img class="first-slide hidden-sm hidden-md hidden-lg" src="img/bannerphoto3xs.jpg" alt="First slide">
+          <div class="container">
+            <div class="carousel-caption ">
+
+            </div>
+          </div>
+        </div>
+        <div class="item">
           <img class="first-slide hidden-xs" src="img/bannerphoto1.jpg" alt="First slide">
             <img class="first-slide hidden-sm hidden-md hidden-lg" src="img/bannerphoto1xs.jpg" alt="First slide">
           <div class="container">
