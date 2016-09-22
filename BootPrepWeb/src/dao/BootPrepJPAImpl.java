@@ -390,12 +390,6 @@ System.out.println(results);
 	
 	public Resource deleteResource(int resourceId) {
 		Resource r = em.find(Resource.class, resourceId);
-		List<ResourceTag> rtags = r.getResourceTags();
-		r.setUsers(null);
-		for (ResourceTag resourceTag : rtags) {
-			resourceTag.setResource(null);
-			resourceTag.setTag(null);
-		}
 		em.remove(r);
 		return r;
 	}
