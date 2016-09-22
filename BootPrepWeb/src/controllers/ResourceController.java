@@ -3,6 +3,8 @@ package controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.PersistenceException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.stereotype.Controller;
@@ -140,7 +142,7 @@ public class ResourceController {
 		Resource r = null;
 		try { // exception thrown if resource already has the tag
 			r = dao.addTagToResource(tagName, userId, resourceId);
-		} catch (JpaSystemException cve) {
+		} catch (PersistenceException pe) {
 			r = dao.getResourceById(resourceId);
 			mv.addObject("error", "Resource already has this tag.");
 		}

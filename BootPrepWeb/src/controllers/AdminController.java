@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.BootPrepDAO;
+import entities.Resource;
+import entities.Tag;
 import entities.User;
 
 @Controller
@@ -80,10 +84,17 @@ public class AdminController {
 			default:
 				break;
 			}
-			
+			reloadView(mv);
 			return mv;
 		}
 		
-	
+		private void reloadView(ModelAndView mv) {
+			List<Resource> allResources = dao.getAllResources();
+			List<User> allUsers = dao.getAllUsers();
+			List<Tag> allTags = dao.getAllTags();
+			mv.addObject("allResources", allResources);
+			mv.addObject("allUsers", allUsers);
+			mv.addObject("allTags", allTags);
+		}
 	
 }
