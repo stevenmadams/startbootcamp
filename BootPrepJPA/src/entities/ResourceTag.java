@@ -26,6 +26,14 @@ public class ResourceTag {
 	@Column(name="user_id")
 	private int user;
 	
+	public ResourceTag() {}
+	
+	public ResourceTag(Tag t, Resource r, int u) {
+		tag = t;
+		resource = r;
+		user = u;
+	}
+	
 	public Tag getTag() {
 		return tag;
 	}
