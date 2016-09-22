@@ -225,23 +225,43 @@
 															<div class="well">
 																<div class="row">
 																					 <form method="POST" action="adminsubmitedit.do">
+																						 <input type= "hidden" name="id" value="${user.id}"/>
+																						 <div class="col-md-2">
 																							First Name :
 																							<input type= "text" class="form-control" name="firstName" value="${user.firstName}" required="require" />
+																						</div>
+																						<div class="col-md-2">
 																							Last Name :
 																							<input type= "text" class="form-control" name="lastName" value="${user.lastName}" required="require"/>
+																						</div>
+																						<div class="col-md-2">
 																							User Name :
 																							<input type= "text" class="form-control" name="username" value="${user.username}" required="require"/>
+																						</div>
+																						<div class="col-md-2">
 																							Password :
 																							<input type= "password" class="form-control" name="password" value="${user.password}" required="require"/>
+																						</div>
+																						<div class="col-md-3">
 																							Email :
 																							<input type= "email" class="form-control" name="email" value="${user.email}" required="require" />
-																							 Privelege :
+																						</div>
+																						<div class="col-md-1">
+																							 Priv:
 																							 <input type= "number" class="form-control" name="privelege" value="${user.privelege}" size="3" required="require"/>
+																						 </div>
+																						<div class="col-md-4">
 																							 Photo :
 																							 <input type= "url" class="form-control" name="userPhoto" value="${user.userPhoto}" />
+																						 </div>
+																						<div class="col-md-2">
 																							 Date :
 																							 <input type= "date" class="form-control" name="createDate" value="${user.createDate}" />
-																							 <input class="btn" type="submit" name="Submit"/>
+																						 </div>
+																						 <div class="col-md-2">
+																							 Update user info:
+																							   <input type="submit" value ="UPDATE USER"/>
+																						 </div>
 																			</form>
 																		</div>
 																	</div>

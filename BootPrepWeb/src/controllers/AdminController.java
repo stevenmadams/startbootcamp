@@ -105,7 +105,7 @@ public class AdminController {
 		}
 		
 		@RequestMapping(path="adminsubmitedit.do")
-        public ModelAndView userSubmitEdit(int userId, 
+        public ModelAndView userSubmitEdit(int id, 
                 String firstName, 
                 String lastName, 
                 String username,
@@ -118,7 +118,7 @@ public class AdminController {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            User u = dao.updateUser(new User(firstName, lastName, username, email, userPhoto, date),userId);
+            User u = dao.updateUser(new User(firstName, lastName, username, email, userPhoto, date), id);
             ModelAndView mv = new ModelAndView("userprofile.jsp", "user", u);
             return mv;
         }
