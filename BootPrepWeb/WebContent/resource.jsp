@@ -25,7 +25,7 @@
 				<span><h1>${resource.name}</h1> <%-- below: If user does not own resource --%>
 					<c:if
 						test="${userId > 0 && auth == 'true' && empty userHasResource}">
-						<a href="resourceadd.do?resourceId=${resource.id}" target="_blank"
+						<a href="resourceadd.do?resourceId=${resource.id}"
 							class="btn btn-default btn-lg">
 
               <i class="fa fa-folder-open text-success"></i> ADD</a>
@@ -197,10 +197,10 @@
 							</div>
 							<br> <input type="hidden" name="resourceId"
 								value="${resource.id}">
-							<button type="submit" class="btn btn-default">
-								<%-- <i class="fa fa-floppy-o" aria-hidden="true">  --%>
+							<a type="submit" class="btn btn-default">
+								<i class="fa fa-floppy-o" aria-hidden="true"> </i>
 								Save
-							</button>
+							</a>
 						</form>
 
 					</c:if>

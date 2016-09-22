@@ -17,6 +17,7 @@
       <h3 class="panel-title">Create account</h3>
     </div>
     <div class="panel-body">
+      <p class="bg-danger">${error}</p>
       <form method="post" action="usercreate.do">
         <div class="form-group">
           <label for="1">First Name*</label>
@@ -47,7 +48,7 @@
           <input type="date" class="form-control" name="createDate" id="6">
         </div>
             <input type="submit" class="btn btn-default" value ="CREATE ACCOUNT"/>
-            <p class="bg-danger">${error}</p>
+
       </form>
 
     </div>

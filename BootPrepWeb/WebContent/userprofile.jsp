@@ -362,6 +362,6 @@ My Resources</h3>
 
 
 
-	<%@ include file="sitefooter.jsp"%>
+<%@ include file="sitefooter.jsp"%>
 </body>
 </html>
