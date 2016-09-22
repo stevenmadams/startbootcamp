@@ -68,6 +68,7 @@ public class AuthenticationController {
 			u = dao.getUserById(id);
 			List<Resource> resources = dao.getAllResourcesById(u.getId());
 			mv.addObject("resources", resources);
+			adminCheck(mv,u);
 		} else {
 			u = userLogin(mv, u, username, password);
 			adminCheck(mv, u);
