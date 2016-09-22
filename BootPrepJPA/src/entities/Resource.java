@@ -52,6 +52,13 @@ import javax.persistence.OneToMany;
 			this.description = description;
 
 		}
+		public Resource(String url, String name, String description, String video, String photo) {
+			this.url = url;
+			this.name = name;
+			this.description = description;
+			this.video = video;
+			this.photo = photo;
+		}
 		
 		// Methods
 		public List<String> getTagNames() {
