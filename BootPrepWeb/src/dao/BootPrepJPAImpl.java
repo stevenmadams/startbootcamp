@@ -257,21 +257,18 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 	
 	@Override
 	public Resource addTagToResource(String tagName, int userId, int resourceId) {
-		Resource r = em.find(Resource.class, resourceId);
-		User u = em.find(User.class, userId);
-		// If user isn't associated to this resource, don't change tags
-		// also, if user has already added MAX_TAGS, don't add
-		// And if tag is empty string, don't add.
-		if (!validAddition(r, u, tagName)) {
-			return r;
+		Resource resource = em.find(Resource.class, resourceId);
+		
+		User user = em.find(User.class, userId);
+		
+		if (!validAddition(resource, user, tagName)) {
+			return resource;
 		}
+		
 		Tag tag = uniqueTag(tagName);
-		ResourceTag rt = new ResourceTag();
-		rt.setResource(r);
-		rt.setTag(tag);
-		rt.setUser(userId);
+		ResourceTag rt = new ResourceTag(tag, resource, userId);
 		em.persist(rt);
-		return r;
+		return resource;
 	}
 	
 	@Override
