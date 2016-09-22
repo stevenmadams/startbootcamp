@@ -70,7 +70,7 @@ public class AuthenticationController {
 			List<Resource> resources = dao.getAllResourcesById(u.getId());
 			mv.addObject("resources", resources);
 		}
-		userLogin(mv, u, username, password);
+		u = userLogin(mv, u, username, password);
 		adminCheck(mv, u);
 		mv.addObject("user", u);
 		return mv;
@@ -85,7 +85,7 @@ public class AuthenticationController {
 		return "index.jsp";
 	}
 	
-	private void userLogin(ModelAndView mv, User u, String username, String password) {
+	private User userLogin(ModelAndView mv, User u, String username, String password) {
 		if (username != null && password != null) {
 			u = dao.login(username, password);
 			if (u != null) {
@@ -99,7 +99,12 @@ public class AuthenticationController {
 				mv.addObject("userId", 0);
 				mv.addObject("auth", "false");
 			}
+		} else { // username or password is null
+			mv.addObject("error", "Must enter a username and password.");
+			mv.addObject("userId", 0);
+			mv.addObject("auth", "false");
 		}
+		return u;
 
 	}
 	
