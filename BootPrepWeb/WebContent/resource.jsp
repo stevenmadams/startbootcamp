@@ -31,7 +31,7 @@
               <i class="fa fa-folder-open text-success"></i> ADD</a>
 					</c:if> <%-- above: If user does not own resource --%> <c:if
 						test="${userId > 0 && auth == 'true' && userHasResource == 'true'}">
-						<a class="btn btn-default" role="button"
+						<a class="btn btn-default btn-lg" role="button"
 							href="resourceRemove.do?resourceId=${resource.id}&view=resource">
 
                 <i class="fa fa-folder-open text-danger"></i> REMOVE

@@ -119,10 +119,12 @@
 							<h3><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</h3>
 							<hr>
 								<div class="row text-center">
-
-									<a class="btn btn-default" role="button" href="useredit.do?"> <i class="fa fa-pencil-square-o fa-lg"></i> Edit Account</a>
-									<a class="btn btn-default" role="button" href="resourcelist.do?view=add"><i class="fa fa-plus fa-lg" aria-hidden="true"></i> Add Resource</a>
-									<a class="btn btn-default" role="button" href="resourcecreate.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i> New Resource</a>
+									<div class="col-xs-12">
+									<a class="btn btn-default btn-sm" role="button" href="useredit.do?"> <i class="fa fa-pencil-square-o fa-lg"></i> Edit Account</a>
+									<a class="btn btn-default btn-sm" role="button" href="resourcecreate.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i> New Resource</a>
+		<a class="btn btn-default btn-sm" role="button " href="resourcelist.do?view=add"><i class="fa fa-plus fa-lg" aria-hidden="true"></i> Add Resources</a>
+			<a class="btn btn-default btn-sm" role="button" href="resourcelist.do?view=my"><i class="fa fa-folder-open fa-lg" aria-hidden="true"></i>My resources</a>
+		</div>
 					</div>
 					</div>
 				</div>
