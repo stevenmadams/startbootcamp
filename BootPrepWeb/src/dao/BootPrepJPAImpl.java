@@ -68,6 +68,7 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		current.setFirstName(user.getFirstName());
 		current.setLastName(user.getLastName());
 		current.setUsername(user.getUsername());
+		current.setPassword(user.getPassword());
 		current.setEmail(user.getEmail());
 		current.setCreateDate(user.getCreateDate());
 		current.setUserPhoto(user.getUserPhoto());
@@ -76,7 +77,6 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 	
 	@Override
 	public User deleteUser(int id) {
-		System.out.println("Deleting a user...");
 		EntityManagerFactory emf =
 			Persistence.createEntityManagerFactory("BootPrepJPA");
 		EntityManager em = emf.createEntityManager();
@@ -86,7 +86,6 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		em.getTransaction().commit();
 		em.close();
 		emf.close();
-		System.out.println("at delete");
 		return null;
 	}
 	
@@ -218,7 +217,6 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 								.setParameter(1, userId)
 								.setParameter(2, resourceId)
 								.getResultList();
-System.out.println(results);
 		return results;
 	}
 	

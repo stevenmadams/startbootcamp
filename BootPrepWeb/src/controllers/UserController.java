@@ -71,17 +71,27 @@ public class UserController {
 			String firstName, 
 			String lastName, 
 			String username,
+			String password,
 			String email, 
 			String userPhoto,
 			String createDate) {
-		Date date = null;
-		try {
-			date = DateTimeHelper.stringToDate(createDate);
-		} catch (ParseException e) {
-			e.printStackTrace();
+//		Date date = null;
+//		try {
+//			date = DateTimeHelper.stringToDate(createDate);
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
+		ModelAndView mv = new ModelAndView("userprofile.jsp");
+		User input = validInputs(firstName, lastName, username, email, createDate, userPhoto, password);
+		User u = null;
+		if (input == null) {
+			u = dao.getUserById(id);
+			mv.setViewName("useredit.jsp");
+			mv.addObject("user", u);
+			return mv;
 		}
-		User u = dao.updateUser(new User(firstName, lastName, username, email, userPhoto, date), id);
-		ModelAndView mv = new ModelAndView("userprofile.jsp", "user", u);
+		u = dao.updateUser(input, id);
+		mv.addObject("user", u);
 		return mv;
 	}
 

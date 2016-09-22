@@ -109,6 +109,7 @@ public class AdminController {
                 String firstName, 
                 String lastName, 
                 String username,
+                String password,
                 String email, 
                 String userPhoto,
                 String createDate) {
@@ -118,7 +119,10 @@ public class AdminController {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            User u = dao.updateUser(new User(firstName, lastName, username, email, userPhoto, date), id);
+
+            User input = new User(firstName, lastName, username, email, userPhoto, date);
+            input.setPassword(password);
+            User u = dao.updateUser(input, id);
             ModelAndView mv = new ModelAndView("userprofile.jsp", "user", u);
             return mv;
         }
