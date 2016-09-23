@@ -93,6 +93,7 @@
   						  <img class="img-responsive logohalf center-block" src="img/biglogo.png">
                   <hr>
   					</div>
+            <c:if test="${userId == 0 || auth != 'true'}">
             <div class="row">
               <div class="col-md-6">
 
@@ -119,7 +120,7 @@
                 <p><a class="btn btn-lg btn-primary" href="resourcelist.do" role="button"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Start Learning!</a></p>
               </div>
 						</div>
-
+          </c:if>
 
 					</div>
 				</div>

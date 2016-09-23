@@ -90,8 +90,12 @@
 									<div class="text-center">
 								<h1 class="uncapitalize"><i class="fa fa-user" aria-hidden="true"></i> ${user.username}</h1>
 								<p>${user.firstName} ${user.lastName}</p>
-								<p>Start date: ${user.createDate}</p>
-								<p>Todays date: ${datetime-local}</p>
+								<c:if test = "${!empty user.createDate}">
+								<hr>
+									<h4>Bootcamp Start Date</h4>
+								<h3>${user.createDate}</h3>
+							</c:if>
+								<hr>
 
 
 								<a class="btn btn-default" role="button" data-toggle="collapse" href="#deletepanel" aria-expanded="false" aria-controls="deletepanel">
@@ -122,7 +126,7 @@
 									<div class="col-xs-12">
 									<a class="btn btn-default btn-sm" role="button" href="useredit.do?"> <i class="fa fa-pencil-square-o fa-lg"></i> Edit Account</a>
 									<a class="btn btn-default btn-sm" role="button" href="resourcecreate.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i> New Resource</a>
-		<a class="btn btn-default btn-sm" role="button " href="resourcelist.do?view=add"><i class="fa fa-plus fa-lg" aria-hidden="true"></i> Add Resources</a>
+		<a class="btn btn-default btn-sm" role="button " href="resourcelist.do?view=add"><i class="fa fa-list fa-lg" aria-hidden="true"></i> List Resources</a>
 			<a class="btn btn-default btn-sm" role="button" href="resourcelist.do?view=my"><i class="fa fa-folder-open fa-lg" aria-hidden="true"></i>My resources</a>
 		</div>
 					</div>
