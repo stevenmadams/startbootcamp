@@ -114,7 +114,7 @@ public class AdminController {
                 String password,
                 String email, 
                 String userPhoto,
-                Integer privelege,
+                Integer privilege,
                 String createDate) {
             Date date = null;
             try {
@@ -125,7 +125,7 @@ public class AdminController {
 
             User input = new User(firstName, lastName, username, email, userPhoto, date);
             input.setPassword(password);
-            input.setPrivelege(privelege);
+            input.setPrivilege(privilege);
             User u = dao.updateUser(input, id);
             ModelAndView mv = new ModelAndView("userprofile.jsp", "user", u);
             reloadView(mv, myId, auth);

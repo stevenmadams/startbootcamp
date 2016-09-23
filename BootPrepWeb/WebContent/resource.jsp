@@ -186,13 +186,9 @@
 									</fieldset>
 								</div>
 								<div class="col-sm-12">
-									<a
-										href="userDataUpdate.do?resourceId=${resource.id}&completed=${userData.completed}">
 										Completed <span><input type="checkbox" name="completed"
-											value="${userData.completed}" disabled
 											<c:if test="${userData.completed}">checked</c:if>> </span>
 
-									</a>
 								</div>
 							</div>
 							<br> <input type="hidden" name="resourceId"

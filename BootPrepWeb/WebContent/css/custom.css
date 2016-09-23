@@ -480,6 +480,7 @@ CAROUSEL CHANGES*/
   /* Set the fixed height of the footer here */
   height: 30px;
   background-color: #f5f5f5;
+
 }
 
 
@@ -497,6 +498,8 @@ CAROUSEL CHANGES*/
 }
 
 
+<<<<<<< HEAD
+=======
 
 
 
@@ -507,5 +510,6 @@ CAROUSEL CHANGES*/
 
 
 
+>>>>>>> 7527786efecb678a6a5bc09f2ea9fdc668c79d8a
 .embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; }
 .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: auto; height: auto; }

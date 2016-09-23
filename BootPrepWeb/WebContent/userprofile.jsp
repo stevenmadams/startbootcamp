@@ -160,7 +160,7 @@ My Resources</h3>
 				</div>
 				<c:choose>
 		<%-- <<<<<<<<<<<<<<<<<<<<<<<<<<<ADMIN AREA!!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>> --%>
-					<c:when test="${user.privelege > 0}">
+					<c:when test="${user.privilege > 0}">
 
 						<div class="col-md-12">
 							<div class="panel panel-default">
@@ -228,7 +228,7 @@ My Resources</h3>
 														<img src="${user.userPhoto}" alt="photo of ${user.username}" class="img-circle img-responsive thumb">
 														</div>
 															<div class="col-md-8">
-															 USER: ID = ${user.id} | NAME = ${user.lastName},${user.firstName} | USERNAME: ${user.username} | PRIVELEGE ${user.privelege}
+															 USER: ID = ${user.id} | NAME = ${user.lastName},${user.firstName} | USERNAME: ${user.username} | PRIVILEGE ${user.privilege}
 														 </div>
 														 <div class="col-md-3">
 														<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#edituserpanel${user.id}" aria-expanded="false" aria-controls="edituserpanel${user.id}"><i class="fa fa-edit" aria-hidden="true"></i></button>
@@ -265,7 +265,7 @@ My Resources</h3>
 																						</div>
 																						<div class="col-md-1">
 																							 Priv:
-																							 <input type= "number" class="form-control" name="privelege" value="${user.privelege}" size="3" required="require" min="0" max="1"/>
+																							 <input type= "number" class="form-control" name="privilege" value="${user.privilege}" size="3" required="require" min="0" max="1"/>
 																						 </div>
 																						<div class="col-md-4">
 																							 Photo :

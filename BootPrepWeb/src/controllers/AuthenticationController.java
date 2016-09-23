@@ -110,7 +110,7 @@ public class AuthenticationController {
 	
 	private void adminCheck(ModelAndView mv, User u) {
 
-		if (u != null && u.getPrivelege() > 0) {
+		if (u != null && u.getPrivilege() > 0) {
 			List<Resource> allResources = dao.getAllResources();
 			List<User> allUsers = dao.getAllUsers();
 			List<Tag> allTags = dao.getAllTags();

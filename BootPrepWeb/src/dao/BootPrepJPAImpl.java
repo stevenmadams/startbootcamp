@@ -31,7 +31,7 @@ import entities.UserDataKey;
 public class BootPrepJPAImpl implements BootPrepDAO {
 	
 	private static final int MAX_TAGS = 3;
-	private static final int ADMIN_PRIVELEGE_LEVEL = 1;
+	private static final int ADMIN_PRIVILEGE_LEVEL = 1;
 	private static final int NON_ADMIN_LEVEL = 0;
 	
 	// line added for git
@@ -238,6 +238,9 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 	@Override
 	public UserData updateUserData(UserDataKey key, UserData data) {
 		UserData current = em.find(UserData.class, key);
+		if (current == null ) {
+			return null;
+		}
 		current.setCompleted(data.isCompleted());
 		String notes = (data.getNotes() == null) ? current.getNotes() : data.getNotes();
 		Integer rating = (data.getRating() == null) ? current.getRating() : data.getRating();
@@ -367,13 +370,13 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 	
 	public User makeAdmin(int userId) {
 		User u = em.find(User.class, userId);
-		u.setPrivelege(ADMIN_PRIVELEGE_LEVEL);
+		u.setPrivilege(ADMIN_PRIVILEGE_LEVEL);
 		return u;
 	}
 	
 	public User removeAdmin(int userId) {
 		User u = em.find(User.class, userId);
-		u.setPrivelege(NON_ADMIN_LEVEL);
+		u.setPrivilege(NON_ADMIN_LEVEL);
 		return null;
 	}
 	
@@ -388,7 +391,7 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 		for (ResourceTag rt : rts) {
 			em.remove(rt);
 		}
-		// Finally can remove the Tag iteslf from DB
+		// Finally can remove the Tag itself from DB
 		em.remove(t);
 		return t;
 	}
