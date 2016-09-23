@@ -238,6 +238,9 @@ public class BootPrepJPAImpl implements BootPrepDAO {
 	@Override
 	public UserData updateUserData(UserDataKey key, UserData data) {
 		UserData current = em.find(UserData.class, key);
+		if (current == null ) {
+			return null;
+		}
 		current.setCompleted(data.isCompleted());
 		String notes = (data.getNotes() == null) ? current.getNotes() : data.getNotes();
 		Integer rating = (data.getRating() == null) ? current.getRating() : data.getRating();

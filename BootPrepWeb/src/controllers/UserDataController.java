@@ -59,7 +59,7 @@ public class UserDataController {
 
 			Resource r = dao.getResourceById(resourceId);
 			UserDataKey key = new UserDataKey(userId, resourceId);
-			UserData updated = new UserData(rating, notes, !completed);
+			UserData updated = new UserData(rating, notes, completed);
 			updated = dao.updateUserData(key, updated);
 			mv.addObject("userHasResource", true);
 			mv.addObject("resource", r);
